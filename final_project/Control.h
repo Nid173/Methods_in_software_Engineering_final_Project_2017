@@ -5,7 +5,7 @@
 
 using namespace std;
 
-class Control
+class Control :public Graphics
 {
 protected:
 	short left;
