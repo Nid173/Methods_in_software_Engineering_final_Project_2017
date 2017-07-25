@@ -4,7 +4,7 @@
 class TextBox : public Control {
 protected:
 	int _width;
-	int _text;
+	string _text;
 public:
 	TextBox(int width);
 	~TextBox() {}
