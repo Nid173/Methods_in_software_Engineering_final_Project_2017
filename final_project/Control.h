@@ -15,6 +15,7 @@ public:
 	Control();
 	static Control* getFocus() { return NULL; };
 	static void setFocus(Control& control) {};
+	void print(){}
 
 
 
