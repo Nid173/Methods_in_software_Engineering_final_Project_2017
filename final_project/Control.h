@@ -5,7 +5,7 @@
 
 using namespace std;
 
-class Control
+class Control :public Graphics
 {
 protected:
 	short left;
@@ -15,6 +15,7 @@ public:
 	Control();
 	static Control* getFocus() { return NULL; };
 	static void setFocus(Control& control) {};
+	void print(){}
 
 
 
