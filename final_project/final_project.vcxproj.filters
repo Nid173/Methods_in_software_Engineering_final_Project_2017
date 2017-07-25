@@ -42,6 +42,21 @@
     <ClInclude Include="Button.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="Panel.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="ComboBox.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="CheckList.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="NumericBox.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="RadioBox.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">
