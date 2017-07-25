@@ -2,10 +2,14 @@
 //
 
 #include "stdafx.h"
+#include "Graphics.h"
 
 
 int main()
 {
+	Graphics g = Graphics();
+	g.write("hello");
+	getchar();
     return 0;
 }
 
