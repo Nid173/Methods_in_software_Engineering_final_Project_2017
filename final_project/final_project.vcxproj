@@ -138,6 +138,7 @@
     <Text Include="ReadMe.txt" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Button.h" />
     <ClInclude Include="CheckList.h" />
     <ClInclude Include="ComboBox.h" />
     <ClInclude Include="Control.h" />
@@ -149,8 +150,13 @@
     <ClInclude Include="stdafx.h" />
     <ClInclude Include="targetver.h" />
     <ClInclude Include="TextBox.h" />
+    <ClInclude Include="Label.h" />
   </ItemGroup>
   <ItemGroup>
+
+    <ClCompile Include="Button.cpp" />
+    <ClCompile Include="Control.cpp" />
+    <ClCompile Include="Label.cpp" />
     <ClCompile Include="Control.cpp" />
     <ClCompile Include="EventEngine.cpp" />
     <ClCompile Include="final_project.cpp" />
