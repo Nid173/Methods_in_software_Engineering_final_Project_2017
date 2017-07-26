@@ -5,6 +5,27 @@
 
 using namespace std;
 
+
+
+struct BorderDrawer {
+	virtual void draw(Graphics &g, short left, short top, int width, int height) const = 0;
+};
+
+class SingleBorderDrawer : public BorderDrawer {
+	virtual void draw(Graphics &g, short left, short top, int width, int height) const { }
+};
+
+class NullBorderDrawer : public BorderDrawer {
+	virtual void draw(Graphics &g, short left, short top, int width, int height) const { }
+};
+
+class DoubleBorderDrawer : public BorderDrawer {
+	virtual void draw(Graphics &g, short left, short top, int width, int height) const { }
+};
+
+/**************************************************************/
+
+
 class Control :public Graphics
 {
 protected:
@@ -18,6 +39,7 @@ private:
 	const BorderDrawer *_borderDrawer;
 
 public:
+
 	Control();
 	inline size_t getLayer() const;
 	inline void setLayer(size_t layer);
@@ -32,12 +54,14 @@ public:
 	inline virtual short getTop()const;
 	virtual void getAllControls(vector<Control*>* controls) {};
 	virtual bool canGetFocus() { return FALSE; };
+
+	virtual void setBorderDrawer(const BorderDrawer &borderDrawer)  {_borderDrawer = &borderDrawer;}
 	~Control();
 };
 
 /* 
  * Inline Methods 
- * "More Faster and much effective" 
+ * (More Faster and much effective). 
  */
 
  size_t Control:: getLayer() const {
@@ -57,19 +81,4 @@ public:
  short Control:: getTop()const {
 	 return _top;
  }
- /**************************************************************/
-struct BorderDrawer {
-	virtual void draw(Graphics &g, short left, short top, int width, int height) const = 0;
-};
-
-class SingleBorderDrawer : public BorderDrawer {
-	virtual void draw(Graphics &g, short left, short top, int width, int height) const { }
-};
-
-class NullBorderDrawer : public BorderDrawer {
-	virtual void draw(Graphics &g, short left, short top, int width, int height) const { }
-};
-
-class DoubleBorderDrawer : public BorderDrawer {
-	virtual void draw(Graphics &g, short left, short top, int width, int height) const { }
-};
+ 
