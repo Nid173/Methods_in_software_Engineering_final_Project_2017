@@ -3,7 +3,6 @@
 
 class TextBox : public Control {
 protected:
-	int _width;
 	string _text;
 public:
 	TextBox(int width);
@@ -12,10 +11,9 @@ public:
 	inline string getText() const;
 
 	/* Control Methods*/
+	virtual void draw(Graphics& g, int x, int y, size_t z)const;
 	 void mousePressed(int x, int y, bool isLeft);
 	 void keyDown(int keyCode, char charecter);
-	 short getLeft() ;
-	 short getTop() ;
 	 void getAllControls(vector<Control*>* controls);
 	 bool canGetFocus();
 };
