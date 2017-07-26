@@ -3,12 +3,12 @@
 
 class TextBox : public Control {
 protected:
-	string _text;
+	wstring _text;
 public:
 	TextBox(int width);
 	~TextBox() {}
-	inline void setText(string value);
-	inline string getText() const;
+	inline void setText(wstring value);
+	inline wstring getText() const;
 
 	/* Control Methods*/
 	virtual void draw(Graphics& g, int x, int y, size_t z)const;
@@ -18,10 +18,10 @@ public:
 	 bool canGetFocus();
 };
 
-void TextBox::setText(string value) {
+void TextBox::setText(wstring value) {
 	this->_text = value;
 }
 
-string TextBox::getText() const {
+wstring TextBox::getText() const {
 	return this->_text;
 }

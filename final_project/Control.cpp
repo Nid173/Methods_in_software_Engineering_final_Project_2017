@@ -14,3 +14,4 @@ Control::~Control()
 void Control:: draw(Graphics& g, int x, int y, size_t z) const {
 	if (z > _layer) return;
 }
+

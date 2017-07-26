@@ -13,8 +13,6 @@ class Button : public Label{
 public:
 	Button(int width);
 
-	inline void setText(string value);
-
 	void addListener(MouseListener &listener);
 
 
