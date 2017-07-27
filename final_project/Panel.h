@@ -4,7 +4,7 @@
 
 class Panel : public Control {
 protected:
-	vector<Control> controls;
+	vector<Control*> _controls;
 
 public:
 	Panel(int height=20,int width=20);
@@ -12,10 +12,9 @@ public:
 	void AddControl(Control &control,short x,short y);
 
 	/* Control Methods*/
+	void draw(Graphics& g, int x, int y, size_t layer)const;
 	void mousePressed(int x, int y, bool isLeft);
 	void keyDown(int keyCode, char charecter);
-	short getLeft();
-	short getTop();
 	void getAllControls(vector<Control*>* controls);
 	bool canGetFocus();
 

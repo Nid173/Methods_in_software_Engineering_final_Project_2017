@@ -4,7 +4,7 @@
 void Panel::AddControl(Control &control,short x,short y) {
 	control.setTop(y);
 	control.setLeft(x);
-	controls.push_back(control);
+	_controls.push_back(&control);
 
 }
 
@@ -24,8 +24,26 @@ void Panel::keyDown(int keyCode, char charecter) {
 }
 
 void Panel::getAllControls(vector<Control*>* controls) {
-
+	j = 0;
+	for (int i = 0; i < controls->size(); i++) {
+		controls->at(i)->
+	}
 }
 bool Panel::canGetFocus() {
 	return false;
+}
+
+
+void Panel::draw(Graphics& g, int x, int y, size_t layer)const {
+	if (layer == getLayer()) {
+		Control::draw(g, _left, _top, layer);
+	}
+	else if (layer == getLayer() + 1 && this == getFocus()) {
+		Control::draw(g, x, y, layer);
+		g.setCursorVisibility(true);
+		//g.moveTo(getLeft() + x + _cursorPosition, getTop() + y);
+		g.moveTo(getLeft() + x, getTop() + y);
+
+	}
+
 }
