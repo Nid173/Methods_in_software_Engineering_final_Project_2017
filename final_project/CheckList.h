@@ -1,10 +1,8 @@
 #pragma once
-#include "RadioBox.h"
+#include "Panel.h"
 
 class CheckList : public Panel {
 protected:
-	int _width;
-	int _height;
 	vector<string> _entries;
 	size_t _index;
 

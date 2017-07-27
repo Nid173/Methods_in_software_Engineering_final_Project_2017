@@ -3,7 +3,7 @@
 
 class NumericBox : public Panel {
 protected:
-	int _width;
+
 	int _min;
 	int _max;
 	int _value;
