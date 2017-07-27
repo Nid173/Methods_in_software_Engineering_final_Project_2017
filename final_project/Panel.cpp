@@ -15,10 +15,6 @@ Panel::Panel(int height, int width) {
 	_left = 0;
 }
 
-void Panel::AddControl(Control &control) {
-	this->control = &control;
-}
-
 
 void Panel::mousePressed(int x, int y, bool isLeft) {
 

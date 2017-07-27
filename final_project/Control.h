@@ -15,40 +15,42 @@ class SingleBorderDrawer : public BorderDrawer {
 	virtual void draw(Graphics &g, short left, short top, int width, int height) const {
 		
 		char box[6] = {'\xDA','\xC4', '\xBF','\xB3','\xc0','\xd9' };
-		char* c;
-
-		//first button
-		c = &box[0];
-		g.write(left, top, c);
+		string s;
+		s.push_back(box[0]);
+		g.write(left, top, s);
 		short i;
-		c = &box[1];
+
+		s.pop_back();
+		s.push_back(box[1]);
 		for (i = 1; i <= width; i++) {
-			g.write(left + i, top, c);
+			g.write(left + i, top, s);
 		}
-		c = &box[2];
-		g.write(c);
 
-		c = &box[3];
+		s.pop_back();
+		s.push_back(box[2]);
+		g.write(left+i,top,s);
+
+		s.pop_back();
+		s.push_back(box[3]);
+
 		for (i = 1; i < height; i++) {
-			g.write(left,top+i,c); 
-			g.write(left + width + 1, top + i, c);
+			g.write(left,top+i,s); 
+			g.write(left + width + 1, top + i, s);
 		}
 
-		c = &box[4];
-		g.write(left, top + i, c);
+		s.pop_back();
+		s.push_back(box[4]);
+		g.write(left, top + i, s);
 
-		c = &box[1];
-		for (i = 0; i < width; i++) {
-			g.write(left + i, top, c);
+		s.pop_back();
+		s.push_back(box[1]);
+		for (i = 1; i <= width; i++) {
+			g.write(left + i, top + height, s);
 		}
 
-		c = &box[5];
-		g.write(c);
-		//end first button
-		//SetConsoleTextAttribute(g, FOREGROUND_GREEN | FOREGROUND_INTENSITY);
-
-		//c = { left + 1,top + 1 };
-		//SetConsoleCursorPosition(h, c);
+		s.pop_back();
+		s.push_back(box[5]);
+		g.write(left+i,top+height,s);
 
 	}
 };
