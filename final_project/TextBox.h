@@ -3,27 +3,25 @@
 
 class TextBox : public Control {
 protected:
-	int _width;
-	string _text;
+	wstring _text;
 public:
 	TextBox(int width);
 	~TextBox() {}
-	inline void setText(string value);
-	inline string getText() const;
+	inline void setText(wstring value);
+	inline wstring getText() const;
 
 	/* Control Methods*/
+	virtual void draw(Graphics& g, int x, int y, size_t z)const;
 	 void mousePressed(int x, int y, bool isLeft);
 	 void keyDown(int keyCode, char charecter);
-	 short getLeft() ;
-	 short getTop() ;
 	 void getAllControls(vector<Control*>* controls);
 	 bool canGetFocus();
 };
 
-void TextBox::setText(string value) {
+void TextBox::setText(wstring value) {
 	this->_text = value;
 }
 
-string TextBox::getText() const {
+wstring TextBox::getText() const {
 	return this->_text;
 }

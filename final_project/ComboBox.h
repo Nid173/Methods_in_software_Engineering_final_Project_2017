@@ -3,7 +3,6 @@
 
 class ComboBox : public Panel {
 protected:
-	int _width;
 	vector<string> _entries;
 	size_t _index;
 

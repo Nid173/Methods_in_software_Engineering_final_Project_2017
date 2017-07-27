@@ -1,10 +1,10 @@
 #pragma once
 #include "Control.h"
+#include <vector>
 
 class Panel : public Control {
 protected:
-	int _width;
-	int _height; 
+
 	Control *control;
 
 public:
@@ -12,4 +12,13 @@ public:
 	~Panel() {}
 	void AddControl(Control &control);
 
+	/* Control Methods*/
+	void mousePressed(int x, int y, bool isLeft);
+	void keyDown(int keyCode, char charecter);
+	short getLeft();
+	short getTop();
+	void getAllControls(vector<Control*>* controls);
+	bool canGetFocus();
+
 };
+
