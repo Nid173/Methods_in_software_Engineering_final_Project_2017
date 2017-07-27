@@ -7,10 +7,9 @@ protected:
 	vector<Control> controls;
 
 public:
-	Panel(int height,int width);
+	Panel(int height=20,int width=20);
 	~Panel() {}
-	Panel() {}
-	void AddControl(Control &control);
+	void AddControl(Control &control,short x,short y);
 
 	/* Control Methods*/
 	void mousePressed(int x, int y, bool isLeft);
