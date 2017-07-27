@@ -56,17 +56,57 @@ class SingleBorderDrawer : public BorderDrawer {
 };
 
 class NullBorderDrawer : public BorderDrawer {
-	virtual void draw(Graphics &g, short left, short top, int width, int height) const { }
+	virtual void draw(Graphics &g, short left, short top, int width, int height) const {/*Without Border*/}
 };
 
 class DoubleBorderDrawer : public BorderDrawer {
-	virtual void draw(Graphics &g, short left, short top, int width, int height) const { }
+	virtual void draw(Graphics &g, short left, short top, int width, int height) const {
+		char box[6] = { '\xC9','\xCD', '\xBB','\xBA','\xC8','\xBC' };
+		string s;
+		s.push_back(box[0]);
+		g.write(left, top, s);
+		short i;
+
+		s.pop_back();
+		s.push_back(box[1]);
+		for (i = 1; i <= width; i++) {
+			g.write(left + i, top, s);
+		}
+
+		s.pop_back();
+		s.push_back(box[2]);
+		g.write(left + i, top, s);
+
+		s.pop_back();
+		s.push_back(box[3]);
+
+		for (i = 1; i < height; i++) {
+			g.write(left, top + i, s);
+			g.write(left + width + 1, top + i, s);
+		}
+
+		s.pop_back();
+		s.push_back(box[4]);
+		g.write(left, top + i, s);
+
+		s.pop_back();
+		s.push_back(box[1]);
+		for (i = 1; i <= width; i++) {
+			g.write(left + i, top + height, s);
+		}
+
+		s.pop_back();
+		s.push_back(box[5]);
+		g.write(left + i, top + height, s);
+
+	}
+	}
 };
 
 /**************************************************************/
 
 
-class Control :public Graphics
+class Control
 {
 protected:
 	short _left;
