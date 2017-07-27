@@ -28,7 +28,7 @@ void TextBox::draw(Graphics& g, int x, int y, size_t layer)const {
 		Control::draw(g, x, y, layer);
 		g.setCursorVisibility(true);
 		//g.moveTo(getLeft() + x + _cursorPosition, getTop() + y);
-		g.moveTo(getLeft() + x , getTop() + y);
+		g.moveTo(getLeft() + x , getTop() + y);	
 
 	}
 
