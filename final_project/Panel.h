@@ -9,6 +9,7 @@ protected:
 public:
 	Panel(int height,int width);
 	~Panel() {}
+	Panel() {}
 	void AddControl(Control &control);
 
 	/* Control Methods*/

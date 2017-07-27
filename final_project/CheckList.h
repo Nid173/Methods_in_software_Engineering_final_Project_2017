@@ -7,8 +7,9 @@ protected:
 	size_t _index;
 
 public:
-	CheckList(int width, int _height, vector<string> entries);
+	CheckList(int width, int height, vector<string> entries);
 	~CheckList() {}
+	CheckList() {}
 	void SelectedIndex(size_t index);
 	void DeSelectedIndex(size_t index);
 
