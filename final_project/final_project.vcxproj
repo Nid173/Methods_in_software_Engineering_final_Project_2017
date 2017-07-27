@@ -154,11 +154,16 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Button.cpp" />
+    <ClCompile Include="CheckList.cpp" />
+    <ClCompile Include="ComboBox.cpp" />
     <ClCompile Include="Control.cpp" />
     <ClCompile Include="EventEngine.cpp" />
     <ClCompile Include="final_project.cpp" />
     <ClCompile Include="Graphics.cpp" />
     <ClCompile Include="Label.cpp" />
+    <ClCompile Include="NumericBox.cpp" />
+    <ClCompile Include="Panel.cpp" />
+    <ClCompile Include="RadioBox.cpp" />
     <ClCompile Include="stdafx.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Create</PrecompiledHeader>
