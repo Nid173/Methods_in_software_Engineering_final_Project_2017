@@ -8,7 +8,7 @@ protected:
 	size_t _index;
 
 public:
-	RadioBox(int width, int _height, vector<string> entries);
+	RadioBox(int width, int height, vector<string> entries);
 	~RadioBox() {}
 	size_t GetSelectedIndex();
 	void SetSelectedIndex(size_t index);
