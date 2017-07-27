@@ -15,11 +15,13 @@ int main()
 	TextBox textBox1(10);
 	textBox1.setForeground(Color::Red);
 	textBox1.setText(L"hello");
+	textBox1.setLayer(2);
 	textBox1.setBorderDrawer(SimpleBorderFactory::instance().getSingle());
-	Panel panel(10, 10);
-	panel.AddControl(textBox1);
+	Panel panel(50,50);
+	//panel.setLayer(1);
+	//panel.AddControl(textBox1, 4, 16);
 	EventEngine engine;
-	engine.run(panel);
+	engine.run(textBox1);
 	//g.write("hello");
 	//getchar();
     return 0;

@@ -3,6 +3,9 @@
 
 TextBox::TextBox(int width) {
 	_width = width;
+	_height = 3;
+	_top = 3;
+	_left = 3;
 }
 
 
