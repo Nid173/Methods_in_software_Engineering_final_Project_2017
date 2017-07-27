@@ -4,8 +4,7 @@
 
 class Panel : public Control {
 protected:
-
-	Control *control;
+	vector<Control> controls;
 
 public:
 	Panel(int height,int width);
