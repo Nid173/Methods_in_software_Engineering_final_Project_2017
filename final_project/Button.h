@@ -15,5 +15,4 @@ public:
 
 	void addListener(MouseListener &listener);
 
-
 };
