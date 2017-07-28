@@ -5,6 +5,10 @@
 
 using namespace std;
 
+enum class ForegroundColor { Red, Blue, Green, Purple, Teal, Yellow, White, Black };
+enum class BackgroundColor { Red, Blue, Green, Purple, Teal, Yellow, White, Black };
+enum class BorderType { Single, Double, None };
+
 
 struct BorderDrawer {
 	virtual void draw(Graphics &g, short left, short top, int width, int height) const = 0;
@@ -119,7 +123,10 @@ private:
 	const BorderDrawer *_borderDrawer;
 
 public:
-
+	void SetVisibility(bool visibility);
+	void SetForeground(ForegroundColor color);
+	void SetBackground(BackgroundColor color);
+	void SetBorder(BorderType border);
 	Control();
 	inline size_t getLayer() const;
 	inline void setLayer(size_t layer);
