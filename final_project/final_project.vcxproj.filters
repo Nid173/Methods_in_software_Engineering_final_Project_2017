@@ -13,102 +13,96 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
-    <Filter Include="Header Files\Console_Utilites">
-      <UniqueIdentifier>{b50b7b6c-e5cc-49a0-80dc-465e6b37973a}</UniqueIdentifier>
-    </Filter>
   </ItemGroup>
   <ItemGroup>
     <Text Include="ReadMe.txt" />
-    <Text Include="Console_Utilites\ReadMe.txt">
-      <Filter>Header Files\Console_Utilites</Filter>
-    </Text>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="main.cpp">
+    <ClInclude Include="source\Panel.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="source\RadioBox.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="source\SimpleBorderFactory.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="source\stdafx.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="source\targetver.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="source\TextBox.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="source\Button.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="source\CheckList.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="source\ComboBox.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="source\Control.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="source\EventEngine.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="source\Graphics.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="source\Label.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="source\NumericBox.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="source\EventEngine.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Console_Utilites\ComboBox.cpp">
-      <Filter>Header Files\Console_Utilites</Filter>
+    <ClCompile Include="source\Graphics.cpp">
+      <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Console_Utilites\Control.cpp">
-      <Filter>Header Files\Console_Utilites</Filter>
+    <ClCompile Include="source\Label.cpp">
+      <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Console_Utilites\EventEngine.cpp">
-      <Filter>Header Files\Console_Utilites</Filter>
+    <ClCompile Include="source\main.cpp">
+      <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Console_Utilites\Graphics.cpp">
-      <Filter>Header Files\Console_Utilites</Filter>
+    <ClCompile Include="source\NumericBox.cpp">
+      <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Console_Utilites\Label.cpp">
-      <Filter>Header Files\Console_Utilites</Filter>
+    <ClCompile Include="source\Panel.cpp">
+      <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Console_Utilites\NumericBox.cpp">
-      <Filter>Header Files\Console_Utilites</Filter>
+    <ClCompile Include="source\RadioBox.cpp">
+      <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Console_Utilites\Panel.cpp">
-      <Filter>Header Files\Console_Utilites</Filter>
+    <ClCompile Include="source\SimpleBorderFactory.cpp">
+      <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Console_Utilites\RadioBox.cpp">
-      <Filter>Header Files\Console_Utilites</Filter>
+    <ClCompile Include="source\stdafx.cpp">
+      <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Console_Utilites\SimpleBorderFactory.cpp">
-      <Filter>Header Files\Console_Utilites</Filter>
+    <ClCompile Include="source\TextBox.cpp">
+      <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Console_Utilites\stdafx.cpp">
-      <Filter>Header Files\Console_Utilites</Filter>
+    <ClCompile Include="source\Button.cpp">
+      <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Console_Utilites\TextBox.cpp">
-      <Filter>Header Files\Console_Utilites</Filter>
+    <ClCompile Include="source\CheckList.cpp">
+      <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Console_Utilites\Button.cpp">
-      <Filter>Header Files\Console_Utilites</Filter>
+    <ClCompile Include="source\ComboBox.cpp">
+      <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Console_Utilites\CheckList.cpp">
-      <Filter>Header Files\Console_Utilites</Filter>
+    <ClCompile Include="source\Control.cpp">
+      <Filter>Source Files</Filter>
     </ClCompile>
-  </ItemGroup>
-  <ItemGroup>
-    <ClInclude Include="Console_Utilites\ComboBox.h">
-      <Filter>Header Files\Console_Utilites</Filter>
-    </ClInclude>
-    <ClInclude Include="Console_Utilites\Control.h">
-      <Filter>Header Files\Console_Utilites</Filter>
-    </ClInclude>
-    <ClInclude Include="Console_Utilites\EventEngine.h">
-      <Filter>Header Files\Console_Utilites</Filter>
-    </ClInclude>
-    <ClInclude Include="Console_Utilites\Graphics.h">
-      <Filter>Header Files\Console_Utilites</Filter>
-    </ClInclude>
-    <ClInclude Include="Console_Utilites\Label.h">
-      <Filter>Header Files\Console_Utilites</Filter>
-    </ClInclude>
-    <ClInclude Include="Console_Utilites\NumericBox.h">
-      <Filter>Header Files\Console_Utilites</Filter>
-    </ClInclude>
-    <ClInclude Include="Console_Utilites\Panel.h">
-      <Filter>Header Files\Console_Utilites</Filter>
-    </ClInclude>
-    <ClInclude Include="Console_Utilites\RadioBox.h">
-      <Filter>Header Files\Console_Utilites</Filter>
-    </ClInclude>
-    <ClInclude Include="Console_Utilites\SimpleBorderFactory.h">
-      <Filter>Header Files\Console_Utilites</Filter>
-    </ClInclude>
-    <ClInclude Include="Console_Utilites\stdafx.h">
-      <Filter>Header Files\Console_Utilites</Filter>
-    </ClInclude>
-    <ClInclude Include="Console_Utilites\targetver.h">
-      <Filter>Header Files\Console_Utilites</Filter>
-    </ClInclude>
-    <ClInclude Include="Console_Utilites\TextBox.h">
-      <Filter>Header Files\Console_Utilites</Filter>
-    </ClInclude>
-    <ClInclude Include="Console_Utilites\Button.h">
-      <Filter>Header Files\Console_Utilites</Filter>
-    </ClInclude>
-    <ClInclude Include="Console_Utilites\CheckList.h">
-      <Filter>Header Files\Console_Utilites</Filter>
-    </ClInclude>
   </ItemGroup>
 </Project>
