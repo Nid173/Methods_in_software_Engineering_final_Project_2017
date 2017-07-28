@@ -13,7 +13,7 @@ int main()
 {
 	//Graphics g = Graphics();
 	TextBox textBox1(10);
-	textBox1.setForeground(Color::Red);
+	textBox1.SetForeground(ForegroundColor::Red);
 	textBox1.setText(L"hello");
 	textBox1.setLayer(2);
 	textBox1.setBorderDrawer(SimpleBorderFactory::instance().getSingle());

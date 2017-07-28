@@ -6,7 +6,6 @@
 using namespace std;
 
 
-
 struct BorderDrawer {
 	virtual void draw(Graphics &g, short left, short top, int width, int height) const = 0;
 };
@@ -74,6 +73,7 @@ protected:
 	int _width;
 	int _height;
 	size_t _layer;
+	Graphics _graphics;
 
 private:
 	const BorderDrawer *_borderDrawer;
