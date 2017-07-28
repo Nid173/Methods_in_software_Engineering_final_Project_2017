@@ -3,7 +3,7 @@
 
 
 Graphics::Graphics(DWORD stdHandle)
-	: _console(GetStdHandle(stdHandle)), _background(Color::Black), _foreground(Color::White)
+	: _console(GetStdHandle(stdHandle)), _background(BackgroundColor::Black), _foreground(ForegroundColor::White)
 {
 	updateConsoleAttributes();
 }
@@ -30,18 +30,39 @@ void Graphics::moveTo(int x, int y)
 	SetConsoleCursorPosition(_console, c);
 }
 
+void Graphics::SetVisibility(bool visibility) {
+	this->_visibility = visibility;
+	updateConsoleAttributes();
+}
+
+void Graphics::SetForeground(ForegroundColor color) {
+	this->_foreground = color;
+	updateConsoleAttributes();
+}
+
+void Graphics::SetBackground(BackgroundColor color) {
+	this->_background = color;
+	updateConsoleAttributes();
+}
+
+void Graphics::SetBorder(BorderType border) {
+	this->_border = border;
+	updateConsoleAttributes();
+}
+
+/*
 void Graphics::setBackground(Color color)
 {
 	_background = color;
 	updateConsoleAttributes();
 }
-
+                                             //should be removed (what do you think?)
 void Graphics::setForeground(Color color)
 {
 	_foreground = color;
 	updateConsoleAttributes();
 }
-
+*/
 void Graphics::write(string s)
 {
 	WriteConsoleA(_console, s.c_str(), s.size(), nullptr, nullptr);
@@ -78,27 +99,42 @@ void Graphics::updateConsoleAttributes()
 
 	switch (_foreground)
 	{
-	case Color::Black:	break;
-	case Color::Blue:	attributes |= FOREGROUND_BLUE; break;
-	case Color::Green:	attributes |= FOREGROUND_GREEN; break;
-	case Color::Red:	attributes |= FOREGROUND_RED; break;
-	case Color::Cyan:	attributes |= FOREGROUND_BLUE | FOREGROUND_GREEN; break;
-	case Color::Purple:	attributes |= FOREGROUND_BLUE | FOREGROUND_RED; break;
-	case Color::Orange: attributes |= FOREGROUND_GREEN | FOREGROUND_RED; break;
-	case Color::White:	attributes |= FOREGROUND_BLUE | FOREGROUND_GREEN | FOREGROUND_RED; break;
+	case ForegroundColor::Black:	break;
+	case ForegroundColor::Blue:	attributes |= FOREGROUND_BLUE; break;
+	case ForegroundColor::Green:	attributes |= FOREGROUND_GREEN; break;
+	case ForegroundColor::Red:	attributes |= FOREGROUND_RED; break;
+	//case ForegroundColor::Cyan:	attributes |= FOREGROUND_BLUE | FOREGROUND_GREEN; break; //instead of cyan change to Teal
+	case ForegroundColor::Purple:	attributes |= FOREGROUND_BLUE | FOREGROUND_RED; break;
+	//.case ForegroundColor::Orange: attributes |= FOREGROUND_GREEN | FOREGROUND_RED; break; //instead of Orange change to Yellow
+	case ForegroundColor::White:	attributes |= FOREGROUND_BLUE | FOREGROUND_GREEN | FOREGROUND_RED; break;
 	}
 
 	switch (_background)
 	{
-	case Color::Black:	break;
-	case Color::Blue:	attributes |= BACKGROUND_BLUE; break;
-	case Color::Green:	attributes |= BACKGROUND_GREEN; break;
-	case Color::Red:	attributes |= BACKGROUND_RED; break;
-	case Color::Cyan:	attributes |= BACKGROUND_BLUE | BACKGROUND_GREEN; break;
-	case Color::Purple:	attributes |= BACKGROUND_BLUE | BACKGROUND_RED; break;
-	case Color::Orange: attributes |= BACKGROUND_GREEN | BACKGROUND_RED; break;
-	case Color::White:	attributes |= BACKGROUND_BLUE | BACKGROUND_GREEN | BACKGROUND_RED; break;
+	case BackgroundColor::Black:	break;
+	case BackgroundColor::Blue:	attributes |= BACKGROUND_BLUE; break;
+	case BackgroundColor::Green:	attributes |= BACKGROUND_GREEN; break;
+	case BackgroundColor::Red:	attributes |= BACKGROUND_RED; break;
+	//case BackgroundColor::Cyan:	attributes |= BACKGROUND_BLUE | BACKGROUND_GREEN; break; //instead of cyan change to Teal
+	case BackgroundColor::Purple:	attributes |= BACKGROUND_BLUE | BACKGROUND_RED; break;
+	//case BackgroundColor::Orange: attributes |= BACKGROUND_GREEN | BACKGROUND_RED; break; //instead of Orange change to Yellow
+	case BackgroundColor::White:	attributes |= BACKGROUND_BLUE | BACKGROUND_GREEN | BACKGROUND_RED; break;
 	}
+ 
+    /*
+	switch (_visibility)
+	{
+	case bool::True
+	case bool::False
+	}
+	                               //need to be coded iam not sure how
+	switch (_border)
+	{
+	 case BorderType::Single 
+	 case BorderType::Double
+	 case BorderType::None
+	}
+	*/
 
 	SetConsoleTextAttribute(_console, attributes);
 }
