@@ -15,28 +15,23 @@ Panel::Panel(int height, int width) {
 	_left = 0;
 }
 
-
-void Panel::mousePressed(int x, int y, bool isLeft) {
-
+void Panel::getAllControls(vector<Control*>* controls ) {
+	/*
+	for (int i = 0; i < controls->size(); i++) {
+		Control *ctmp;
+		ctmp = controls->at(i);
+		
+	}*/
 }
-void Panel::keyDown(int keyCode, char charecter) {
-
-}
-
-void Panel::getAllControls(vector<Control*>& controls) {
-	int i = this->_controls.size();
-	for (int j = 0; j < i; j++) {
-		controls.push_back(this->_controls[j]);
-	}
-}
-bool Panel::canGetFocus() {
-	return false;
-}
-
 
 void Panel::draw(Graphics& g, int x, int y, size_t layer)const {
 	if (layer == getLayer()) {
 		Control::draw(g, _left, _top, layer);
+		for (int i = 0; i < _controls.size(); i++) {
+			g.setBackground(_controls[i]->getBackground());
+			g.setForeground(_controls[i]->getForeground());
+			_controls[i]->draw(g, _controls[i]->getLeft(), _controls[i]->getTop(), _controls[i]->getLayer());
+		}
 	}
 	else if (layer == getLayer() + 1 && this == getFocus()) {
 		Control::draw(g, x, y, layer);

@@ -5,9 +5,7 @@
 
 using namespace std;
 
-enum class ForegroundColor { Red, Blue, Green, Purple, Teal, Yellow, White, Black };
-enum class BackgroundColor { Red, Blue, Green, Purple, Teal, Yellow, White, Black };
-enum class BorderType { Single, Double, None };
+
 
 
 struct BorderDrawer {
@@ -15,47 +13,7 @@ struct BorderDrawer {
 };
 
 class SingleBorderDrawer : public BorderDrawer {
-	virtual void draw(Graphics &g, short left, short top, int width, int height) const {
-		
-		char box[6] = {'\xDA','\xC4', '\xBF','\xB3','\xc0','\xd9' };
-		string s;
-		s.push_back(box[0]);
-		g.write(left, top, s);
-		short i;
-
-		s.pop_back();
-		s.push_back(box[1]);
-		for (i = 1; i <= width; i++) {
-			g.write(left + i, top, s);
-		}
-
-		s.pop_back();
-		s.push_back(box[2]);
-		g.write(left+i,top,s);
-
-		s.pop_back();
-		s.push_back(box[3]);
-
-		for (i = 1; i < height; i++) {
-			g.write(left,top+i,s); 
-			g.write(left + width + 1, top + i, s);
-		}
-
-		s.pop_back();
-		s.push_back(box[4]);
-		g.write(left, top + i, s);
-
-		s.pop_back();
-		s.push_back(box[1]);
-		for (i = 1; i <= width; i++) {
-			g.write(left + i, top + height, s);
-		}
-
-		s.pop_back();
-		s.push_back(box[5]);
-		g.write(left+i,top+height,s);
-
-	}
+	virtual void draw(Graphics &g, short left, short top, int width, int height) const;
 };
 
 class NullBorderDrawer : public BorderDrawer {
@@ -63,51 +21,12 @@ class NullBorderDrawer : public BorderDrawer {
 };
 
 class DoubleBorderDrawer : public BorderDrawer {
-	virtual void draw(Graphics &g, short left, short top, int width, int height) const {
-		char box[6] = { '\xC9','\xCD', '\xBB','\xBA','\xC8','\xBC' };
-		string s;
-		s.push_back(box[0]);
-		g.write(left, top, s);
-		short i;
-
-		s.pop_back();
-		s.push_back(box[1]);
-		for (i = 1; i <= width; i++) {
-			g.write(left + i, top, s);
-		}
-
-		s.pop_back();
-		s.push_back(box[2]);
-		g.write(left + i, top, s);
-
-		s.pop_back();
-		s.push_back(box[3]);
-
-		for (i = 1; i < height; i++) {
-			g.write(left, top + i, s);
-			g.write(left + width + 1, top + i, s);
-		}
-
-		s.pop_back();
-		s.push_back(box[4]);
-		g.write(left, top + i, s);
-
-		s.pop_back();
-		s.push_back(box[1]);
-		for (i = 1; i <= width; i++) {
-			g.write(left + i, top + height, s);
-		}
-
-		s.pop_back();
-		s.push_back(box[5]);
-		g.write(left + i, top + height, s);
-
-	}
-
+	virtual void draw(Graphics &g, short left, short top, int width, int height) const;
 };
 
 /**************************************************************/
 
+enum class BorderType { Single, Double, None };
 
 class Control
 {
@@ -117,30 +36,39 @@ protected:
 	int _width;
 	int _height;
 	size_t _layer;
-	Graphics _graphics;
+	Color _forgroundcolor;
+	Color _backgroundcolor;
 
 private:
 	const BorderDrawer *_borderDrawer;
 
 public:
-	void SetVisibility(bool visibility);
-	void SetForeground(ForegroundColor color);
-	void SetBackground(BackgroundColor color);
-	void SetBorder(BorderType border);
-	Control();
+	/* main methods for the graphic */
+	void setVisibility(bool visibility);
+	void setForeground(Color color);
+	void setBackground(Color color);
+	inline Color getBackground()const;
+	inline Color getForeground()const;
+	void setBorder(BorderType border);
+
+	/* setters and getters */
+	inline Graphics& getGraphics();
 	inline size_t getLayer() const;
 	inline void setLayer(size_t layer);
 	inline int getWidth()const;
 	inline void setLeft(short left);
 	inline void setTop(short top);
+	inline virtual short getLeft()const;
+	inline virtual short getTop()const;
+
 	static Control* getFocus() { return NULL; };
 	static void setFocus(Control& control) {};
-
+	 /**/
+	Control();
+	
 	virtual void draw(Graphics& g, int x, int y, size_t z)const;
 	virtual void mousePressed(int x, int y, bool isLeft) {};
 	virtual void keyDown(int keyCode, char charecter) {};
-	inline virtual short getLeft()const;
-	inline virtual short getTop()const;
 	virtual void getAllControls(vector<Control*>* controls) {};
 	virtual bool canGetFocus() { return FALSE; };
 
@@ -178,3 +106,9 @@ public:
 	  _left = left;
  }
  
+  Color Control:: getBackground()const {
+	  return _backgroundcolor;
+  }
+  Color Control:: getForeground()const {
+	  return _forgroundcolor;
+  }
