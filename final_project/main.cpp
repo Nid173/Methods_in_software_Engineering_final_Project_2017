@@ -1,12 +1,12 @@
 // final_project.cpp : Defines the entry point for the console application.
 //
 
-#include "stdafx.h"
-#include "Graphics.h"
-#include "TextBox.h"
-#include "EventEngine.h"
-#include "Panel.h"
-#include "SimpleBorderFactory.h"
+#include "Console_Utilites/stdafx.h"
+#include "Console_Utilites/Graphics.h"
+#include "Console_Utilites/TextBox.h"
+#include "Console_Utilites/EventEngine.h"
+#include "Console_Utilites/Panel.h"
+#include "Console_Utilites/SimpleBorderFactory.h"
 
 
 int main()
