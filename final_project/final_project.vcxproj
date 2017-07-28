@@ -166,7 +166,10 @@
     <ClCompile Include="source\Panel.cpp" />
     <ClCompile Include="source\RadioBox.cpp" />
     <ClCompile Include="source\SimpleBorderFactory.cpp" />
-    <ClCompile Include="source\stdafx.cpp" />
+    <ClCompile Include="source\stdafx.cpp">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Create</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Create</PrecompiledHeader>
+    </ClCompile>
     <ClCompile Include="source\TextBox.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
