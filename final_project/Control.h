@@ -99,7 +99,7 @@ class DoubleBorderDrawer : public BorderDrawer {
 		g.write(left + i, top + height, s);
 
 	}
-	}
+
 };
 
 /**************************************************************/

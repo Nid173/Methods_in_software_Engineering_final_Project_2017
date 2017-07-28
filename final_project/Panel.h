@@ -1,8 +1,9 @@
 #pragma once
 #include "Control.h"
+#include "Graphics.h"
 #include <vector>
 
-class Panel : public Control {
+class Panel : public Control, public Graphics {
 protected:
 	vector<Control*> _controls;
 

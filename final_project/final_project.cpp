@@ -19,7 +19,7 @@ int main()
 	textBox1.setBorderDrawer(SimpleBorderFactory::instance().getSingle());
 	Panel panel(50,50);
 	panel.setLayer(1);
-	panel.setBackground(Color::Blue);
+	panel.SetBackground(BackgroundColor::Blue);
 	panel.setBorderDrawer(SimpleBorderFactory::instance().getDouble());
 	panel.AddControl(textBox1, 4, 16);
 	EventEngine engine;

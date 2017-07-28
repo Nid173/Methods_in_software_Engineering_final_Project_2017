@@ -24,10 +24,10 @@ void Panel::keyDown(int keyCode, char charecter) {
 }
 
 void Panel::getAllControls(vector<Control*>* controls) {
-	j = 0;
-	for (int i = 0; i < controls->size(); i++) {
-		controls->at(i)->
-	}
+//	j = 0;
+//	for (int i = 0; i < controls->size(); i++) {
+//		controls->at(i)->
+//	}
 }
 bool Panel::canGetFocus() {
 	return false;
