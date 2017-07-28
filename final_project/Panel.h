@@ -16,7 +16,7 @@ public:
 	void draw(Graphics& g, int x, int y, size_t layer)const;
 	void mousePressed(int x, int y, bool isLeft);
 	void keyDown(int keyCode, char charecter);
-	void getAllControls(vector<Control*>* controls);
+	void getAllControls(vector<Control*>& controls);
 	bool canGetFocus();
 
 };

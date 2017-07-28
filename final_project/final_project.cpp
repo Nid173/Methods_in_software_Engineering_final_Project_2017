@@ -22,6 +22,8 @@ int main()
 	panel.SetBackground(BackgroundColor::Blue);
 	panel.setBorderDrawer(SimpleBorderFactory::instance().getDouble());
 	panel.AddControl(textBox1, 4, 16);
+	panel.setFocus(textBox1);
+
 	EventEngine engine;
 	engine.run(panel);
 	//g.write("hello");
