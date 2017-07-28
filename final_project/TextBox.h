@@ -1,8 +1,7 @@
 #pragma once
 #include "Control.h"
-#include "Graphics.h"
 
-class TextBox : public Control, public Graphics {
+class TextBox : public Control {
 protected:
 	wstring _text;
 public:
