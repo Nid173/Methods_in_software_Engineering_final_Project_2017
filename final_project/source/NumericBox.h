@@ -12,5 +12,6 @@ public:
 	~NumericBox() {}
 	bool setValue(int value);
 	int GetValue();
-
+	void pluse();
+	void minus();
 };
