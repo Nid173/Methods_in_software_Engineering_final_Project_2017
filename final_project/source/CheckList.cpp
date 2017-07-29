@@ -1,4 +1,4 @@
-//#include "stdafx.h"
+#include "stdafx.h"
 #include "CheckList.h"
 
 CheckList::CheckList(int width, int height, vector<string> entries) {
