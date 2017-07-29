@@ -9,7 +9,7 @@ protected:
 public:
 	Panel(int height=20,int width=20);
 	~Panel() {}
-	void AddControl(Control &control,short x,short y);
+	void AddControl(Control &control, int x, int y);
 	//inline vector<Control*>& getControls
 
 	/* Control Methods*/

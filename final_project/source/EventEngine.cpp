@@ -13,6 +13,8 @@ EventEngine::EventEngine(DWORD input, DWORD output)
 
 void EventEngine::run(Control &c)
 {
+	_graphics.setBackground(c.getBackground());
+	_graphics.setForeground(c.getForeground());
 	for (bool redraw = true;;)
 	{
 		if (redraw)
