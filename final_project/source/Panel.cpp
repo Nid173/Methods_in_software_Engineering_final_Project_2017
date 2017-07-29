@@ -1,7 +1,7 @@
 #include "stdafx.h"
 #include "Panel.h"
 
-void Panel::AddControl(Control &control,short x,short y) {
+void Panel::AddControl(Control &control, int x, int y) {
 	control.setTop(y);
 	control.setLeft(x);
 	_controls.push_back(&control);
@@ -42,5 +42,7 @@ void Panel::draw(Graphics& g, int x, int y, size_t layer)const {
 		g.moveTo(getLeft() + x, getTop() + y);
 
 	}
+	g.setBackground(getBackground());
+	g.setForeground(getForeground());
 
 }
