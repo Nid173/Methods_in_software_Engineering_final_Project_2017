@@ -42,7 +42,7 @@ public:
 	inline virtual int getTop()const;
 
 	static Control* getFocus() { return NULL; };
-	static void setFocus(Control& control) {};
+	static void setFocus(Control& control) {}
 	 /**/
 	Control();
 	
@@ -50,7 +50,7 @@ public:
 	virtual void mousePressed(int x, int y, bool isLeft) {};
 	virtual void keyDown(int keyCode, char charecter) {};
 	virtual void getAllControls(vector<Control*>* controls) {};
-	virtual bool canGetFocus() { return FALSE; };
+	virtual bool canGetFocus();
 
 	virtual void setBorderDrawer(const BorderDrawer &borderDrawer)  {_borderDrawer = &borderDrawer;}
 	~Control();

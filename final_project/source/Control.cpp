@@ -4,14 +4,18 @@
 
 Control::Control()
 {
-	//this->setForeground(Color::White);
-	//this->setBackground(Color::Black);
+	this->setForeground(Color::White);
+	this->setBackground(Color::Black);
+	_layer = 1;
 	_borderDrawer = new NullBorderDrawer;
 }
 
 
 Control::~Control()
 {
+}
+bool Control::canGetFocus() {
+	return false;
 }
 
 void Control:: draw(Graphics& g, int x, int y, size_t z) const {

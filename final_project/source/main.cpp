@@ -14,33 +14,61 @@
 int main()
 {
 
-	Panel panel(29, 100);
-	panel.setLayer(1);
-	panel.setBackground(Color::Blue);
-	panel.setBorder(BorderType::Double);
-	TextBox textBox1(10);
-	textBox1.setBackground(Color::Green);
-	textBox1.setForeground(Color::Red);
-	textBox1.setText(L"hello");
-	textBox1.setLayer(2);
-	textBox1.setBorder(BorderType::Single);
-	Label label1(11);
-	label1.setBackground(Color::Red);
-	label1.setForeground(Color::Green);
-	label1.setBorder(BorderType::None);
-	label1.setText(L"Label test");
+	Panel main(29, 115);
+	main.setBackground(Color::Black);
+	main.setForeground(Color::White);
+	main.setBorder(BorderType::Double);
 
-	Button Button1(15);
-	Button1.setBackground(Color::Orange);
-	Button1.setForeground(Color::Purple);
-	Button1.setBorder(BorderType::Double);
-	Button1.setText(L"Button test");
-	panel.AddControl(textBox1, 1, 3);
-	panel.AddControl(label1, 5, 5);
-	panel.AddControl(Button1, 10, 9);
-	//panel.setFocus(textBox1);
+	/* Caclculater Form 
+	 * 2 - TextBox 2-Label 1-button 
+	 */
+
+	Panel cal(15, 30);
+	cal.setBackground(Color::Black);
+	cal.setForeground(Color::White);
+	cal.setBorder(BorderType::Single);
+
+	Label title(15);
+	title.setText(L"Calculater");
+	title.setBackground(Color::White);
+	title.setForeground(Color::Black);
+
+	Label answer(15);
+	answer.setText(L"");
+	answer.setBackground(Color::Black);
+	answer.setForeground(Color::White);
+
+	TextBox num1(10);
+	num1.setText(L"Number1");
+	num1.setBorder(BorderType::Single);
+
+	Label plus(2);
+	plus.setText(L"+");
+
+	TextBox num2(10);
+	num2.setText(L"Number2");
+	num2.setBorder(BorderType::Single);
+
+	Button click(15);
+	click.setText(L"Calculate");
+	click.setBorder(BorderType::Single);
+	click.setBackground(Color::White);
+	click.setForeground(Color::Green);
+
+
+	cal.AddControl(title, 8, 1);
+	cal.AddControl(answer, 8, 4);
+	cal.AddControl(num1, 1, 7);
+	cal.AddControl(plus, 13, 7);
+	cal.AddControl(num2, 16, 7);
+	cal.AddControl(click, 8, 11);
+
+	/*End of Cal Form */
+
+
+	main.AddControl(cal, 2, 2);
 	EventEngine engine;
-	engine.run(panel);
+	engine.run(main);
 	//g.write("hello");
 	//getchar();
     return 0;

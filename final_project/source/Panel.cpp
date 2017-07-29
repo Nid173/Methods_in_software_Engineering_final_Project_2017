@@ -11,8 +11,8 @@ void Panel::AddControl(Control &control, int x, int y) {
 Panel::Panel(int height, int width) {
 	this->_height = height;
 	this->_width = width;
-	_top = 0;
-	_left = 0;
+	_top = 1;
+	_left = 1;
 }
 
 void Panel::getAllControls(vector<Control*>* controls ) {
@@ -26,13 +26,13 @@ void Panel::getAllControls(vector<Control*>* controls ) {
 
 void Panel::draw(Graphics& g, int x, int y, size_t layer)const {
 	if (layer == getLayer()) {
-		Control::draw(g, _left, _top, layer);
+		Control::draw(g, x, y, layer);
 		g.setBackground(getBackground());
 		g.setForeground(getForeground());
 		for (int i = 0; i < _controls.size(); i++) {
 			g.setBackground(_controls[i]->getBackground());
 			g.setForeground(_controls[i]->getForeground());
-			_controls[i]->draw(g, _controls[i]->getLeft(), _controls[i]->getTop(), _controls[i]->getLayer());
+			_controls[i]->draw(g, x+getLeft() ,y+ getTop() , _controls[i]->getLayer());
 		}
 	}
 	else if (layer == getLayer() + 1 && this == getFocus()) {
