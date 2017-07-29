@@ -27,6 +27,8 @@ void Panel::getAllControls(vector<Control*>* controls ) {
 void Panel::draw(Graphics& g, int x, int y, size_t layer)const {
 	if (layer == getLayer()) {
 		Control::draw(g, _left, _top, layer);
+		g.setBackground(getBackground());
+		g.setForeground(getForeground());
 		for (int i = 0; i < _controls.size(); i++) {
 			g.setBackground(_controls[i]->getBackground());
 			g.setForeground(_controls[i]->getForeground());
