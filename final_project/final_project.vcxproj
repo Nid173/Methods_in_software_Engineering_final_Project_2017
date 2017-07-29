@@ -135,40 +135,39 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <Text Include="Console_Utilites\ReadMe.txt" />
     <Text Include="ReadMe.txt" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="Console_Utilites\Button.cpp" />
-    <ClCompile Include="Console_Utilites\CheckList.cpp" />
-    <ClCompile Include="Console_Utilites\ComboBox.cpp" />
-    <ClCompile Include="Console_Utilites\Control.cpp" />
-    <ClCompile Include="Console_Utilites\EventEngine.cpp" />
-    <ClCompile Include="Console_Utilites\Graphics.cpp" />
-    <ClCompile Include="Console_Utilites\Label.cpp" />
-    <ClCompile Include="Console_Utilites\NumericBox.cpp" />
-    <ClCompile Include="Console_Utilites\Panel.cpp" />
-    <ClCompile Include="Console_Utilites\RadioBox.cpp" />
-    <ClCompile Include="Console_Utilites\SimpleBorderFactory.cpp" />
-    <ClCompile Include="Console_Utilites\stdafx.cpp" />
-    <ClCompile Include="Console_Utilites\TextBox.cpp" />
-    <ClCompile Include="main.cpp" />
+    <ClInclude Include="source\Button.h" />
+    <ClInclude Include="source\CheckList.h" />
+    <ClInclude Include="source\ComboBox.h" />
+    <ClInclude Include="source\Control.h" />
+    <ClInclude Include="source\EventEngine.h" />
+    <ClInclude Include="source\Graphics.h" />
+    <ClInclude Include="source\Label.h" />
+    <ClInclude Include="source\NumericBox.h" />
+    <ClInclude Include="source\Panel.h" />
+    <ClInclude Include="source\RadioBox.h" />
+    <ClInclude Include="source\SimpleBorderFactory.h" />
+    <ClInclude Include="source\stdafx.h" />
+    <ClInclude Include="source\targetver.h" />
+    <ClInclude Include="source\TextBox.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Console_Utilites\Button.h" />
-    <ClInclude Include="Console_Utilites\CheckList.h" />
-    <ClInclude Include="Console_Utilites\ComboBox.h" />
-    <ClInclude Include="Console_Utilites\Control.h" />
-    <ClInclude Include="Console_Utilites\EventEngine.h" />
-    <ClInclude Include="Console_Utilites\Graphics.h" />
-    <ClInclude Include="Console_Utilites\Label.h" />
-    <ClInclude Include="Console_Utilites\NumericBox.h" />
-    <ClInclude Include="Console_Utilites\Panel.h" />
-    <ClInclude Include="Console_Utilites\RadioBox.h" />
-    <ClInclude Include="Console_Utilites\SimpleBorderFactory.h" />
-    <ClInclude Include="Console_Utilites\stdafx.h" />
-    <ClInclude Include="Console_Utilites\targetver.h" />
-    <ClInclude Include="Console_Utilites\TextBox.h" />
+    <ClCompile Include="source\Button.cpp" />
+    <ClCompile Include="source\CheckList.cpp" />
+    <ClCompile Include="source\ComboBox.cpp" />
+    <ClCompile Include="source\Control.cpp" />
+    <ClCompile Include="source\EventEngine.cpp" />
+    <ClCompile Include="source\Graphics.cpp" />
+    <ClCompile Include="source\Label.cpp" />
+    <ClCompile Include="source\main.cpp" />
+    <ClCompile Include="source\NumericBox.cpp" />
+    <ClCompile Include="source\Panel.cpp" />
+    <ClCompile Include="source\RadioBox.cpp" />
+    <ClCompile Include="source\SimpleBorderFactory.cpp" />
+    <ClCompile Include="source\stdafx.cpp" />
+    <ClCompile Include="source\TextBox.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
