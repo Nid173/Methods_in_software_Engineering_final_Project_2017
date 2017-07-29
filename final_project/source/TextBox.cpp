@@ -3,7 +3,7 @@
 
 TextBox::TextBox(int width) {
 	_width = width;
-	_height = 3;
+	_height = 2;
 	_top = 0;
 	_left = 0;
 }
@@ -25,7 +25,7 @@ bool TextBox::canGetFocus() {
 void TextBox::draw(Graphics& g, int x, int y, size_t layer)const {
 	if (layer == getLayer()) {
 		Control::draw(g, _left, _top, layer);
-		g.write(x+getLeft()+2, getTop() + y+2,_text + wstring(getWidth() - _text.size(), ' '));
+		g.write(x+getLeft()+1, getTop() + y+1,_text + wstring(getWidth() - _text.size(), ' '));
 	}
 	else if (layer == getLayer() + 1 && this == getFocus()) {
 		Control::draw(g, x, y, layer);

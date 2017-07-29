@@ -1,38 +1,17 @@
 #pragma once
 
 #include "Graphics.h"
+#include "SimpleBorderFactory.h"
 #include <vector>
 
 using namespace std;
-
-
-
-
-struct BorderDrawer {
-	virtual void draw(Graphics &g, short left, short top, int width, int height) const = 0;
-};
-
-class SingleBorderDrawer : public BorderDrawer {
-	virtual void draw(Graphics &g, short left, short top, int width, int height) const;
-};
-
-class NullBorderDrawer : public BorderDrawer {
-	virtual void draw(Graphics &g, short left, short top, int width, int height) const {/*Without Border*/}
-};
-
-class DoubleBorderDrawer : public BorderDrawer {
-	virtual void draw(Graphics &g, short left, short top, int width, int height) const;
-};
-
-/**************************************************************/
-
 enum class BorderType { Single, Double, None };
 
 class Control
 {
 protected:
-	short _left;
-	short _top;
+	int _left;
+	int _top;
 	int _width;
 	int _height;
 	size_t _layer;
@@ -52,14 +31,15 @@ public:
 	void setBorder(BorderType border);
 
 	/* setters and getters */
-	inline Graphics& getGraphics();
 	inline size_t getLayer() const;
 	inline void setLayer(size_t layer);
 	inline int getWidth()const;
-	inline void setLeft(short left);
-	inline void setTop(short top);
-	inline virtual short getLeft()const;
-	inline virtual short getTop()const;
+	inline int getHeight()const;
+
+	inline void setLeft(int left);
+	inline void setTop(int top);
+	inline virtual int getLeft()const;
+	inline virtual int getTop()const;
 
 	static Control* getFocus() { return NULL; };
 	static void setFocus(Control& control) {};
@@ -92,17 +72,17 @@ public:
 	 return _width;
  }
 
- short Control:: getLeft()const {
+ int Control:: getLeft()const {
 	 return _left;
  }
- short Control:: getTop()const {
+ int Control:: getTop()const {
 	 return _top;
  }
 
-  void Control:: setTop(short top) {
+  void Control:: setTop(int top) {
 	  _top = top;
  }
-  void Control:: setLeft(short left) {
+  void Control:: setLeft(int left) {
 	  _left = left;
  }
  
@@ -111,4 +91,8 @@ public:
   }
   Color Control:: getForeground()const {
 	  return _forgroundcolor;
+  }
+
+  int Control::getHeight()const {
+	  return _height;
   }
