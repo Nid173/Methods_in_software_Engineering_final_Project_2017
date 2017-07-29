@@ -7,8 +7,11 @@ using namespace std;
 EventEngine::EventEngine(DWORD input, DWORD output)
 	: _console(GetStdHandle(input)), _graphics(output)
 {
+
 	GetConsoleMode(_console, &_consoleMode);
 	SetConsoleMode(_console, ENABLE_WINDOW_INPUT | ENABLE_MOUSE_INPUT);
+	SetConsoleTitle(L"Final Project 2017");
+	
 }
 
 void EventEngine::run(Control &c)
@@ -25,6 +28,7 @@ void EventEngine::run(Control &c)
 				c.draw(_graphics, c.getLeft(),c.getTop(), p);
 			redraw = false;
 		}
+
 
 		INPUT_RECORD record;
 		DWORD count;

@@ -34,6 +34,8 @@ public:
 	inline size_t getLayer() const;
 	inline void setLayer(size_t layer);
 	inline int getWidth()const;
+	inline int getHeight()const;
+
 	inline void setLeft(int left);
 	inline void setTop(int top);
 	inline virtual int getLeft()const;
@@ -89,4 +91,8 @@ public:
   }
   Color Control:: getForeground()const {
 	  return _forgroundcolor;
+  }
+
+  int Control::getHeight()const {
+	  return _height;
   }
