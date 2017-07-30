@@ -6,6 +6,7 @@ CheckList::CheckList(int width, int height, vector<string> entries) {
 	_height = height;
 	_entries = entries;
 
+
 }
 
 void CheckList::SelectedIndex(size_t index) {
