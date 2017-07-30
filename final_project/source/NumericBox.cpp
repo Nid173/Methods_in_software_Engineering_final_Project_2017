@@ -10,6 +10,10 @@ NumericBox::NumericBox(int width, int min, int max) {
 	_height = 2;
 	Button minus(2);
 	Button plus(2);
+	Label value(15);
+	value.setText(L"0");
+	value.setBackground(Color::White);
+	value.setForeground(Color::Black);
 	plus.setTop(this->_top);
 	minus.setLeft(this->_left - 1);
 	plus.setLeft(this->_left + _width + 1);
