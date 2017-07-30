@@ -20,11 +20,12 @@ void TextBox::getAllControls(vector<Control*>* controls) {
 
 }
 bool TextBox::canGetFocus() {
-	return false;
+	return true;
 }
+
 void TextBox::draw(Graphics& g, int x, int y, size_t layer)const {
 	if (layer == getLayer()) {
-		Control::draw(g, _left, _top, layer);
+		Control::draw(g, x , y , layer);
 		g.write(x+getLeft()+1, getTop() + y+1,_text + wstring(getWidth() - _text.size(), ' '));
 	}
 	else if (layer == getLayer() + 1 && this == getFocus()) {
