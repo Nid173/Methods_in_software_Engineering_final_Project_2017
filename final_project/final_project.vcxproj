@@ -139,6 +139,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="source\Button.h" />
+    <ClInclude Include="source\CalForm.h" />
     <ClInclude Include="source\CheckList.h" />
     <ClInclude Include="source\ComboBox.h" />
     <ClInclude Include="source\Control.h" />
