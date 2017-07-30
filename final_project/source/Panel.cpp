@@ -11,8 +11,8 @@ void Panel::AddControl(Control &control, int x, int y) {
 Panel::Panel(int height, int width) {
 	this->_height = height;
 	this->_width = width;
-	_top = 1;
-	_left = 1;
+	_top = 0;
+	_left = 0;
 }
 
 void Panel::getAllControls(vector<Control*>* controls ) {
@@ -20,6 +20,16 @@ void Panel::getAllControls(vector<Control*>* controls ) {
 		controls->push_back(_controls[i-1]);
 	}
 }
+
+void Panel::mousePressed(int x, int y, bool isLeft) {
+	for (int i = 0; i < _controls.size(); i++) {
+		if (x == _controls[i]->getLeft() && y == _controls[i]->getTop()) {
+			_controls[i]->mousePressed(x, y, isLeft);
+			break;
+		}
+	}
+}
+
 
 void Panel::draw(Graphics& g, int x, int y, size_t layer)const {
 	if (layer == getLayer()) {

@@ -16,8 +16,9 @@ EventEngine::EventEngine(DWORD input, DWORD output)
 
 void EventEngine::run(Control &c)
 {
+	int lock = 0;
 	_graphics.setBackground(c.getBackground());
-	_graphics.setForeground(c.getForeground());
+	_graphics.setForeground(c.getForeground());	
 	Focused::instance()->setGraph(_graphics);
 	for (bool redraw = true;;)
 	{
@@ -29,6 +30,11 @@ void EventEngine::run(Control &c)
 			for (size_t p = 0; p < 5; ++p)
 				c.draw(_graphics, 0, 0 , p);
 			redraw = false;
+		}
+		if (lock == 0) {
+			_graphics.setCursorVisibility(true);
+			Control::setFocus(*Control::getFocus());
+			lock = 1;
 		}
 		INPUT_RECORD record;
 		DWORD count;
@@ -42,16 +48,29 @@ void EventEngine::run(Control &c)
 			{
 				auto code = record.Event.KeyEvent.wVirtualKeyCode;
 				auto chr = record.Event.KeyEvent.uChar.AsciiChar;
-				if (code == VK_TAB)
+				if (code == VK_TAB) {
 					moveFocus(c, f);
-				else
+					redraw = true;
+				}
+				else if (code == VK_RIGHT) {
 					f->keyDown(code, chr);
-				redraw = true;
+					redraw = false;
+				}
+				else if (code == VK_LEFT) {
+					f->keyDown(code, chr);
+					redraw = false;
+				}
+				else if (code == VK_BACK) {
+					f->keyDown(code, chr);
+					redraw = true;
+				}
+
 			}
 			break;
 		}
 		case MOUSE_EVENT:
 		{
+			_graphics.setCursorVisibility(true);
 			auto button = record.Event.MouseEvent.dwButtonState;
 			auto coord = record.Event.MouseEvent.dwMousePosition;
 			auto x = coord.X - c.getLeft();
