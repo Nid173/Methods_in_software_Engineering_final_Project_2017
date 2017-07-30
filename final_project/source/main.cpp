@@ -10,7 +10,7 @@
 #include"Button.h"
 #include "SimpleBorderFactory.h"
 
-
+Focused* Focused::_instance = 0;
 int main()
 {
 
@@ -56,21 +56,22 @@ int main()
 	click.setForeground(Color::Green);
 
 
-	cal.AddControl(title, 8, 1);
-	cal.AddControl(answer, 8, 4);
-	cal.AddControl(num1, 1, 7);
-	cal.AddControl(plus, 13, 7);
-	cal.AddControl(num2, 16, 7);
-	cal.AddControl(click, 8, 11);
+	main.AddControl(title, 8, 1);
+	main.AddControl(answer, 8, 4);
+	main.AddControl(num1, 1, 7);
+	main.AddControl(plus, 13, 7);
+	main.AddControl(num2, 16, 7);
+	main.AddControl(click, 8, 11);
 
 	/*End of Cal Form */
 
 
-	main.AddControl(cal, 2, 2);
+//	main.AddControl(cal, 2, 2);
+	Control::setFocus(num1);
 	EventEngine engine;
 	engine.run(main);
 	//g.write("hello");
 	//getchar();
-    return 0;
+	return 0;
 }
 

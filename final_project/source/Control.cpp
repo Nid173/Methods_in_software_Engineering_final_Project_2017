@@ -7,12 +7,25 @@ Control::Control()
 	this->setForeground(Color::White);
 	this->setBackground(Color::Black);
 	_layer = 1;
-	_borderDrawer = new NullBorderDrawer;
+	setBorderDrawer(SimpleBorderFactory::instance().getNull());
 }
 
 
 Control::~Control()
 {
+}
+
+void Control:: setFocus(Control& control) {
+	if (control.canGetFocus()) {
+		Focused::instance()->setFocus(control);
+		if(Focused::instance()->getGraph())
+			Focused::instance()->getGraph()->moveTo(control.getLeft(), control.getTop());
+	}
+}
+
+
+ Control* Control:: getFocus() {
+	 return Focused::instance()->getfocus();
 }
 bool Control::canGetFocus() {
 	return false;
@@ -37,13 +50,13 @@ void Control::setBackground(Color color) {
 
 void Control::setBorder(BorderType border) {
 	if (border == BorderType::Single) {
-		this->_borderDrawer = new SingleBorderDrawer;
+		setBorderDrawer(SimpleBorderFactory::instance().getSingle());
 	}
 	else if (border == BorderType::Double) {
-		this->_borderDrawer = new DoubleBorderDrawer;
+		setBorderDrawer(SimpleBorderFactory::instance().getDouble());
 	}
 	else {
-		this->_borderDrawer = new NullBorderDrawer;
+		setBorderDrawer(SimpleBorderFactory::instance().getNull());
 	}
 
 }

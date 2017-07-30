@@ -15,5 +15,7 @@ public:
 	/* Control Methods*/
 	void draw(Graphics& g, int x, int y, size_t layer)const;
 	virtual void getAllControls(vector<Control*>* controls);
+	virtual bool canGetFocus();
+
 };
 

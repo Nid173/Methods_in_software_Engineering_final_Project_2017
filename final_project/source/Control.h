@@ -2,10 +2,14 @@
 
 #include "Graphics.h"
 #include "SimpleBorderFactory.h"
+#include "Focused.h"
 #include <vector>
 
 using namespace std;
 enum class BorderType { Single, Double, None };
+
+
+
 
 class Control
 {
@@ -17,11 +21,10 @@ protected:
 	size_t _layer;
 	Color _forgroundcolor;
 	Color _backgroundcolor;
-
 private:
 	const BorderDrawer *_borderDrawer;
-
 public:
+
 	/* main methods for the graphic */
 	void setVisibility(bool visibility);
 	void setForeground(Color color);
@@ -41,20 +44,42 @@ public:
 	inline virtual int getLeft()const;
 	inline virtual int getTop()const;
 
-	static Control* getFocus() { return NULL; };
-	static void setFocus(Control& control) {}
 	 /**/
 	Control();
+	static Control* getFocus();
+	static void setFocus(Control& control);
 	
 	virtual void draw(Graphics& g, int x, int y, size_t z)const;
 	virtual void mousePressed(int x, int y, bool isLeft) {};
 	virtual void keyDown(int keyCode, char charecter) {};
 	virtual void getAllControls(vector<Control*>* controls) {};
 	virtual bool canGetFocus();
-
 	virtual void setBorderDrawer(const BorderDrawer &borderDrawer)  {_borderDrawer = &borderDrawer;}
 	~Control();
 };
+
+class Focused {
+public:
+	static Focused* instance() {
+		if (!_instance)
+			_instance = new Focused;
+		return _instance;
+	}
+	Control* getfocus() { return _focus; }
+	void setFocus(Control& c) { _focus = &c; }
+	void setGraph(Graphics& g) { _graph = &g; }
+	Graphics* getGraph() { return _graph; }
+	Focused(Focused const&) = delete;
+	void operator=(Focused const&) = delete;
+private:
+	static Focused* _instance;
+	Control* _focus;
+	Graphics* _graph;
+	Focused() { _focus = NULL; _graph = NULL; }
+};
+
+
+
 
 /* 
  * Inline Methods 

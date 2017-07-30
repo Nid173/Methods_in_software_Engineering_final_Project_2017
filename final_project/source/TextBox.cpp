@@ -16,9 +16,6 @@ void TextBox::keyDown(int keyCode, char charecter) {
 
 }
 
-void TextBox::getAllControls(vector<Control*>* controls) {
-
-}
 bool TextBox::canGetFocus() {
 	return true;
 }

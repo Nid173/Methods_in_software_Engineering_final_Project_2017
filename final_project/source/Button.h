@@ -12,7 +12,6 @@ class Button : public Label{
 
 public:
 	Button(int width);
-
 	void addListener(MouseListener &listener);
-
+	virtual bool canGetFocus() { return false; }
 };

@@ -14,8 +14,7 @@ public:
 	virtual void draw(Graphics& g, int x, int y, size_t z)const;
 	 void mousePressed(int x, int y, bool isLeft);
 	 void keyDown(int keyCode, char charecter);
-	 void getAllControls(vector<Control*>* controls);
-	 bool canGetFocus();
+	 virtual bool canGetFocus();
 };
 
 void TextBox::setText(wstring value) {
