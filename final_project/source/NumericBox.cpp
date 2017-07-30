@@ -4,14 +4,21 @@
 
 
 NumericBox::NumericBox(int width, int min, int max) {
-	this->_width = width;
-	this->_min = min;
-	this->_max = max;
+
+	_min = min;
+	_max = max;
+	_width = width;
+	_height = 2;
+	_top = 0;
+	_left = 0;
+
 	
 }
 
 bool NumericBox::setValue(int value) {
-	this->_value = value;
+	if(value>_max||value<_min)
+	return false;
+	_value = value;
 	return true;
 
 }
