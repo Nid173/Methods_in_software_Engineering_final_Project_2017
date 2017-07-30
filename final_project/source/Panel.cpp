@@ -16,12 +16,9 @@ Panel::Panel(int height, int width) {
 }
 
 void Panel::getAllControls(vector<Control*>* controls ) {
-	/*
-	for (int i = 0; i < controls->size(); i++) {
-		Control *ctmp;
-		ctmp = controls->at(i);
-		
-	}*/
+	for (int i = _controls.size();i>0 ; i--) {
+		controls->push_back(_controls[i-1]);
+	}
 }
 
 void Panel::draw(Graphics& g, int x, int y, size_t layer)const {
@@ -45,4 +42,8 @@ void Panel::draw(Graphics& g, int x, int y, size_t layer)const {
 	g.setBackground(getBackground());
 	g.setForeground(getForeground());
 
+}
+
+bool Panel::canGetFocus() {
+	return false;
 }

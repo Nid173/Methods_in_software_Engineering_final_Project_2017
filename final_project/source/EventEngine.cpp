@@ -18,18 +18,18 @@ void EventEngine::run(Control &c)
 {
 	_graphics.setBackground(c.getBackground());
 	_graphics.setForeground(c.getForeground());
+	Focused::instance()->setGraph(_graphics);
 	for (bool redraw = true;;)
 	{
 		if (redraw)
 		{
 			_graphics.clearScreen();
 			_graphics.setCursorVisibility(false);
+			Focused::instance()->setGraph(_graphics);
 			for (size_t p = 0; p < 5; ++p)
 				c.draw(_graphics, 0, 0 , p);
 			redraw = false;
 		}
-
-
 		INPUT_RECORD record;
 		DWORD count;
 		ReadConsoleInput(_console, &record, 1, &count);
