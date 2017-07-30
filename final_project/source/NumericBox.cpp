@@ -1,17 +1,29 @@
 #include "stdafx.h"
 #include "NumericBox.h"
-
+#include "Button.h"
 
 
 NumericBox::NumericBox(int width, int min, int max) {
-	this->_width = width;
-	this->_min = min;
-	this->_max = max;
+	_min = min;
+	_max = max;
+	_width = width;
+	_height = 2;
+	Button minus(2);
+	Button plus(2);
+	Label value(15);
+	value.setText(L"0");
+	value.setBackground(Color::White);
+	value.setForeground(Color::Black);
+	plus.setTop(this->_top);
+	minus.setLeft(this->_left - 1);
+	plus.setLeft(this->_left + _width + 1);
 	
 }
 
 bool NumericBox::setValue(int value) {
-	this->_value = value;
+	if(value>_max||value<_min)
+	return false;
+	_value = value;
 	return true;
 
 }
@@ -19,4 +31,11 @@ bool NumericBox::setValue(int value) {
 int NumericBox::GetValue() {
 	return this->_value;
 
+}
+
+void NumericBox::pluse() {
+	setValue(_value + 1);
+}
+void NumericBox::minus() {
+	setValue(_value - 1);
 }
