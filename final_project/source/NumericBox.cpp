@@ -9,14 +9,31 @@ NumericBox::NumericBox(int width, int min, int max) {
 	_width = width;
 	_height = 2;
 	Button minus(2);
+	minus.setText(L"-");
+	minus.setBorder(BorderType::Single);
+	minus.setLeft(this->_left - 1);
+	//minus.addListener(listener);
+
 	Button plus(2);
+	plus.setBorder(BorderType::Single);
+	plus.setText(L"+");
+	plus.setTop(this->_top);
+	plus.setLeft(this->_left + _width + 1);
+	//plus.addListener(listener);
+
 	Label value(15);
-	value.setText(L"0");
+	value.setText(L"0");    //the value
 	value.setBackground(Color::White);
 	value.setForeground(Color::Black);
-	plus.setTop(this->_top);
-	minus.setLeft(this->_left - 1);
-	plus.setLeft(this->_left + _width + 1);
+
+	Panel box(5, 10);
+	box.AddControl(minus, 0, 0);
+	box.AddControl(value, 3,0);
+	box.AddControl(minus, width+4, 0);
+
+	//_controls.AddControl(box., 0, 0);
+
+
 	
 }
 
@@ -33,9 +50,13 @@ int NumericBox::GetValue() {
 
 }
 
-void NumericBox::pluse() {
-	setValue(_value + 1);
+void NumericBox::plus() {
+	if (setValue(_value + 1)) {
+	//the value changed
+	}
 }
 void NumericBox::minus() {
-	setValue(_value - 1);
+	if (setValue(_value - 1)) {
+		//the value changed
+	}
 }
