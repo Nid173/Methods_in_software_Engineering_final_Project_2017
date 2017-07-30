@@ -20,7 +20,7 @@ void Control:: setFocus(Control& control) {
 		Focused::instance()->setFocus(control);
 		if (Focused::instance()->getGraph()) {
 			Focused::instance()->getGraph()->setCursorVisibility(true);
-			Focused::instance()->getGraph()->moveTo(control.getLeft()+control.getWidth()-1, control.getTop()+control.getHeight()-1);
+			Focused::instance()->getGraph()->moveTo(control._cursorPosition , control.getTop() + control.getHeight() - 1);
 		}
 	}
 }

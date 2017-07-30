@@ -18,6 +18,7 @@ protected:
 	int _top;
 	int _width;
 	int _height;
+	int _cursorPosition;
 	size_t _layer;
 	Color _forgroundcolor;
 	Color _backgroundcolor;
@@ -38,6 +39,7 @@ public:
 	inline void setLayer(size_t layer);
 	inline int getWidth()const;
 	inline int getHeight()const;
+	inline virtual void restCursor();
 
 	inline void setLeft(int left);
 	inline void setTop(int top);
@@ -120,4 +122,8 @@ private:
 
   int Control::getHeight()const {
 	  return _height;
+  }
+
+  void Control::restCursor() {
+	  _cursorPosition = 0;
   }
