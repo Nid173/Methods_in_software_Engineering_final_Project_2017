@@ -49,8 +49,10 @@ void EventEngine::run(Control &c)
 				auto code = record.Event.KeyEvent.wVirtualKeyCode;
 				auto chr = record.Event.KeyEvent.uChar.AsciiChar;
 				if (code == VK_TAB) {
+					Control::getFocus()->restCursor();
 					moveFocus(c, f);
 					redraw = true;
+					lock = 0;
 				}
 				else if (code == VK_RIGHT) {
 					f->keyDown(code, chr);
@@ -63,6 +65,12 @@ void EventEngine::run(Control &c)
 				else if (code == VK_BACK) {
 					f->keyDown(code, chr);
 					redraw = true;
+					lock = 0;
+				}
+				else {
+					f->keyDown(code, chr);
+					redraw = true;
+					lock = 0;
 				}
 
 			}

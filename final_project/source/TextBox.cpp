@@ -43,10 +43,24 @@ void TextBox::keyDown(int keyCode, char charecter) {
 	}
 	else if (keyCode== VK_BACK) {
 		if (_pos.dwCursorPosition.X == this->getText().size()+_left+1) {
-			 this->getText().pop_back();
-			 this->_cursorPosition--;
+			if(_text.size()!=0)
+				_text.pop_back();
 		}
-		Focused::instance()->getGraph()->moveTo(_cursorPosition, _pos.dwCursorPosition.Y);
+		if (_cursorPosition > _left+1)
+			Focused::instance()->getGraph()->moveTo(_cursorPosition--, _pos.dwCursorPosition.Y);
+		else
+			Focused::instance()->getGraph()->moveTo(_cursorPosition, _pos.dwCursorPosition.Y);
+	}
+	else {
+		char temp[1];
+		temp[0] = charecter;
+		if (_text.size() == 0) {
+			_text = (temp[0], temp[0]);
+		}
+		else
+			_text+= (temp[0], temp[0]);
+		_cursorPosition++;
+
 	}
 }
 
