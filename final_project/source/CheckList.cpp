@@ -2,9 +2,9 @@
 #include "CheckList.h"
 
 CheckList::CheckList(int width, int height, vector<string> entries) {
-	this->_width = width;
-	this->_height = height;
-	this->_entries = entries;
+	_width = width;
+	_height = height;
+	_entries = entries;
 
 }
 
