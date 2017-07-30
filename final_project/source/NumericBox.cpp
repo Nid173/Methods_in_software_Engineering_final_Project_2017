@@ -17,6 +17,7 @@ NumericBox::NumericBox(int width, int min, int max) {
 	plus.setTop(this->_top);
 	minus.setLeft(this->_left - 1);
 	plus.setLeft(this->_left + _width + 1);
+	Panel box(5, 10);
 	
 }
 
