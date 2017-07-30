@@ -6,10 +6,10 @@ Control::Control()
 {
 	this->setForeground(Color::White);
 	this->setBackground(Color::Black);
-	_layer = 1;
+	_layer = 0;
 	setBorderDrawer(SimpleBorderFactory::instance().getNull());
 }
-
+ 
 
 Control::~Control()
 {
@@ -18,8 +18,10 @@ Control::~Control()
 void Control:: setFocus(Control& control) {
 	if (control.canGetFocus()) {
 		Focused::instance()->setFocus(control);
-		if(Focused::instance()->getGraph())
-			Focused::instance()->getGraph()->moveTo(control.getLeft(), control.getTop());
+		if (Focused::instance()->getGraph()) {
+			Focused::instance()->getGraph()->setCursorVisibility(true);
+			Focused::instance()->getGraph()->moveTo(control.getLeft()+control.getWidth()-1, control.getTop()+control.getHeight()-1);
+		}
 	}
 }
 

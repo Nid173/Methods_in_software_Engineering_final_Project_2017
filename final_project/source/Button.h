@@ -10,7 +10,7 @@ struct MouseListener
 
 class Button : public Label{
 private:
-
+	MouseListener* _listener;
 public:
 	Button(int width);
 	void addListener(MouseListener &listener);

@@ -22,6 +22,7 @@ public:
 	void write(wstring s);
 	void write(int x, int y, wstring s);
 	void setCursorVisibility(bool isVisible);
+	CONSOLE_SCREEN_BUFFER_INFO getInfo();
 	~Graphics();
 
 private:

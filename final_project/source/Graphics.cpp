@@ -77,6 +77,12 @@ void Graphics::setCursorVisibility(bool isVisible)
 	cci.bVisible = isVisible;
 	SetConsoleCursorInfo(_console, &cci);
 }
+	CONSOLE_SCREEN_BUFFER_INFO Graphics::getInfo() {
+	CONSOLE_SCREEN_BUFFER_INFO csbi;
+	GetConsoleScreenBufferInfo(_console, &csbi);
+	return csbi;
+}
+
 
 void Graphics::updateConsoleAttributes()
 {
