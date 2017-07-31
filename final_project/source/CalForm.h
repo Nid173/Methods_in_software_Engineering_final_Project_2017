@@ -14,7 +14,7 @@ private:
 	float number2;
 public:
 	virtual void MousePressed(Control &control, int x, int y, bool isLeft) {
-
+		Panel* pan;
 	}
 };
 
@@ -26,7 +26,7 @@ public:
 	Form() {}
 	~Form() {}
 	void start() {
-		Panel main(29, 115);
+		Panel main(20, 30);
 		main.setBackground(Color::Black);
 		main.setForeground(Color::White);
 		main.setBorder(BorderType::Double);

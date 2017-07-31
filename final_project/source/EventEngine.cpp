@@ -78,7 +78,6 @@ void EventEngine::run(Control &c)
 		}
 		case MOUSE_EVENT:
 		{
-			_graphics.setCursorVisibility(true);
 			auto button = record.Event.MouseEvent.dwButtonState;
 			auto coord = record.Event.MouseEvent.dwMousePosition;
 			auto x = coord.X - c.getLeft();
@@ -87,6 +86,7 @@ void EventEngine::run(Control &c)
 			{
 				c.mousePressed(x, y, button == FROM_LEFT_1ST_BUTTON_PRESSED);
 				redraw = true;
+				lock = 0;
 			}
 			break;
 		}
