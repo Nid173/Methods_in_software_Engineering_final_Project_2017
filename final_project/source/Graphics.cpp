@@ -120,5 +120,5 @@ bool isInside(int x, int y, int left, int top, int width, int height)
 {
 	x -= left;
 	y -= top;
-	return x >= 0 && y >= 0 && x < width && y < height;
+	return x >= 0 && y >= 0 && x <= width && y <= height;
 }

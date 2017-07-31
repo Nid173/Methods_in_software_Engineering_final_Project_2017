@@ -50,7 +50,7 @@ public:
 
 		NumericBox age(4, 0, 18);
 		age.setBorder(BorderType::Single);
-		main.AddControl(age, 4, 2);
+		main.AddControl(age, 5, 5);
 		EventEngine engine;
 		engine.run(main);
 		

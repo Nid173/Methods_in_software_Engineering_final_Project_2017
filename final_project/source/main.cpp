@@ -2,23 +2,23 @@
 //
 
 #include "stdafx.h"
-//#include "Graphics.h"
-//#include "TextBox.h"
-//#include "EventEngine.h"
+#include "Graphics.h"
+#include "TextBox.h"
+#include "EventEngine.h"
 #include "Panel.h"
-//#include "Label.h"
-//#include"Button.h"
-//#include "SimpleBorderFactory.h"
+#include "Label.h"
+#include"Button.h"
+#include "SimpleBorderFactory.h"
 #include "CalForm.h"
 #include "ChoiceForm.h"
 
 Focused* Focused::_instance = 0;
 int main()
 {
-	Form calform;
-	calform.start();
-	//ChoiceForm choiceform;
-	//choiceform.start();
+	//Form calform;
+	//calform.start();
+	ChoiceForm choiceform;
+	choiceform.start();
 	return 0;
 }
 

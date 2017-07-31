@@ -42,10 +42,10 @@ void Panel::draw(Graphics& g, int x, int y, size_t layer)const {
 		Control::draw(g, x, y, layer);
 		g.setBackground(getBackground());
 		g.setForeground(getForeground());
-		for (int i = 0; i < _controls.size(); i++) {
+		for (int i = 0; i <this-> _controls.size(); i++) {
 			g.setBackground(_controls[i]->getBackground());
 			g.setForeground(_controls[i]->getForeground());
-			_controls[i]->draw(g, x+getLeft() ,y+ getTop() , _controls[i]->getLayer());
+			this->_controls[i]->draw(g, x+getLeft() ,y+ getTop() , _controls[i]->getLayer());
 		}
 	}
 	else if (layer == getLayer() + 1 && this == getFocus()) {

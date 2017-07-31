@@ -1,52 +1,44 @@
 #include "stdafx.h"
 #include "NumericBox.h"
-#include "Button.h"
-#include <string>
 
 
-NumericBox::NumericBox(int width, int min, int max) :Panel(5,width+8),_min(min),_max(max){
-
+NumericBox::NumericBox(int width, int min, int max) :Panel(2,width+4),_min(min),_max(max){
 	_value = min;
-	Button minus(2);
-	minus.setText(L"-");
-	minus.setTop(3);
-	minus.setLeft(5);
-	//minus.setBorder(BorderType::Single);
-	minus.setBackground(Color::Blue);
-	minus.setForeground(Color::White);
-	//minus.addListener(listener);
+	Button* minus = new Button(2);
+	minus->setText(L"-");
+	minus->addListener(*new Minus_button);
+	minus->setBackground(Color::Blue);
+	minus->setForeground(Color::White);
+	this->_controls.push_back(minus);
 
-	Button plus(2);
-	//plus.setBorder(BorderType::Single);
-	plus.setText(L"+");
-	plus.setLeft(13);
-	plus.setTop(3);
-	plus.setBackground(Color::Blue);
-	plus.setForeground(Color::White);
-	//plus.addListener(Plus_button );
 
-	Label value(width);
-	value.setLeft(8);
-	value.setTop(3);
-	value.setText(L" " + to_wstring(_value));    //the value
-	value.setBackground(Color::White);
-	value.setForeground(Color::Black);
+	Label* value = new Label(width);
+	value->setText(L" " + to_wstring(_value));    //the value
+	value->setBackground(Color::White);
+	value->setForeground(Color::Black);
+	this->_controls.push_back(value);
 
-	_controls.push_back(&minus);
-	_controls.push_back(&value);
-	_controls.push_back(&plus);
 
+	Button* plus = new Button(2);
+	plus->setText(L" +");
+	plus->setBackground(Color::Blue);
+	plus->setForeground(Color::White);
+	plus->addListener(*new Plus_button);
+	this->_controls.push_back(plus);
 }
+
 
 bool NumericBox::setValue(int value) {
 	if(value>_max||value<_min)
 	return false;
 	_value = value;
+	Label* temp = static_cast<Label*>(_controls[1]);
+	temp->setText(L" " + to_wstring(_value));
 	return true;
 
 }
 
-int NumericBox::GetValue() {
+int NumericBox::getValue() {
 	return this->_value;
 
 }
