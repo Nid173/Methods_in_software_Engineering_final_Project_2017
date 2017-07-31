@@ -41,8 +41,8 @@ public:
 	inline int getHeight()const;
 	inline virtual void restCursor();
 
-	inline void setLeft(int left);
-	inline void setTop(int top);
+	inline virtual void setLeft(int left);
+	inline virtual void setTop(int top);
 	inline virtual int getLeft()const;
 	inline virtual int getTop()const;
 
