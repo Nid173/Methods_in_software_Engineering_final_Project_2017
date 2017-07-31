@@ -16,10 +16,14 @@ EventEngine::EventEngine(DWORD input, DWORD output)
 
 void EventEngine::run(Control &c)
 {
-	int lock = 1;
+	int lock = 0;
 	_graphics.setBackground(c.getBackground());
 	_graphics.setForeground(c.getForeground());	
 	Focused::instance()->setGraph(_graphics);
+
+	/* checking if the main panel is inside the Console 
+	* if no- change the console size 
+	*/
 	for (bool redraw = true;;)
 	{
 		if (redraw)
@@ -49,10 +53,10 @@ void EventEngine::run(Control &c)
 				auto code = record.Event.KeyEvent.wVirtualKeyCode;
 				auto chr = record.Event.KeyEvent.uChar.AsciiChar;
 				if (code == VK_TAB) {
-					f->restCursor();
 					moveFocus(c, f);
-					redraw = true;
-					lock = 0;
+					redraw = false;
+					//lock = 0;
+					f->restCursor();
 				}
 				else if (code == VK_RIGHT) {
 					f->keyDown(code, chr);

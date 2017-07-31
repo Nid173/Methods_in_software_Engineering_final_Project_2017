@@ -3,9 +3,9 @@
 
 
 Graphics::Graphics(DWORD stdHandle)
-	: _console(GetStdHandle(stdHandle)), _background(Color::Black), _foreground(Color::White)
+	:_console(GetStdHandle(stdHandle)), _background(Color::Black), _foreground(Color::White)
 
-{
+{	
 
 	updateConsoleAttributes();
 }
@@ -19,9 +19,8 @@ void Graphics::clearScreen()
 	DWORD d;
 	CONSOLE_SCREEN_BUFFER_INFO csbi;
 	GetConsoleScreenBufferInfo(_console, &csbi);
-
 	auto size = csbi.dwSize.X * csbi.dwSize.Y;
-	FillConsoleOutputAttribute(_console, csbi.wAttributes, size, { 0, 0 }, &d);
+ 	FillConsoleOutputAttribute(_console, csbi.wAttributes, size, { 0, 0 }, &d);
 	FillConsoleOutputCharacter(_console, L' ', size, { 0, 0 }, &d);
 }
 
@@ -114,6 +113,8 @@ void Graphics::updateConsoleAttributes()
 
 	SetConsoleTextAttribute(_console, attributes);
 }
+
+
 
 bool isInside(int x, int y, int left, int top, int width, int height)
 {

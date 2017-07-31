@@ -16,7 +16,7 @@ Panel::Panel(int height, int width) {
 }
 
 void Panel::getAllControls(vector<Control*>* controls ) {
-	for (int i = 0;i< _controls.size();  i++) {
+	for (int i = 0; i < _controls.size(); i++) {
 		controls->push_back(_controls[i]);
 	}
 }

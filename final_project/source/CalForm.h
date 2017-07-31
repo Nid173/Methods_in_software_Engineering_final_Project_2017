@@ -8,27 +8,23 @@
 #include"Button.h"
 #include "SimpleBorderFactory.h"
 
-class cal_button :public MouseListener {
+class show_button :public MouseListener {
 private:
 public:
 	virtual void MousePressed(Control &control, int x, int y, bool isLeft) {
-		int num1 = 0, num2 = 0, ans = 0;
 		vector<Control*> controls;
 		control.getAllControls(&controls);
-		TextBox* mynum1 = static_cast<TextBox*>(controls[2]);
-		TextBox* mynum2 = static_cast<TextBox*>(controls[4]);
-		num1 = stoi(mynum1->getText());
-		num2 = stoi(mynum2->getText());
+		TextBox* mystr1 = static_cast<TextBox*>(controls[2]);
+		TextBox* mystr2 = static_cast<TextBox*>(controls[3]);
 
 
 				/*get the answer*/
-		ans = num1 + num2;
 		Label* tempo = static_cast<Label*> (controls[1]);
-		tempo->setText(to_wstring(ans));
+		tempo->setText(mystr1->getText()+mystr2->getText());
 	}
 };
 
-cal_button listener;
+show_button listener;
 
 class Form {
 
@@ -36,7 +32,7 @@ public:
 	Form() {}
 	~Form() {}
 	void start() {
-		Panel main(20, 30);
+		Panel main(20, 70);
 		main.setBackground(Color::Black);
 		main.setForeground(Color::White);
 		main.setBorder(BorderType::Double);
@@ -45,52 +41,44 @@ public:
 		* 2 - TextBox 2-Label 1-button
 		*/
 
-		Panel cal(15, 30);
-		cal.setBackground(Color::Black);
-		cal.setForeground(Color::White);
-		cal.setBorder(BorderType::Single);
-
 		Label title(15);
-		title.setText(L"Calculater");
+		title.setText(L"String+String");
 		title.setBackground(Color::White);
 		title.setForeground(Color::Black);
 
-		Label answer(15);
+		Label answer(20);
 		answer.setText(L"");
 		answer.setBackground(Color::Black);
 		answer.setForeground(Color::White);
 
-		TextBox num1(10);
-		num1.setText(L"Number1");
-		num1.setBorder(BorderType::Single);
+		TextBox str1(10);
+		str1.setText(L"string1!");
+		str1.setBorder(BorderType::Single);
 
-		Label plus(2);
-		plus.setText(L"+");
 
-		TextBox num2(10);
-		num2.setText(L"Number2");
-		num2.setBorder(BorderType::Single);
+		TextBox str2(10);
+		str2.setText(L"string2");
+		str2.setBorder(BorderType::Single);
 
 		Button click(15);
-		click.setText(L"Calculate");
+		click.setText(L"/show!");
 		click.setBorder(BorderType::Single);
 		click.setBackground(Color::White);
 		click.setForeground(Color::Green);
 		click.addListener(listener);
 
 
-		main.AddControl(title, 8, 1);
-		main.AddControl(answer, 8, 4);
-		main.AddControl(num1, 1, 7);
-		main.AddControl(plus, 13, 7);
-		main.AddControl(num2, 16, 7);
-		main.AddControl(click, 8, 11);
+		main.AddControl(title, 8, 1);//0
+		main.AddControl(answer, 8, 4);//1
+		main.AddControl(str1, 1, 7);//2
+		main.AddControl(str2, 16, 7);//3
+		main.AddControl(click, 8, 11);//4
 
 		/*End of Cal Form */
 
 
 		//	main.AddControl(cal, 2, 2);
-		Control::setFocus(num1);
+		Control::setFocus(str1);
 		EventEngine engine;
 		engine.run(main);
 	}
