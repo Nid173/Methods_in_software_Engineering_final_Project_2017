@@ -11,5 +11,6 @@ public:
 	~ComboBox() {}
 	size_t GetSelectedIndex();
 	void SetSelectedIndex(size_t index);
-
+	void clickonmain(size_t index);
+	void clickonchoice(size_t index);
 };
