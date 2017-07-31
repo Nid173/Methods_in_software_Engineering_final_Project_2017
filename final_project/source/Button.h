@@ -17,6 +17,8 @@ public:
 	virtual bool canGetFocus() { return false; }
 	virtual void mousePressed(int x, int y, bool isLeft);
 	inline MouseListener& getListener();
+	virtual string className() { return "Button"; }
+
 };
 
 MouseListener& Button::getListener() {

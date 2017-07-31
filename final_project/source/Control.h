@@ -57,7 +57,8 @@ public:
 	virtual void getAllControls(vector<Control*>* controls) {};
 	virtual bool canGetFocus();
 	virtual void setBorderDrawer(const BorderDrawer &borderDrawer)  {_borderDrawer = &borderDrawer;}
-	~Control();
+	virtual ~Control() = default;
+	virtual string className() { return "Control"; }
 };
 
 class Focused {
