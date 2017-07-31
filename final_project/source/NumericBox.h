@@ -1,5 +1,15 @@
 #pragma once
 #include "Panel.h"
+#include"Button.h"
+class cal_button :public MouseListener {
+private:
+	float number1;
+	float number2;
+public:
+	virtual void MousePressed(Control &control, int x, int y, bool isLeft) {
+
+	}
+};
 
 class NumericBox : public Panel {
 protected:

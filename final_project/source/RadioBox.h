@@ -2,14 +2,11 @@
 #include "CheckList.h"
 
 class RadioBox : public CheckList {
-protected:
-
-	vector<string> _entries;
-	size_t _index;
-
+	size_t index;
 public:
 	RadioBox(int width, int height, vector<string> entries);
 	~RadioBox() {}
+	void click(size_t index);
 	size_t GetSelectedIndex();
 	void SetSelectedIndex(size_t index);
 
