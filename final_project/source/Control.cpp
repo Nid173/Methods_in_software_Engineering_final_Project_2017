@@ -11,9 +11,6 @@ Control::Control()
 }
  
 
-Control::~Control()
-{
-}
 
 void Control:: setFocus(Control& control) {
 	if (control.canGetFocus()) {

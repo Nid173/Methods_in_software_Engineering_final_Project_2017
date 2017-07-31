@@ -7,7 +7,7 @@ protected:
 	//int _cursorPosition;
 public:
 	TextBox(int width);
-	~TextBox() {}
+	virtual ~TextBox() = default;
 	inline void setText(wstring value);
 	inline wstring getText() const;
 	//inline int cursorPosition();
@@ -19,6 +19,8 @@ public:
 	 virtual void mousePressed(int x, int y, bool isLeft);
 	 void keyDown(int keyCode, char charecter);
 	 virtual bool canGetFocus();
+	 virtual string className() { return "TexBox"; }
+
 };
 
 void TextBox::setText(wstring value) {

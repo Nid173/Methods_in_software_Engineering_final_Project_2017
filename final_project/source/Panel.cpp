@@ -16,21 +16,22 @@ Panel::Panel(int height, int width) {
 }
 
 void Panel::getAllControls(vector<Control*>* controls ) {
-	for (int i = _controls.size();i>0 ; i--) {
-		controls->push_back(_controls[i-1]);
+	for (int i = 0;i< _controls.size();  i++) {
+		controls->push_back(_controls[i]);
 	}
 }
 
 void Panel::mousePressed(int x, int y, bool isLeft) {
 	Button* tmp;
+	TextBox* tempo;
 	for (int i = 0; i < _controls.size(); i++) {
-		if(isInside(x, y, _controls[i]->getLeft(), _controls[i]->getTop(), _controls[i]->getWidth(), 2)){
-			if (tmp = static_cast<Button*>(_controls[i])) {
+		if (isInside(x, y, _controls[i]->getLeft(), _controls[i]->getTop(), _controls[i]->getWidth(), 2)) {
+			if (_controls[i]->className() == "Button") {
+				tmp = static_cast<Button*>(_controls[i]);
 				tmp->getListener().MousePressed(*this, x, y, isLeft);
 			}
-	//		if(static_cast)
-			_controls[i]->mousePressed(x, y, isLeft);
-			break;
+			else
+				_controls[i]->mousePressed(x, y, isLeft);
 		}
 	}
 }

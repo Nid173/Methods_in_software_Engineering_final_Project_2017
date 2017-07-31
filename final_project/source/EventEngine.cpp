@@ -16,7 +16,7 @@ EventEngine::EventEngine(DWORD input, DWORD output)
 
 void EventEngine::run(Control &c)
 {
-	int lock = 0;
+	int lock = 1;
 	_graphics.setBackground(c.getBackground());
 	_graphics.setForeground(c.getForeground());	
 	Focused::instance()->setGraph(_graphics);
@@ -49,7 +49,7 @@ void EventEngine::run(Control &c)
 				auto code = record.Event.KeyEvent.wVirtualKeyCode;
 				auto chr = record.Event.KeyEvent.uChar.AsciiChar;
 				if (code == VK_TAB) {
-					Control::getFocus()->restCursor();
+					f->restCursor();
 					moveFocus(c, f);
 					redraw = true;
 					lock = 0;

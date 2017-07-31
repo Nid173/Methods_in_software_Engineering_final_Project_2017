@@ -11,7 +11,9 @@ TextBox::TextBox(int width) {
 
 
 void TextBox::mousePressed(int x, int y, bool isLeft) {
-	Focused::instance()->getGraph()->setCursorVisibility(true);
+	Control::getFocus()->restCursor();
+	Control::setFocus(*this);
+	/*
 	if (x<_text.size() && x>_left) {
 		Focused::instance()->getGraph()->moveTo(x, _top+1);
 		_cursorPosition = x;
@@ -24,6 +26,7 @@ void TextBox::mousePressed(int x, int y, bool isLeft) {
 		Focused::instance()->getGraph()->moveTo(_left+1, _top + 1);
 		_cursorPosition = _left + 1;
 	}
+	*/
 
 }
 void TextBox::keyDown(int keyCode, char charecter) {

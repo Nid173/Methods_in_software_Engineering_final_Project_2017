@@ -1,5 +1,6 @@
 #pragma once
 #include "Button.h"
+#include <typeinfo>
 #include <vector>
 
 class Panel : public Control{

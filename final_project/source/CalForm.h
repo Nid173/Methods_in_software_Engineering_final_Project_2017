@@ -10,11 +10,21 @@
 
 class cal_button :public MouseListener {
 private:
-	float number1;
-	float number2;
 public:
 	virtual void MousePressed(Control &control, int x, int y, bool isLeft) {
-		Panel* pan;
+		int num1 = 0, num2 = 0, ans = 0;
+		vector<Control*> controls;
+		control.getAllControls(&controls);
+		TextBox* mynum1 = static_cast<TextBox*>(controls[2]);
+		TextBox* mynum2 = static_cast<TextBox*>(controls[4]);
+		num1 = stoi(mynum1->getText());
+		num2 = stoi(mynum2->getText());
+
+
+				/*get the answer*/
+		ans = num1 + num2;
+		Label* tempo = static_cast<Label*> (controls[1]);
+		tempo->setText(to_wstring(ans));
 	}
 };
 
