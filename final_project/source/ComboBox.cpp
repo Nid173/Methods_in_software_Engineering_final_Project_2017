@@ -36,8 +36,6 @@ ComboBox::ComboBox(int width, vector<string> entries) {
 	for (int i = 0; i < size; i++) {
 		stemp = s2ws(entries[i]);
 		list.setText(stemp);
-		//list[i].setTop(this->_top);
-		//list[i].setLeft(this->_left + _width + 1);
 		//plus.addListener(listener);
 		choice.AddControl(list, i*width, 0);
 
@@ -53,9 +51,10 @@ size_t ComboBox::GetSelectedIndex() {
 
 void ComboBox::SetSelectedIndex(size_t index) {
 	this->_index = index;
-	//chsnge themain to 
+
+	// 
 	//wstring stemp;
-	//		stemp = s2ws(entries[i]);
+	//	stemp = s2ws(entries[i]);
 	//xxxxxx.setText(stemp);
 
 }
