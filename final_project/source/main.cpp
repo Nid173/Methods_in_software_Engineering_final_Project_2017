@@ -10,12 +10,15 @@
 //#include"Button.h"
 //#include "SimpleBorderFactory.h"
 #include "CalForm.h"
+#include "ChoiceForm.h"
 
 Focused* Focused::_instance = 0;
 int main()
 {
-	Form calform;
-	calform.start();
+	//Form calform;
+	//calform.start();
+	ChoiceForm choiceform;
+	choiceform.start();
 	return 0;
 }
 

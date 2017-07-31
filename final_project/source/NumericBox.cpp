@@ -11,7 +11,7 @@ NumericBox::NumericBox(int width, int min, int max) {
 	_height = 2;
 	_value = min;
 	Button minus(2);
-	minus.setText(L" "+to_wstring(_value));
+	minus.setText(L"-");
 	minus.setBorder(BorderType::Single);
 	minus.setLeft(this->_left - 1);
 	//minus.addListener(listener);
@@ -24,16 +24,16 @@ NumericBox::NumericBox(int width, int min, int max) {
 	//plus.addListener(listener);
 
 	Label value(15);
-	value.setText(L"0");    //the value
+	value.setText(L" " + to_wstring(_value));    //the value
 	value.setBackground(Color::White);
 	value.setForeground(Color::Black);
 
 	Panel box(5, 10);
-	box.AddControl(minus, 0, 0);
-	box.AddControl(value, 3,0);
-	box.AddControl(minus, width+4, 0);
+	box.AddControl(minus, 0, 4);
+	box.AddControl(value, 3,4);
+	box.AddControl(minus, width+4, 4);
 
-	//_controls.AddControl(box., 0, 0);
+	//_controls.push_back(&box);
 
 
 	

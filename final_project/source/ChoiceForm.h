@@ -7,6 +7,10 @@
 #include "Label.h"
 #include"Button.h"
 #include "SimpleBorderFactory.h"
+#include "NumericBox.h"
+#include "RadioBox.h"
+#include "CheckList.h"
+#include "ComboBox.h"
 
 class Choice_button :public MouseListener {
 private:
@@ -39,26 +43,23 @@ public:
 	ChoiceForm() {}
 	~ChoiceForm() {}
 	void start() {
-		Panel main(20, 30);
+		Panel main(30, 30);
 		main.setBackground(Color::Black);
 		main.setForeground(Color::White);
 		main.setBorder(BorderType::Double);
 
-		/* Caclculater Form
-		* 2 - TextBox 2-Label 1-button
-		*/
-
-		//main.AddControl(title, 8, 1);
+		NumericBox age(4, 0, 18);
 
 
-		/*End of Cal Form */
 
-		/*
+		main.AddControl(age, 4, 2);
+
+		
 		//	main.AddControl(cal, 2, 2);
-		Control::setFocus(num1);
+		//Control::setFocus(num1);
 		EventEngine engine;
 		engine.run(main);
-		*/
+		
 	}
 };
 
