@@ -36,8 +36,10 @@ void EventEngine::run(Control &c)
 			redraw = false;
 		}
 		if (lock == 0) {
-			_graphics.setCursorVisibility(true);
-			Control::setFocus(*Control::getFocus());
+			if (Control::getFocus()) {
+				_graphics.setCursorVisibility(true);
+				Control::setFocus(*Control::getFocus());
+			}
 			lock = 1;
 		}
 		INPUT_RECORD record;
