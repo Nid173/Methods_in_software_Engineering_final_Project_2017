@@ -49,14 +49,8 @@ public:
 		main.setBorder(BorderType::Double);
 
 		NumericBox age(4, 0, 18);
-
-
-
+		age.setBorder(BorderType::Single);
 		main.AddControl(age, 4, 2);
-
-		
-		//	main.AddControl(cal, 2, 2);
-		//Control::setFocus(num1);
 		EventEngine engine;
 		engine.run(main);
 		

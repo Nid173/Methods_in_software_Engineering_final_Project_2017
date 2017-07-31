@@ -6,6 +6,7 @@ TextBox::TextBox(int width) {
 	_height = 2;
 	_top = 0;
 	_left = 0;
+	_layer = 0;
 	_cursorPosition = 0;
 }
 
