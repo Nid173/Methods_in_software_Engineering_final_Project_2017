@@ -39,14 +39,14 @@ void Panel::mousePressed(int x, int y, bool isLeft) {
 
 void Panel::draw(Graphics& g, int x, int y, size_t layer)const {
 	if (layer == getLayer()) {
-		Control::draw(g, x, y, layer);
+		for (int i = _controls.size(); i > 0; i--) {
+			g.setBackground(_controls[i-1]->getBackground());
+			g.setForeground(_controls[i-1]->getForeground());
+			this->_controls[i-1]->draw(g, x + getLeft(), y + getTop(), _controls[i-1]->getLayer());
+		}
 		g.setBackground(getBackground());
 		g.setForeground(getForeground());
-		for (int i = 0; i <this-> _controls.size(); i++) {
-			g.setBackground(_controls[i]->getBackground());
-			g.setForeground(_controls[i]->getForeground());
-			this->_controls[i]->draw(g, x+getLeft() ,y+ getTop() , _controls[i]->getLayer());
-		}
+		Control::draw(g,x,y,layer);
 	}
 	else if (layer == getLayer() + 1 && this == getFocus()) {
 		Control::draw(g, x, y, layer);
@@ -55,8 +55,8 @@ void Panel::draw(Graphics& g, int x, int y, size_t layer)const {
 		g.moveTo(getLeft() + x, getTop() + y);
 
 	}
-	g.setBackground(getBackground());
-	g.setForeground(getForeground());
+	//g.setBackground(getBackground());
+	//g.setForeground(getForeground());
 
 }
 

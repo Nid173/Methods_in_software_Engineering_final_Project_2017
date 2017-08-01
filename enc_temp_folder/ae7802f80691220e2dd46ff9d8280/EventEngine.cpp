@@ -96,7 +96,13 @@ void EventEngine::run(Control &c)
 				redraw = true;
 				lock = 0;
 			}
+			else if (button == VK_MBUTTON) {
+				redraw = true;
 
+			}
+			else {
+				redraw = false;
+			}
 			break;
 		}
 		default:

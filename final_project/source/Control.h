@@ -19,6 +19,7 @@ protected:
 	int _width;
 	int _height;
 	int _cursorPosition;
+	bool _visible;
 	size_t _layer;
 	Color _forgroundcolor;
 	Color _backgroundcolor;

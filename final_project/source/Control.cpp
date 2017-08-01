@@ -8,6 +8,7 @@ Control::Control()
 	this->setBackground(Color::Black);
 	_layer = 0;
 	setBorderDrawer(SimpleBorderFactory::instance().getNull());
+	_visible = false;
 }
  
 
@@ -35,7 +36,7 @@ void Control:: draw(Graphics& g, int x, int y, size_t z) const {
 }
 
 void Control::setVisibility(bool visibility) {
-	
+	_visible = visibility;
 }
 
 void Control::setForeground(Color color) {
