@@ -5,10 +5,10 @@ void Panel::AddControl(Control &control, int x, int y) {
 	control.setTop(y);
 	control.setLeft(x);
 	_controls.push_back(&control);
-
+	_layer = 0;
 }
 
-Panel::Panel(int height, int width) {
+Panel::Panel(int height, int width):Control() {
 	this->_height = height;
 	this->_width = width;
 	_top = 0;

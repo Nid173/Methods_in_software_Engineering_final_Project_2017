@@ -74,6 +74,8 @@ public:
 		main.AddControl(str2, 16, 7);//3
 		main.AddControl(click, 8, 11);//4
 
+
+
 		/*End of Cal Form */
 
 
