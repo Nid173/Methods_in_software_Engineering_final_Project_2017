@@ -13,6 +13,42 @@ public:
 	void SelectedIndex(size_t index);
 	void DeSelectedIndex(size_t index);
 	wstring s2ws(const std::string& s);
+	virtual bool canGetFocus() { return false; }
+	virtual string className() { return "CheckList"; }
+	inline virtual void setLeft(int left);
+	inline virtual void setTop(int top);
+	virtual void mousePressed(int x, int y, bool isLeft);
 	void click(size_t index);
 
+};
+
+
+void CheckList::setLeft(int left) {
+	_left = left;
+	for (int i = 0; i < _controls.size(); i++) {
+		_controls[i]->setLeft(0);
+	}
+
+}
+
+void CheckList::setTop(int top) {
+	_top = top;
+	for (int i = 0; i < _controls.size(); i++) {
+		if (i == 0) {
+			_controls[i]->setTop(0);
+		}
+		else {
+			_controls[i]->setTop(_controls[i - 1]->getHeight() + _controls[i - 1]->getTop());
+		}
+	}
+
+}
+
+class Choice_button :public MouseListener {
+public:
+	Choice_button() {}
+	virtual void MousePressed(Control &control, int x, int y, bool isLeft) {
+		CheckList * tmp = static_cast<CheckList*>(&control);
+		//tmp->click(i);
+	}
 };

@@ -18,20 +18,7 @@ public:
 	inline virtual void setLeft(int left);
 	inline virtual void setTop(int top);
 
-	virtual void mousePressed(int x, int y, bool isLeft) { 
-		x -= _left;
-		y -= _top;
-		for (int i = 0; i < _controls.size(); i++) {
-			int myx = _controls[i]->getLeft() + _controls[i]->getWidth();
-			//int myy = _controls[i]->getTop() + _controls[i]->getHeight();
-			int x_l = _controls[i]->getLeft();
-			//int y_t = _controls[i]->getTop();
-			if ((x >= x_l && x <= myx) && (_controls[i]->className() == "Button")) {
-				Button* tmp = static_cast<Button*>(_controls[i]);
-				tmp->getListener().MousePressed(*this,x,y,isLeft);
-			}
-		}
-	}
+	virtual void mousePressed(int x, int y, bool isLeft);
 
 };
 
