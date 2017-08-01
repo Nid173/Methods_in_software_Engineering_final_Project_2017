@@ -145,6 +145,7 @@
     <ClInclude Include="source\ComboBox.h" />
     <ClInclude Include="source\Control.h" />
     <ClInclude Include="source\EventEngine.h" />
+    <ClInclude Include="source\Focuslist.h" />
     <ClInclude Include="source\Graphics.h" />
     <ClInclude Include="source\Label.h" />
     <ClInclude Include="source\MessageBox.h" />
@@ -162,6 +163,7 @@
     <ClCompile Include="source\ComboBox.cpp" />
     <ClCompile Include="source\Control.cpp" />
     <ClCompile Include="source\EventEngine.cpp" />
+    <ClCompile Include="source\Focuslist.cpp" />
     <ClCompile Include="source\Graphics.cpp" />
     <ClCompile Include="source\Label.cpp" />
     <ClCompile Include="source\main.cpp" />
