@@ -43,6 +43,11 @@ public:
 	ChoiceForm() {}
 	~ChoiceForm() {}
 	void start() {
+		vector<string> genders;
+		genders.push_back("sport");
+		genders.push_back("movies");
+		genders.push_back("swiming");
+		genders.push_back("vidiogames");
 		Panel main(30, 30);
 		main.setBackground(Color::Black);
 		main.setForeground(Color::White);
@@ -50,7 +55,10 @@ public:
 
 		NumericBox age(4, 0, 18);
 		age.setBorder(BorderType::Single);
-		main.AddControl(age, 5, 5);
+		CheckList gender(10,2, genders);
+		gender.setBorder(BorderType::Single);
+		main.AddControl(age, 2, 4);
+		main.AddControl(gender, 15,4);
 		EventEngine engine;
 		engine.run(main);
 		
