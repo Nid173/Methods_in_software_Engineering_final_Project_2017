@@ -15,10 +15,10 @@
 Focused* Focused::_instance = 0;
 int main()
 {
-	//Form calform;
-	//calform.start();
-	ChoiceForm choiceform;
-	choiceform.start();
+	Form calform;
+	calform.start();
+	//ChoiceForm choiceform;
+	//choiceform.start();
 	return 0;
 }
 
