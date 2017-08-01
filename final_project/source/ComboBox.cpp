@@ -15,73 +15,77 @@ wstring s2ws(const std::string& s)
 	return r;
 }
 
-
-ComboBox::ComboBox(int width, vector<string> entries) {
-	this->_entries = entries;
-	this->_width = width;
-	int size = 0;
-	size = entries.size();
+ComboBox::ComboBox(int width, vector<string> entries) :Panel((2*entries.size()), width), _entries(entries) {
 	wstring stemp;
-	Panel box(5, 10);
-	//Button* list=new Button(size);
-	Button display(4);
-	display.setBorder(BorderType::Single);
-	display.setText(L"none");
-	box.AddControl(display, 0, 0);
+	Button* list = new Button(width);
+	list->setHeight(2);
+	list->setBackground(Color::Blue);
+	list->setForeground(Color::White);
+	list->setText(L"none");
+	list->addListener(*new ComboBox_button);
+	this->_controls.push_back(list);
 
-	Panel choice(5, 10);
-	//turn choice visability off
-	Button list(4);
-	list.setBorder(BorderType::Single);
-	for (int i = 0; i < size; i++) {
+	for (int i = 0; i < entries.size(); i++) {
+		Button* list = new Button(width);
+		list->setHeight(2);
+		list->setBackground(Color::White);
+		list->setForeground(Color::Black);
 		stemp = s2ws(entries[i]);
-		list.setText(stemp);
-		//plus.addListener(listener);
-		choice.AddControl(list, i*width, 0);
-
+		list->setText(stemp);
+		list->addListener(*new ComboBox_button);
+		//list->visabilty off
+		this->_controls.push_back(list);
 	}
-	box.AddControl(list,width, 0);
+	_cursorPosition = _controls[0]->getTop() + 1;
 
-}
-
-size_t ComboBox::GetSelectedIndex() {
-	return _index;
 
 }
 
 void ComboBox::SetSelectedIndex(size_t index) {
-	this->_index = index;
+	this->_index = index-1;
 
-	// 
-	//wstring stemp;
-	//	stemp = s2ws(entries[i]);
-	//xxxxxx.setText(stemp);
+	wstring stemp;
+	stemp = s2ws(_entries[index - 1]);
+	Button* tmp = static_cast<Button*>(_controls[index]);
+	tmp->setText(stemp);
 
+}
+size_t ComboBox::GetSelectedIndex() {
+	return this->_index;
 }
 
 void ComboBox::clickonmain(size_t index) {
-
-	//if visabilty is on turn off otherwise turn on
+	//turn off if on , turn on if off
+	for (int i = 1; i <( _entries.size()+1); i++) {
+		/*
+		  if(_controls[i] is visable)
+			_controls[index]->setvisabilty(off)
+			else
+				_controls[index]->setvisabilty(on)
+		*/
+	}
 
 }
 
 void ComboBox::clickonchoice(size_t index) {
 	//turn visabilty off
+	for (int i = 1; i < (_entries.size()+1); i++) {
+		//_controls[index]->setvisabilty(off)
+	}
 
 	SetSelectedIndex(index);
 }
-/*
+
 void ComboBox::mousePressed(int x, int y, bool isLeft) {
+	Control::setFocus(*this);
 	x -= _left;
 	y -= _top;
 	for (int i = 0; i < _controls.size(); i++) {
-		int myx = _controls[i]->getLeft() + _controls[i]->getWidth();
-		//int myy = _controls[i]->getTop() + _controls[i]->getHeight();
-		int x_l = _controls[i]->getLeft();
-		//int y_t = _controls[i]->getTop();
-		if ((x >= x_l && x <= myx) && (_controls[i]->className() == "Button")) {
+		int myy = _controls[i]->getTop() + _controls[i]->getHeight();
+		int y_l = _controls[i]->getTop();
+		if (y >= y_l && y <= myy) {
 			Button* tmp = static_cast<Button*>(_controls[i]);
-			tmp->getListener().MousePressed(*this, x, y, isLeft);
+			tmp->getListener().MousePressed(*this, i, y, isLeft);
 		}
 	}
-}*/
+}

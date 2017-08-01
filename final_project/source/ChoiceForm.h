@@ -57,6 +57,11 @@ public:
 		genders.push_back("female");
 		genders.push_back("others");
 
+		vector<string> educations;
+		educations.push_back("collage");
+		educations.push_back("highschool");
+		educations.push_back("droped");
+
 		Panel main(30, 30);
 		main.setBackground(Color::Black);
 		main.setForeground(Color::White);
@@ -74,8 +79,11 @@ public:
 
 		RadioBox gender(7, 2, genders);
 		gender.setBorder(BorderType::Single);
-		main.AddControl(gender, 10, 15);
+		main.AddControl(gender, 3, 15);
 		
+		ComboBox education(10,educations);
+		education.setBorder(BorderType::Single);
+		main.AddControl(education, 16, 15);
 		
 		EventEngine engine;
 
