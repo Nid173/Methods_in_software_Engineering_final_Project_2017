@@ -11,6 +11,7 @@
 #include "RadioBox.h"
 #include "CheckList.h"
 #include "ComboBox.h"
+#include "MessageBox.h"
 
 class Choices_button :public MouseListener {
 private:
@@ -50,6 +51,7 @@ public:
 		hobbies.push_back("swiming");
 		hobbies.push_back("vidiogames");
 
+
 		vector<string> genders;
 		genders.push_back("male");
 		genders.push_back("female");
@@ -62,6 +64,8 @@ public:
 
 		NumericBox age(4, 0, 18);
 		age.setBorder(BorderType::Single);
+
+		
 		main.AddControl(age, 2, 4);
 
 		CheckList hobby(10,2, hobbies);
@@ -74,6 +78,7 @@ public:
 		
 		
 		EventEngine engine;
+
 		engine.run(main);
 		
 	}

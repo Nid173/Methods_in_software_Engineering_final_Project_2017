@@ -60,8 +60,16 @@ bool TextBox::canGetFocus() {
 
 void TextBox::draw(Graphics& g, int x, int y, size_t layer)const {
 	if (layer == getLayer()) {
+
+		g.setBackground(this->getBackground());
+		g.setForeground(this->getForeground());
+		g.write(x + getLeft() + 1, getTop() + y + 1, _text + wstring(getWidth() - _text.size(), ' '));
+		Control::draw(g, x, y, layer);
+		/*
 		Control::draw(g, x , y , layer);
-		g.write(x+getLeft()+1, getTop() + y+1,_text + wstring(getWidth() - _text.size(), ' '));
+		g.setBackground(this->getBackground());
+		g.setForeground(this->getForeground());
+		g.write(x+getLeft()+1, getTop() + y+1,_text + wstring(getWidth() - _text.size(), ' '));*/
 	}
 	//Control::setFocus(*(Control::getFocus()));
 	/*else if (layer == getLayer() + 1 && this == getFocus()) {

@@ -55,7 +55,6 @@ void CheckList::DeSelectedIndex(size_t index) {
 
 
 void CheckList::mousePressed(int x, int y, bool isLeft) {
-	Control::setFocus(*this);
 	x -= _left;
 	y -= _top;
 	for (int i = 0; i < _controls.size(); i++) {

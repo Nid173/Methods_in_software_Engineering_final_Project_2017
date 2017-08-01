@@ -167,6 +167,7 @@
     <ClCompile Include="source\Graphics.cpp" />
     <ClCompile Include="source\Label.cpp" />
     <ClCompile Include="source\main.cpp" />
+    <ClCompile Include="source\MessageBox.cpp" />
     <ClCompile Include="source\NumericBox.cpp" />
     <ClCompile Include="source\Panel.cpp" />
     <ClCompile Include="source\RadioBox.cpp" />
