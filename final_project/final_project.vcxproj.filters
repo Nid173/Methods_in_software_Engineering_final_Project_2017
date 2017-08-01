@@ -66,7 +66,7 @@
     <ClInclude Include="source\ChoiceForm.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="MessageBox.h">
+    <ClInclude Include="source\MessageBox.h">
       <Filter>Source Files</Filter>
     </ClInclude>
   </ItemGroup>

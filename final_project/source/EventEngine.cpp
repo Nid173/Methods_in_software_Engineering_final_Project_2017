@@ -110,7 +110,9 @@ EventEngine::~EventEngine()
 void EventEngine::moveFocus(Control &main, Control *focused)
 {
 	vector<Control*> controls;
-	main.getAllControls(&controls);
+	focused->getAllControls(&controls);
+		if(controls.size()==0)
+			main.getAllControls(&controls);
 	auto it = find(controls.begin(), controls.end(), focused);
 	do
 		if (++it == controls.end())

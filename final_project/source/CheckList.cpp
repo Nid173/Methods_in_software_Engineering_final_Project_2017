@@ -17,7 +17,6 @@ wstring CheckList::s2ws(const std::string& s)
 
 CheckList::CheckList(int width, int height, vector<string> entries) :Panel((height*entries.size()), width), _entries(entries){
 	wstring stemp;
-
 	for (int i = 0; i < entries.size(); i++) {
 	Button* list = new Button(width);
 	list->setHeight(height);
@@ -28,6 +27,7 @@ CheckList::CheckList(int width, int height, vector<string> entries) :Panel((heig
 		list->addListener(*new Choice_button);
 		this->_controls.push_back(list);
 	}
+	_cursorPosition = _controls[0]->getTop() + 1;
 
 
 }
@@ -55,6 +55,7 @@ void CheckList::DeSelectedIndex(size_t index) {
 
 
 void CheckList::mousePressed(int x, int y, bool isLeft) {
+	Control::setFocus(*this);
 	x -= _left;
 	y -= _top;
 	for (int i = 0; i < _controls.size(); i++) {
