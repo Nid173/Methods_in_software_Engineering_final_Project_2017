@@ -44,12 +44,19 @@ public:
 	ChoiceForm() {}
 	~ChoiceForm() {}
 	void start() {
-		
+
+		vector<string> hobbies;
+		hobbies.push_back("sport");
+		hobbies.push_back("movies");
+		hobbies.push_back("swiming");
+		hobbies.push_back("vidiogames");
+
+
 		vector<string> genders;
-		genders.push_back("sport");
-		genders.push_back("movies");
-		genders.push_back("swiming");
-		genders.push_back("vidiogames");
+		genders.push_back("male");
+		genders.push_back("female");
+		genders.push_back("others");
+
 		Panel main(30, 30);
 		main.setBackground(Color::Black);
 		main.setForeground(Color::White);
@@ -57,15 +64,19 @@ public:
 
 		NumericBox age(4, 0, 18);
 		age.setBorder(BorderType::Single);
-		CheckList gender(10,2, genders);
-		gender.setBorder(BorderType::Single);
+
 		
-
-		Messagebox m(L"Error message");
 		main.AddControl(age, 2, 4);
-		main.AddControl(gender, 15,4);
 
-		main.AddControl(m, 4, 15);
+		CheckList hobby(10,2, hobbies);
+		hobby.setBorder(BorderType::Single);
+		main.AddControl(hobby, 15, 4);
+
+		RadioBox gender(7, 2, genders);
+		gender.setBorder(BorderType::Single);
+		main.AddControl(gender, 10, 15);
+		
+		
 		EventEngine engine;
 
 		engine.run(main);

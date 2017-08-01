@@ -22,6 +22,6 @@ public:
 
 };
 
-MouseListener& Focuslist::getListener() {
+MouseListener& Focuslist::getListener() { 
 	return *_listener;
 }
