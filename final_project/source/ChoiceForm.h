@@ -12,7 +12,7 @@
 #include "CheckList.h"
 #include "ComboBox.h"
 
-class Choice_button :public MouseListener {
+class Choices_button :public MouseListener {
 private:
 public:
 	/*

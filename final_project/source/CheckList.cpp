@@ -57,6 +57,22 @@ void CheckList::DeSelectedIndex(size_t index) {
 
 }
 
+
+void CheckList::mousePressed(int x, int y, bool isLeft) {
+	x -= _left;
+	y -= _top;
+	for (int i = 0; i < _controls.size(); i++) {
+		//int myx = _controls[i]->getLeft() + _controls[i]->getWidth();
+		int myy = _controls[i]->getTop() + _controls[i]->getHeight();
+		//int x_l = _controls[i]->getLeft();
+		int y_l = _controls[i]->getTop();
+		if ((y >= y_l && y <= myy) && (_controls[i]->className() == "Button")) {
+			Button* tmp = static_cast<Button*>(_controls[i]);
+			tmp->getListener().MousePressed(*this, x, y, isLeft);
+		}
+	}
+}
+
 void CheckList::click(size_t index) {
 
 	for (int i = 0; i < _index.size(); i++) {
