@@ -49,6 +49,6 @@ public:
 	Choice_button() {}
 	virtual void MousePressed(Control &control, int x, int y, bool isLeft) {
 		CheckList * tmp = static_cast<CheckList*>(&control);
-		//tmp->click(i);
+		tmp->click(x);
 	}
 };

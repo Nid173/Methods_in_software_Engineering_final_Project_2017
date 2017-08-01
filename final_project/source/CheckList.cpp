@@ -16,13 +16,11 @@ wstring CheckList::s2ws(const std::string& s)
 }
 
 CheckList::CheckList(int width, int height, vector<string> entries) :Panel((height*entries.size()), width), _entries(entries){
-	int size = 0;
-	size= entries.size();
 	wstring stemp;
 
-	for (int i = 0; i < size; i++) {
+	for (int i = 0; i < entries.size(); i++) {
 	Button* list = new Button(width);
-	//list->setHeight(height);
+	list->setHeight(height);
 	list->setBackground(Color::White);
 	list->setForeground(Color::Black);
 		stemp = s2ws(entries[i]);
@@ -60,27 +58,24 @@ void CheckList::mousePressed(int x, int y, bool isLeft) {
 	x -= _left;
 	y -= _top;
 	for (int i = 0; i < _controls.size(); i++) {
-		//int myx = _controls[i]->getLeft() + _controls[i]->getWidth();
 		int myy = _controls[i]->getTop() + _controls[i]->getHeight();
-		//int x_l = _controls[i]->getLeft();
 		int y_l = _controls[i]->getTop();
-		if ((y >= y_l && y <= myy) && (_controls[i]->className() == "Button")) {
+		if (y >= y_l && y <= myy) {
 			Button* tmp = static_cast<Button*>(_controls[i]);
-			tmp->getListener().MousePressed(*this, x, y, isLeft);
-			click(i);
-			
+			tmp->getListener().MousePressed(*this, i, y, isLeft);
 		}
 	}
 }
 
 void CheckList::click(size_t index) {
+	int lock = 0;
 
 	for (int i = 0; i < _index.size(); i++) {
-
-		if (_index[i] == index) 
+		if (_index[i] == index) {
 			DeSelectedIndex(index);
-
+			lock = 1;
 		}
-
-	SelectedIndex(index);
+	}
+	if(lock==0)
+		SelectedIndex(index);
 }

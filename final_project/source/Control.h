@@ -39,6 +39,7 @@ public:
 	inline void setLayer(size_t layer);
 	inline int getWidth()const;
 	inline int getHeight()const;
+	inline void setHeight(int _y);
 	inline virtual void restCursor();
 
 	inline virtual void setLeft(int left);
@@ -128,3 +129,7 @@ private:
   void Control::restCursor() {
 	  _cursorPosition = 0;
   }
+  void Control:: setHeight(int _y) {
+	  _height = _y;
+  }
+
