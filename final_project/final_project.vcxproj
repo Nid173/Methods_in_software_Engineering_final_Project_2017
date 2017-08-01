@@ -138,7 +138,6 @@
     <Text Include="ReadMe.txt" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="MessageBox.h" />
     <ClInclude Include="source\Button.h" />
     <ClInclude Include="source\CalForm.h" />
     <ClInclude Include="source\CheckList.h" />
@@ -148,6 +147,7 @@
     <ClInclude Include="source\EventEngine.h" />
     <ClInclude Include="source\Graphics.h" />
     <ClInclude Include="source\Label.h" />
+    <ClInclude Include="source\MessageBox.h" />
     <ClInclude Include="source\NumericBox.h" />
     <ClInclude Include="source\Panel.h" />
     <ClInclude Include="source\RadioBox.h" />

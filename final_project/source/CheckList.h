@@ -13,7 +13,7 @@ public:
 	void SelectedIndex(size_t index);
 	void DeSelectedIndex(size_t index);
 	wstring s2ws(const std::string& s);
-	virtual bool canGetFocus() { return false; }
+	virtual bool canGetFocus() { return true; }
 	virtual string className() { return "CheckList"; }
 	inline virtual void setLeft(int left);
 	inline virtual void setTop(int top);
