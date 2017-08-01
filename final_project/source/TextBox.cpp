@@ -41,15 +41,16 @@ void TextBox::keyDown(int keyCode, char charecter) {
 			Focused::instance()->getGraph()->moveTo(_cursorPosition, _pos.dwCursorPosition.Y);
 	}
 	else {
-		char temp[1];
-		temp[0] = charecter;
-		if (_text.size() == 0) {
-			_text = (temp[0], temp[0]);
+		if (_cursorPosition < _left + getWidth()) {
+			char temp[1];
+			temp[0] = charecter;
+			if (_text.size() == 0) {
+				_text = (temp[0], temp[0]);
+			}
+			else
+				_text += (temp[0], temp[0]);
+			_cursorPosition++;
 		}
-		else
-			_text+= (temp[0], temp[0]);
-		_cursorPosition++;
-
 	}
 }
 
