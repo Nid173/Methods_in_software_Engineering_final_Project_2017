@@ -55,15 +55,13 @@ public:
 		educations.push_back("highschool");
 		educations.push_back("droped");
 
-
+		//the main panel
 		Panel main(29, 70);
 		main.setBackground(Color::Black);
 		main.setForeground(Color::White);
 		main.setBorder(BorderType::Double);
 
-		/* Caclculater Form
-		* 2 - TextBox 2-Label 1-button
-		*/
+
 		NumericBox age(4, 0, 18);
 		age.setBorder(BorderType::Single);
 		main.AddControl(age, 5, 14);
@@ -132,15 +130,15 @@ public:
 		
 
 
-		main.AddControl(title, 27, 1);//0
-		main.AddControl(str1, 5, 7);//2
-		main.AddControl(str2, 20, 7);//3
-		main.AddControl(click, 30, 25);//4
-		main.AddControl(name, 13, 5);//5
-		main.AddControl(agetest, 5, 12);//5
-		main.AddControl(educattest, 25, 12);//5
-		main.AddControl(hobbytest, 52, 12);//5
-		main.AddControl(gendertest, 50, 3);//5
+		main.AddControl(title, 27, 1);
+		main.AddControl(str1, 5, 7);
+		main.AddControl(str2, 20, 7);
+		main.AddControl(click, 30, 25);
+		main.AddControl(name, 13, 5);
+		main.AddControl(agetest, 5, 12);
+		main.AddControl(educattest, 25, 12);
+		main.AddControl(hobbytest, 52, 12);
+		main.AddControl(gendertest, 50, 3);
 
 
 		/*End of Cal Form */
