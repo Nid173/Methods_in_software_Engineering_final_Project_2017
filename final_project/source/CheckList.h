@@ -4,7 +4,7 @@
 class CheckList : public Panel {
 protected:
 	vector<string> _entries;
-	vector<size_t> _index;
+	vector<size_t> _indexs;
 
 public:
 	CheckList(int width, int height, vector<string> entries);
@@ -12,6 +12,7 @@ public:
 	CheckList() {}
 	void SelectedIndex(size_t index);
 	void DeSelectedIndex(size_t index);
+	vector<size_t>& GetallIndex();
 	wstring s2ws(const std::string& s);
 	virtual bool canGetFocus() { return false; }
 	virtual string className() { return "CheckList"; }
