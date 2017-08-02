@@ -81,8 +81,61 @@ size_t ComboBox::GetSelectedIndex() {
 	return this->_index;
 }
 
+ 
+void ComboBox::restCursor() {
+	if (opened) {
+		for (int i = 0; i < _controls.size()-1; i++) {
+			_controls[i]->setBackground(Color::White);
+			_controls[i]->setForeground(Color::Black);
+		}
+	}
+}
+void ComboBox::keyDown(int keyCode, char charecter) {
+
+	if (this->isOpened()) {
+		auto f = Control::getFocus();
+		auto it = find(_controls.begin(), _controls.end(), f);
+
+		if (keyCode == VK_DOWN) {
+			if (++it != _controls.end()-1) {
+				Control::setFocus(**it);
+				restCursor();
+				(**it).setBackground(Color::Orange);
+				(**it).setForeground(Color::White);
+			}
+		}
+
+		else if (keyCode == VK_UP) {
+			if (it != _controls.begin()) {
+				it--;
+				Control::setFocus(**it);
+				restCursor();
+				(**it).setBackground(Color::Orange);
+				(**it).setForeground(Color::White);
+			}
+		}
+		else if (keyCode == VK_RETURN || keyCode == VK_SPACE) {
+			int lock = 0;
+			int pos = it - _controls.begin();
+			Button * b = static_cast<Button*>(_controls[_controls.size() - 1]);
+			b->setText(L" +");
+			Control::getFocus()->setForeground(Color::Black);
+			Control::getFocus()->setBackground(Color::White);
+			b= static_cast<Button*>(Control::getFocus());
+			_text = b->getText();
+				_index = pos;
+				opened = false;
+				for (int i = 0; i < _controls.size() - 1; i++) {
+					_controls[i]->setVisibility(false);
+				}
+
+		}
+	}
+
+}
 
 void ComboBox::mousePressed(int x, int y, bool isLeft) {
+	opened = true;
 	x -= _left;
 	y -= _top;
 	Button *tmp = static_cast<Button*>(_controls[_controls.size() - 1]);
@@ -95,6 +148,11 @@ void ComboBox::mousePressed(int x, int y, bool isLeft) {
 			for (int i = 0; i < _controls.size(); i++)
 				_controls[i]->setVisibility(true);
 			tmp->setText(L" -");
+			if (_controls.size() > 1) {
+				Control::setFocus(*_controls[0]);
+				_controls[0]->setBackground(Color::Orange);
+				_controls[0]->setForeground(Color::White);
+			}
 		}
 	}
 	else if (icon == " -") {
@@ -102,6 +160,7 @@ void ComboBox::mousePressed(int x, int y, bool isLeft) {
 			if (isInside(x, y, _controls[i]->getLeft(), _controls[i]->getTop(), _controls[i]->getWidth(), _controls[i]->getHeight())) {
 				Button* temp = static_cast<Button*>(_controls[i]);
 				temp->getListener().MousePressed(*this, i, y, isLeft);
+				opened = false;
 				break;
 			}
 		}

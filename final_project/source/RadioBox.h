@@ -11,4 +11,6 @@ public:
 	virtual void click(size_t index);
 	size_t GetSelectedIndex();
 	void SetSelectedIndex(size_t index);
+	virtual void restCursor();
+	virtual void keyDown(int keyCode, char charecter);
 };

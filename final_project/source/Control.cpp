@@ -9,6 +9,7 @@ Control::Control()
 	_layer = 0;
 	setBorderDrawer(SimpleBorderFactory::instance().getNull());
 	_visible = false;
+	opened = false;
 }
  
 
@@ -17,7 +18,7 @@ void Control:: setFocus(Control& control) {
 	if (control.canGetFocus()) {
 		Focused::instance()->setFocus(control);
 		if (Focused::instance()->getGraph()) {
-			Focused::instance()->getGraph()->moveTo(control._cursorPosition , control.getTop() + control.getHeight() - 1);
+			Focused::instance()->getGraph()->moveTo(control._cursorPositionx , control.getTop() + control.getHeight() - 1);
 		}
 	}
 }

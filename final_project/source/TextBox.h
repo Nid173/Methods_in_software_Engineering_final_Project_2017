@@ -4,14 +4,13 @@
 class TextBox : public Control {
 protected:
 	wstring _text;
-	//int _cursorPosition;
 public:
 	TextBox(int width);
 	virtual ~TextBox() = default;
 	inline void setText(wstring value);
 	inline wstring getText() const;
 	//inline int cursorPosition();
-	virtual void restCursor() {_cursorPosition = _text.size() + this->getLeft() + 2;}
+	virtual void restCursor() {_cursorPositionx = _text.size() + this->getLeft() + 1;}
 
 
 	/* Control Methods*/
@@ -19,13 +18,19 @@ public:
 	 virtual void mousePressed(int x, int y, bool isLeft);
 	 void keyDown(int keyCode, char charecter);
 	 virtual bool canGetFocus();
-	 virtual string className() { return "TexBox"; }
+	 virtual string className() { return "TextBox"; }
+	 inline virtual void setLeft(int left);
 
 };
 
+void TextBox::setLeft(int left){
+	_left = left;
+	_cursorPositionx = left + _text.size() + 1;
+
+}
+
 void TextBox::setText(wstring value) {
 	this->_text = value;
-	_cursorPosition = _text.size() + this->getLeft()+2 ;
 }
 
 wstring TextBox::getText() const {
@@ -33,5 +38,6 @@ wstring TextBox::getText() const {
 }
 /*
 int TextBox:: cursorPosition() {
-	return _cursorPosition;
+	return 
+rPosition;
 }*/

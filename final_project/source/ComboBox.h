@@ -14,14 +14,17 @@ public:
 	~ComboBox() {}
 	size_t GetSelectedIndex();
 	void SetSelectedIndex(size_t index);
-	virtual bool canGetFocus() { return true; }
+	virtual bool canGetFocus() { return false; }
 	virtual string className() { return "ComboBox"; }
 	inline virtual void setLeft(int left);
 	inline virtual void setTop(int top);
 	inline void setText(wstring text);
 	inline wstring getText()const;
+	virtual	void keyDown(int keyCode, char charecter);
 	virtual void mousePressed(int x, int y, bool isLeft);
 	virtual void draw(Graphics& g, int x, int y, size_t z);
+	virtual void restCursor();
+
 };
 
 void ComboBox::setText(wstring text) {

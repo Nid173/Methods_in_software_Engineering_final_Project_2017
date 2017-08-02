@@ -27,7 +27,7 @@ CheckList::CheckList(int width, int height, vector<string> entries) :Panel((heig
 		list->addListener(*new Choice_button);
 		this->_controls.push_back(list);
 	}
-	_cursorPosition = _controls[0]->getTop() + 1;
+	_cursorPositiony = _controls[0]->getTop() + 1;
 
 
 }
@@ -53,16 +53,81 @@ void CheckList::DeSelectedIndex(size_t index) {
 
 }
 
+void CheckList::restCursor() {
+	for (int i = 0; i < _controls.size(); i++) {
+
+		_controls[i]->setBackground(Color::White);
+		_controls[i]->setForeground(Color::Black);
+
+		for (int j = 0; j < _index.size(); j++) {
+			if (_index[j] == i) {
+				_controls[i]->setBackground(Color::Green);
+				_controls[i]->setForeground(Color::Black);
+				break;
+			}
+		}
+	}
+}
+
+void CheckList:: keyDown(int keyCode, char charecter) {
+	if (this->isOpened()) {
+		auto f = Control::getFocus();
+		auto it = find(_controls.begin(), _controls.end(), f);
+		if (keyCode == VK_DOWN) {
+			if (it != _controls.end() && ++it!=_controls.end()) {
+				Control::setFocus(**it);
+				restCursor();
+				(**it).setBackground(Color::Orange);
+				(**it).setForeground(Color::White);
+			}
+		}
+
+		else if (keyCode == VK_UP) {
+			if (it != _controls.begin()) {
+				it--;
+				Control::setFocus(**it);
+				restCursor();
+				(**it).setBackground(Color::Orange);
+				(**it).setForeground(Color::White);
+			}
+
+		}
+		else if (keyCode == VK_RETURN || keyCode == VK_SPACE) {
+			int lock = 0;
+			int pos =it - _controls.begin();
+			Control::getFocus()->setForeground(Color::Black);
+				for (int j = 0; j < _index.size(); j++) {
+					if (_index[j] == pos) {
+						f->setBackground(Color::White);
+						_index.erase(_index.begin() + j);
+						lock = 1;
+						break;
+					}
+				}
+				if (lock == 0) {
+					f->setBackground(Color::Green);
+					_index.push_back(pos);
+				}
+		}
+
+
+	}
+}
+
 
 void CheckList::mousePressed(int x, int y, bool isLeft) {
+	opened = true;
 	x -= _left;
 	y -= _top;
 	for (int i = 0; i < _controls.size(); i++) {
 		int myy = _controls[i]->getTop() + _controls[i]->getHeight();
 		int y_l = _controls[i]->getTop();
 		if (y >= y_l && y <= myy) {
+			_cursorPositiony = _top + _controls[i]->getTop()+1;
 			Focuslist* tmp = static_cast<Focuslist*>(_controls[i]);
+			Control::setFocus(*_controls[i]);
 			tmp->getListener().MousePressed(*this, i, y, isLeft);
+			break;
 		}
 	}
 }

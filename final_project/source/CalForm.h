@@ -128,6 +128,9 @@ public:
 		click.setForeground(Color::Green);
 		click.addListener(listener);
 
+	//	Messagebox message("This is my first\n test from ");
+		
+
 
 		main.AddControl(title, 27, 1);//0
 		main.AddControl(str1, 5, 7);//2

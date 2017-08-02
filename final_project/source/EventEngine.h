@@ -12,6 +12,7 @@ public:
 	virtual ~EventEngine();
 private:
 	void moveFocus(Control &main, Control *focused);
+	void deepFocus(Control &main, Control *focused);
 
 	Graphics _graphics;
 	HANDLE _console;
