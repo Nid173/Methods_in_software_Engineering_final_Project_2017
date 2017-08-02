@@ -43,7 +43,9 @@ ComboBox::ComboBox(int width, vector<string> entries) :Panel((2 * entries.size()
 	_controls[entries.size()]->setVisibility(true);
 }
 
-
+vector<string>& ComboBox::Getallentries() {
+	return _entries;
+}
 
 void ComboBox::draw(Graphics& g, int x, int y, size_t z) {
 	if (z == getLayer()) {
