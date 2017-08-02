@@ -55,15 +55,13 @@ public:
 		educations.push_back("highschool");
 		educations.push_back("droped");
 
-
+		//the main panel
 		Panel main(29, 70);
 		main.setBackground(Color::Black);
 		main.setForeground(Color::White);
 		main.setBorder(BorderType::Double);
 
-		/* Caclculater Form
-		* 2 - TextBox 2-Label 1-button
-		*/
+		//box exampales
 		NumericBox age(4, 0, 18);
 		age.setBorder(BorderType::Single);
 		main.AddControl(age, 5, 14);
@@ -84,42 +82,50 @@ public:
 		title.setText(L"   survey");
 		title.setBackground(Color::White);
 		title.setForeground(Color::Black);
+		main.AddControl(title, 27, 1);
 
+		TextBox str1(10);
+		str1.setText(L"first");
+		str1.setBorder(BorderType::Single);
+		main.AddControl(str1, 5, 7);
+
+		TextBox str2(10);
+		str2.setText(L"last");
+		str2.setBorder(BorderType::Single);
+		main.AddControl(str2, 20, 7);
+
+		//titles
 		Label name(15);
 		name.setText(L"full name");
 		name.setBackground(Color::Black);
 		name.setForeground(Color::Orange);
+		main.AddControl(name, 13, 5);
 
 
 		Label agetest(15);
 		agetest.setText(L"age(0-18)");
 		agetest.setBackground(Color::Black);
 		agetest.setForeground(Color::Orange);
+		main.AddControl(agetest, 5, 12);
 
 		Label educattest(15);
 		educattest.setText(L"education");
 		educattest.setBackground(Color::Black);
 		educattest.setForeground(Color::Orange);
+		main.AddControl(educattest, 25, 12);
 
 		Label hobbytest(15);
 		hobbytest.setText(L"hobby");
 		hobbytest.setBackground(Color::Black);
 		hobbytest.setForeground(Color::Orange);
+		main.AddControl(hobbytest, 52, 12);
 
 		Label gendertest(15);
 		gendertest.setText(L"gender");
 		gendertest.setBackground(Color::Black);
 		gendertest.setForeground(Color::Orange);
+		main.AddControl(gendertest, 50, 3);
 
-
-		TextBox str1(10);
-		str1.setText(L"first");
-		str1.setBorder(BorderType::Single);
-
-
-		TextBox str2(10);
-		str2.setText(L"last");
-		str2.setBorder(BorderType::Single);
 
 		Button click(10);
 		click.setText(L" submit!");
@@ -127,26 +133,12 @@ public:
 		click.setBackground(Color::White);
 		click.setForeground(Color::Green);
 		click.addListener(listener);
+		main.AddControl(click, 30, 25);
 
-	//	Messagebox message("This is my first\n test from ");
+
+		/*End of the Form */
+
 		
-
-
-		main.AddControl(title, 27, 1);//0
-		main.AddControl(str1, 5, 7);//2
-		main.AddControl(str2, 20, 7);//3
-		main.AddControl(click, 30, 25);//4
-		main.AddControl(name, 13, 5);//5
-		main.AddControl(agetest, 5, 12);//5
-		main.AddControl(educattest, 25, 12);//5
-		main.AddControl(hobbytest, 52, 12);//5
-		main.AddControl(gendertest, 50, 3);//5
-
-
-		/*End of Cal Form */
-
-
-		//	main.AddControl(cal, 2, 2);
 		Control::setFocus(str1);
 		EventEngine engine;
 		engine.run(main);

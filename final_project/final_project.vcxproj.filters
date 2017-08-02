@@ -63,9 +63,6 @@
     <ClInclude Include="source\CalForm.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="source\ChoiceForm.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="source\Focuslist.h">
       <Filter>Header Files</Filter>
     </ClInclude>

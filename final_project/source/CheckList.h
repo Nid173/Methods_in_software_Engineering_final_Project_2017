@@ -21,10 +21,22 @@ public:
 	virtual void keyDown(int keyCode, char charecter) ;
 	virtual void restCursor();
 	virtual void click(size_t index);
-
 };
 
 
+class Choice_button :public MouseListener {
+public:
+	Choice_button() {}
+	virtual void MousePressed(Control &control, int x, int y, bool isLeft) {
+		CheckList * tmp = static_cast<CheckList*>(&control);
+		tmp->click(x);
+	}
+};
+
+/*
+* Inline Methods
+*/
+// left setting
 void CheckList::setLeft(int left) {
 	_left = left;
 	for (int i = 0; i < _controls.size(); i++) {
@@ -32,7 +44,7 @@ void CheckList::setLeft(int left) {
 	}
 
 }
-
+// top setting
 void CheckList::setTop(int top) {
 	_top = top;
 	for (int i = 0; i < _controls.size(); i++) {
@@ -45,12 +57,3 @@ void CheckList::setTop(int top) {
 	}
 
 }
-
-class Choice_button :public MouseListener {
-public:
-	Choice_button() {}
-	virtual void MousePressed(Control &control, int x, int y, bool isLeft) {
-		CheckList * tmp = static_cast<CheckList*>(&control);
-		tmp->click(x);
-	}
-};

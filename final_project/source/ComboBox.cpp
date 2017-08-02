@@ -1,6 +1,7 @@
 #include "stdafx.h"
 #include "ComboBox.h"
 
+//convert string to wstring
 wstring s2ws(const std::string& s)
 {
 	int len;
