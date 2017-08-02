@@ -26,8 +26,6 @@ void EventEngine::run(Control &c)
 	{
 		if (redraw)
 		{
-			//_graphics.setBackground(c.getBackground());
-			//_graphics.setForeground(c.getForeground());
 			_graphics.clearScreen();
 			_graphics.setCursorVisibility(false);
 
