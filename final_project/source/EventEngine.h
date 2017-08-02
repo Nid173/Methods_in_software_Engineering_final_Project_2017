@@ -11,11 +11,10 @@ public:
 	void run(Control &c);
 	virtual ~EventEngine();
 private:
-	void moveFocus(Control &main, Control *focused);
-	void deepFocus(Control &main, Control *focused);
-
 	Graphics _graphics;
 	HANDLE _console;
 	DWORD _consoleMode;
+	void moveFocus(Control &main, Control *focused);
+	void deepFocus(Control &main, Control *focused);
 };
 

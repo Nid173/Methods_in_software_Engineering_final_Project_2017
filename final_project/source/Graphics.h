@@ -7,7 +7,7 @@
 using namespace std;
 
 
-enum class Color { Black, Blue, Green, Red, Cyan, Purple, Orange, White }; //should be removed (what do you think?)
+enum class Color { Black, Blue, Green, Red, Cyan, Purple, Orange, White }; 
 
 class Graphics
 {
