@@ -13,7 +13,7 @@ public:
 	//inline vector<Control*>& getControls
 
 	/* Control Methods*/
-	void draw(Graphics& g, int x, int y, size_t layer)const;
+	void draw(Graphics& g, int x, int y, size_t layer);
 	virtual void getAllControls(vector<Control*>* controls);
 	virtual bool canGetFocus();
 	virtual void mousePressed(int x, int y, bool isLeft);

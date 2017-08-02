@@ -30,7 +30,7 @@ bool Control::canGetFocus() {
 	return false;
 }
 
-void Control:: draw(Graphics& g, int x, int y, size_t z) const {
+void Control:: draw(Graphics& g, int x, int y, size_t z)  {
 	if (z > _layer) return;
 	_borderDrawer->draw(g, _left + x, _top + y, _width, _height);
 }

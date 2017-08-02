@@ -1,7 +1,5 @@
 #include "stdafx.h"
 #include "ComboBox.h"
-#include "Button.h"
-#include <string.h>
 
 wstring s2ws(const std::string& s)
 {
@@ -12,37 +10,66 @@ wstring s2ws(const std::string& s)
 	MultiByteToWideChar(CP_ACP, 0, s.c_str(), slength, buf, len);
 	wstring r(buf);
 	delete[] buf;
-	return r;
+return r;
 }
 
-ComboBox::ComboBox(int width, vector<string> entries) :Panel((2*entries.size()), width), _entries(entries) {
+ComboBox::ComboBox(int width, vector<string> entries) :Panel((2 * entries.size()+2), width + 3), _entries(entries) {
 	wstring stemp;
-	Button* list = new Button(width);
-	list->setHeight(2);
-	list->setBackground(Color::Blue);
-	list->setForeground(Color::White);
-	list->setText(L"none");
-	list->addListener(*new ComboBox_button);
-	this->_controls.push_back(list);
-
+	MouseListener *lisli= new ComboBox_list;
+	MouseListener *b= new cbutton;
+	_text = L"none";
+	this->setVisibility(true);
 	for (int i = 0; i < entries.size(); i++) {
-		Button* list = new Button(width);
+		Focuslist* list = new Focuslist(width + 3);
 		list->setHeight(2);
 		list->setBackground(Color::White);
 		list->setForeground(Color::Black);
+		list->setVisibility(false);
 		stemp = s2ws(entries[i]);
 		list->setText(stemp);
-		list->addListener(*new ComboBox_button);
-		//list->visabilty off
+		list->addListener(*lisli);
 		this->_controls.push_back(list);
 	}
-	_cursorPosition = _controls[0]->getTop() + 1;
 
+	Button * li = new Button(3);
+	li->setText(L" +");
+	li->setBackground(Color::Blue);
+	li->setForeground(Color::White);
+	li->setVisibility("true");
+	li->setTop(0);
+	li->setLeft(width);
+	li->addListener(*b);
+	_controls.push_back(li);
+	_controls[entries.size()]->setVisibility(true);
 
 }
 
+
+
+void ComboBox::draw(Graphics& g, int x, int y, size_t z) {
+	if (z == getLayer()) {
+
+		int realy = getHeight();
+		_height = 2;
+		g.setBackground(getBackground());
+		g.setForeground(getForeground());
+		Control::draw(g, x, y, z);
+		g.write(x + getLeft() + 1, getTop() + y + 1, _text + wstring(getWidth() - _text.size(), ' '));
+		_height = realy;
+
+		for (int i = 0; i < _controls.size(); i++) {
+			if (_controls[i]->getVisibilty() == true) {
+				g.setBackground(_controls[i]->getBackground());
+				g.setForeground(_controls[i]->getForeground());
+				this->_controls[i]->draw(g, x + getLeft(), y + getTop(), _controls[i]->getLayer());
+			}
+		}
+
+	}
+}
+
 void ComboBox::SetSelectedIndex(size_t index) {
-	this->_index = index-1;
+	this->_index = index - 1;
 
 	wstring stemp;
 	stemp = s2ws(_entries[index - 1]);
@@ -54,38 +81,29 @@ size_t ComboBox::GetSelectedIndex() {
 	return this->_index;
 }
 
-void ComboBox::clickonmain(size_t index) {
-	//turn off if on , turn on if off
-	for (int i = 1; i <( _entries.size()+1); i++) {
-		/*
-		  if(_controls[i] is visable)
-			_controls[index]->setvisabilty(off)
-			else
-				_controls[index]->setvisabilty(on)
-		*/
-	}
-
-}
-
-void ComboBox::clickonchoice(size_t index) {
-	//turn visabilty off
-	for (int i = 1; i < (_entries.size()+1); i++) {
-		//_controls[index]->setvisabilty(off)
-	}
-
-	SetSelectedIndex(index);
-}
 
 void ComboBox::mousePressed(int x, int y, bool isLeft) {
-	Control::setFocus(*this);
 	x -= _left;
 	y -= _top;
-	for (int i = 0; i < _controls.size(); i++) {
-		int myy = _controls[i]->getTop() + _controls[i]->getHeight();
-		int y_l = _controls[i]->getTop();
-		if (y >= y_l && y <= myy) {
-			Button* tmp = static_cast<Button*>(_controls[i]);
-			tmp->getListener().MousePressed(*this, i, y, isLeft);
+	Button *tmp = static_cast<Button*>(_controls[_controls.size() - 1]);
+	wstring s = tmp->getText();
+	string icon(s.length(), ' ');
+	std::copy(s.begin(), s.end(), icon.begin());
+
+	if (icon == " +") {
+		if (isInside(x, y, tmp->getLeft(), tmp->getTop(), tmp->getWidth(), tmp->getHeight())) {
+			for (int i = 0; i < _controls.size(); i++)
+				_controls[i]->setVisibility(true);
+			tmp->setText(L" -");
+		}
+	}
+	else if (icon == " -") {
+		for (int i = 0; i < _controls.size(); i++) {
+			if (isInside(x, y, _controls[i]->getLeft(), _controls[i]->getTop(), _controls[i]->getWidth(), _controls[i]->getHeight())) {
+				Button* temp = static_cast<Button*>(_controls[i]);
+				temp->getListener().MousePressed(*this, i, y, isLeft);
+				break;
+			}
 		}
 	}
 }

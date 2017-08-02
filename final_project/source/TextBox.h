@@ -15,7 +15,7 @@ public:
 
 
 	/* Control Methods*/
-	virtual void draw(Graphics& g, int x, int y, size_t z)const;
+	virtual void draw(Graphics& g, int x, int y, size_t z);
 	 virtual void mousePressed(int x, int y, bool isLeft);
 	 void keyDown(int keyCode, char charecter);
 	 virtual bool canGetFocus();

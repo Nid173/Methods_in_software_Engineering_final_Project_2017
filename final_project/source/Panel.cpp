@@ -37,7 +37,7 @@ void Panel::mousePressed(int x, int y, bool isLeft) {
 }
 
 
-void Panel::draw(Graphics& g, int x, int y, size_t layer)const {
+void Panel::draw(Graphics& g, int x, int y, size_t layer) {
 	if (layer == getLayer()) {
 		for (int i = _controls.size(); i > 0; i--) {
 			g.setBackground(_controls[i-1]->getBackground());

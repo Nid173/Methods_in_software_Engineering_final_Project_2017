@@ -47,13 +47,14 @@ public:
 	inline virtual void setTop(int top);
 	inline virtual int getLeft()const;
 	inline virtual int getTop()const;
+	inline bool getVisibilty()const;
 
 	 /**/
 	Control();
 	static Control* getFocus();
 	static void setFocus(Control& control);
 	
-	virtual void draw(Graphics& g, int x, int y, size_t z)const;
+	virtual void draw(Graphics& g, int x, int y, size_t z);
 	virtual void mousePressed(int x, int y, bool isLeft) {};
 	virtual void keyDown(int keyCode, char charecter) {};
 	virtual void getAllControls(vector<Control*>* controls) {};
@@ -133,4 +134,8 @@ private:
   void Control:: setHeight(int _y) {
 	  _height = _y;
   }
+  bool Control:: getVisibilty()const {
+	  return _visible;
+  }
+
 
