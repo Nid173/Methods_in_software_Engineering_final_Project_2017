@@ -9,7 +9,7 @@ struct MouseListener
 
 
 class Button : public Label{
-private:
+protected:
 	MouseListener* _listener;
 public:
 	Button(int width);

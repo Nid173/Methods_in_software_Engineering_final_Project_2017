@@ -1,10 +1,13 @@
 #pragma once
 #include "Panel.h"
+#include "Focuslist.h"
+#include <algorithm>
 
 class ComboBox : public Panel {
 protected:
 	vector<string> _entries;
 	size_t _index;
+	wstring _text;
 
 public:
 	ComboBox(int width, vector<string> entries);
@@ -15,27 +18,23 @@ public:
 	virtual string className() { return "ComboBox"; }
 	inline virtual void setLeft(int left);
 	inline virtual void setTop(int top);
-	inline virtual void setBorder(BorderType border);
+	inline void setText(wstring text);
+	inline wstring getText()const;
 	virtual void mousePressed(int x, int y, bool isLeft);
-	void clickonmain(size_t index);
-	void clickonchoice(size_t index);
+	virtual void draw(Graphics& g, int x, int y, size_t z);
 };
 
-void ComboBox::setBorder(BorderType border) {
+void ComboBox::setText(wstring text) {
+	_text = text;
+ }
+ wstring ComboBox::getText()const {
+	 return _text;
+ }
 
-		setBorderDrawer(SimpleBorderFactory::instance().getNull());
 
-		if (border == BorderType::Single)
-			_controls[0]->setBorder(BorderType::Single);
-		else if (border == BorderType::Double)
-			_controls[0]->setBorder(BorderType::Double);
-		else
-			_controls[0]->setBorder(BorderType::None);
-
-}
 void ComboBox::setLeft(int left) {
 	_left = left;
-	for (int i = 0; i < _controls.size(); i++) {
+	for (int i = 0; i < _controls.size()-1; i++) {
 		_controls[i]->setLeft(0);
 	}
 
@@ -43,9 +42,9 @@ void ComboBox::setLeft(int left) {
 
 void ComboBox::setTop(int top) {
 	_top = top;
-	for (int i = 0; i < _controls.size(); i++) {
+	for (int i = 0; i < _controls.size()-1; i++) {
 		if (i == 0) {
-			_controls[i]->setTop(0);
+			_controls[i]->setTop(2);
 		}
 		else {
 			_controls[i]->setTop(_controls[i - 1]->getHeight() + _controls[i - 1]->getTop());
@@ -55,14 +54,36 @@ void ComboBox::setTop(int top) {
 }
 
 
-class ComboBox_button :public MouseListener {
+class ComboBox_list :public MouseListener {
 public:
-	ComboBox_button() {}
+	ComboBox_list(){}
 	virtual void MousePressed(Control &control, int x, int y, bool isLeft) {
 		ComboBox * tmp = static_cast<ComboBox*>(&control);
-		if(x==0)
-		tmp->clickonmain(x);
-		else
-		tmp->clickonchoice(x);
+		vector<Control*> myvec;
+		tmp->getAllControls(&myvec);
+		Button * temp = static_cast<Button*>(myvec[x]);
+		tmp->setText(temp->getText());
+
+		for (int i = 0; i < myvec.size()-1; i++) {
+			myvec[i]->setVisibility(false);
+		}
+		temp = static_cast<Button*>(myvec[myvec.size() - 1]);
+		temp->setText(L" +");
+	}
+};
+
+class cbutton : public MouseListener {
+public:
+	cbutton(){ }
+
+	virtual void MousePressed(Control &control, int x, int y, bool isLeft) {
+		ComboBox * tmp = static_cast<ComboBox*>(&control);
+		vector<Control*> myvec;
+		tmp->getAllControls(&myvec);
+		Button * temp = static_cast<Button*>(myvec[myvec.size()-1]);
+		temp->setText(L" +");
+		for (int i = 0; i < myvec.size()-1; i++) {
+			myvec[i]->setVisibility(false);
+		}
 	}
 };

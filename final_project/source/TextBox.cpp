@@ -58,7 +58,7 @@ bool TextBox::canGetFocus() {
 	return true;
 }
 
-void TextBox::draw(Graphics& g, int x, int y, size_t layer)const {
+void TextBox::draw(Graphics& g, int x, int y, size_t layer) {
 	if (layer == getLayer()) {
 
 		g.setBackground(this->getBackground());

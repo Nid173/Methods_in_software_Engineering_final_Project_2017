@@ -83,6 +83,7 @@ public:
 		
 		ComboBox education(10,educations);
 		education.setBorder(BorderType::Single);
+		education.setForeground(Color::White);
 		main.AddControl(education, 16, 15);
 		
 		EventEngine engine;
