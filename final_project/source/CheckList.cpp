@@ -3,6 +3,7 @@
 #include "Focuslist.h"
 #include <string.h>
 
+//convert string to wstring
 wstring CheckList::s2ws(const std::string& s)
 {
 	int len;
@@ -35,7 +36,7 @@ CheckList::CheckList(int width, int height, vector<string> entries) :Panel((heig
 void CheckList::SelectedIndex(size_t index) {
 
 	_index.push_back(index);
-	//turn on background
+	//turn on background on selected
 	_controls[index]->setBackground(Color::Green);
 
 }
@@ -52,7 +53,7 @@ void CheckList::DeSelectedIndex(size_t index) {
 	}
 
 }
-
+//return background to original after scroling down throuth the list
 void CheckList::restCursor() {
 	for (int i = 0; i < _controls.size(); i++) {
 
@@ -69,6 +70,7 @@ void CheckList::restCursor() {
 	}
 }
 
+//to mark to orang while scorling through the list
 void CheckList:: keyDown(int keyCode, char charecter) {
 	if (this->isOpened()) {
 		auto f = Control::getFocus();
@@ -114,7 +116,7 @@ void CheckList:: keyDown(int keyCode, char charecter) {
 	}
 }
 
-
+//in case we pressed the mouse
 void CheckList::mousePressed(int x, int y, bool isLeft) {
 	opened = true;
 	x -= _left;
@@ -132,6 +134,7 @@ void CheckList::mousePressed(int x, int y, bool isLeft) {
 	}
 }
 
+//what to do in click case
 void CheckList::click(size_t index) {
 	int lock = 0;
 
@@ -143,4 +146,27 @@ void CheckList::click(size_t index) {
 	}
 	if(lock==0)
 		SelectedIndex(index);
+}
+
+//left
+void CheckList::setLeft(int left) {
+	_left = left;
+	for (int i = 0; i < _controls.size(); i++) {
+		_controls[i]->setLeft(0);
+	}
+
+}
+
+//top
+void CheckList::setTop(int top) {
+	_top = top;
+	for (int i = 0; i < _controls.size(); i++) {
+		if (i == 0) {
+			_controls[i]->setTop(0);
+		}
+		else {
+			_controls[i]->setTop(_controls[i - 1]->getHeight() + _controls[i - 1]->getTop());
+		}
+	}
+
 }
