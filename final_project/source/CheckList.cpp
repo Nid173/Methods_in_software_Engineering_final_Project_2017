@@ -1,6 +1,6 @@
 #include "stdafx.h"
 #include "CheckList.h"
-#include "Button.h"
+#include "Focuslist.h"
 #include <string.h>
 
 wstring CheckList::s2ws(const std::string& s)
@@ -18,7 +18,7 @@ wstring CheckList::s2ws(const std::string& s)
 CheckList::CheckList(int width, int height, vector<string> entries) :Panel((height*entries.size()), width), _entries(entries){
 	wstring stemp;
 	for (int i = 0; i < entries.size(); i++) {
-	Button* list = new Button(width);
+	Focuslist* list = new Focuslist(width);
 	list->setHeight(height);
 	list->setBackground(Color::White);
 	list->setForeground(Color::Black);
@@ -61,7 +61,7 @@ void CheckList::mousePressed(int x, int y, bool isLeft) {
 		int myy = _controls[i]->getTop() + _controls[i]->getHeight();
 		int y_l = _controls[i]->getTop();
 		if (y >= y_l && y <= myy) {
-			Button* tmp = static_cast<Button*>(_controls[i]);
+			Focuslist* tmp = static_cast<Focuslist*>(_controls[i]);
 			tmp->getListener().MousePressed(*this, i, y, isLeft);
 		}
 	}
