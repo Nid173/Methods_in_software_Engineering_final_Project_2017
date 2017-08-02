@@ -18,7 +18,7 @@ public:
 	inline virtual void setLeft(int left);
 	inline virtual void setTop(int top);
 	virtual void mousePressed(int x, int y, bool isLeft);
-	void click(size_t index);
+	virtual void click(size_t index);
 
 };
 

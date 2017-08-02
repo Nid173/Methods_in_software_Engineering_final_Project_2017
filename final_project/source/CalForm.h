@@ -7,6 +7,11 @@
 #include "Label.h"
 #include"Button.h"
 #include "SimpleBorderFactory.h"
+#include "NumericBox.h"
+#include "RadioBox.h"
+#include "CheckList.h"
+#include "ComboBox.h"
+#include "MessageBox.h"
 
 class show_button :public MouseListener {
 private:
@@ -32,7 +37,26 @@ public:
 	Form() {}
 	~Form() {}
 	void start() {
-		Panel main(20, 70);
+
+		vector<string> hobbies;
+		hobbies.push_back("sport");
+		hobbies.push_back("movies");
+		hobbies.push_back("swiming");
+		hobbies.push_back("vidiogames");
+
+
+		vector<string> genders;
+		genders.push_back("male");
+		genders.push_back("female");
+		genders.push_back("others");
+
+		vector<string> educations;
+		educations.push_back("collage");
+		educations.push_back("highschool");
+		educations.push_back("droped");
+
+
+		Panel main(29, 70);
 		main.setBackground(Color::Black);
 		main.setForeground(Color::White);
 		main.setBorder(BorderType::Double);
@@ -40,40 +64,80 @@ public:
 		/* Caclculater Form
 		* 2 - TextBox 2-Label 1-button
 		*/
+		NumericBox age(4, 0, 18);
+		age.setBorder(BorderType::Single);
+		main.AddControl(age, 5, 14);
 
-		Label title(15);
-		title.setText(L"String+String");
+		CheckList hobby(10, 2, hobbies);
+		hobby.setBorder(BorderType::Single);
+		main.AddControl(hobby,50, 14);
+
+		RadioBox gender(7, 2, genders);
+		gender.setBorder(BorderType::Single);
+		main.AddControl(gender, 50, 5);
+
+		ComboBox education(10, educations);
+		education.setBorder(BorderType::Single);
+		main.AddControl(education, 25, 14);
+
+		Label title(12);
+		title.setText(L"   survey");
 		title.setBackground(Color::White);
 		title.setForeground(Color::Black);
 
-		Label answer(20);
-		answer.setText(L"");
-		answer.setBackground(Color::Black);
-		answer.setForeground(Color::White);
+		Label name(15);
+		name.setText(L"full name");
+		name.setBackground(Color::Black);
+		name.setForeground(Color::Orange);
+
+
+		Label agetest(15);
+		agetest.setText(L"age(0-18)");
+		agetest.setBackground(Color::Black);
+		agetest.setForeground(Color::Orange);
+
+		Label educattest(15);
+		educattest.setText(L"education");
+		educattest.setBackground(Color::Black);
+		educattest.setForeground(Color::Orange);
+
+		Label hobbytest(15);
+		hobbytest.setText(L"hobby");
+		hobbytest.setBackground(Color::Black);
+		hobbytest.setForeground(Color::Orange);
+
+		Label gendertest(15);
+		gendertest.setText(L"gender");
+		gendertest.setBackground(Color::Black);
+		gendertest.setForeground(Color::Orange);
+
 
 		TextBox str1(10);
-		str1.setText(L"string1!");
+		str1.setText(L"first");
 		str1.setBorder(BorderType::Single);
 
 
 		TextBox str2(10);
-		str2.setText(L"string2");
+		str2.setText(L"last");
 		str2.setBorder(BorderType::Single);
 
-		Button click(15);
-		click.setText(L"/show!");
+		Button click(10);
+		click.setText(L" submit!");
 		click.setBorder(BorderType::Single);
 		click.setBackground(Color::White);
 		click.setForeground(Color::Green);
 		click.addListener(listener);
 
 
-		main.AddControl(title, 8, 1);//0
-		main.AddControl(answer, 8, 4);//1
-		main.AddControl(str1, 1, 7);//2
-		main.AddControl(str2, 16, 7);//3
-		main.AddControl(click, 8, 11);//4
-
+		main.AddControl(title, 27, 1);//0
+		main.AddControl(str1, 5, 7);//2
+		main.AddControl(str2, 20, 7);//3
+		main.AddControl(click, 30, 25);//4
+		main.AddControl(name, 13, 5);//5
+		main.AddControl(agetest, 5, 12);//5
+		main.AddControl(educattest, 25, 12);//5
+		main.AddControl(hobbytest, 52, 12);//5
+		main.AddControl(gendertest, 50, 3);//5
 
 
 		/*End of Cal Form */
