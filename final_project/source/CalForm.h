@@ -22,23 +22,50 @@ public:
 		wstring answer=L" name: " ;
 		for (int i = 0; i < 2; i++) {
 			TextBox *tmp = static_cast<Button*>(myvec[i]);
-			answer += L" " + tmp->getText;
+			answer += L" " + tmp->getText();
 		}
 		NumericBox *tmp = static_cast<NumericBox*>(myvec[2]);
-		answer += L"\n" + to_wstring(tmp->getValue());
-
+		answer += (L"  age: " + to_wstring(tmp->getValue()) + L'\n') ;
+		answer += L" Hobbies: ";
 		CheckList* temp = static_cast<CheckList*>(myvec[3]);
-		vector<string> en;
+		wstring hobb;
+		vector<string> en = temp->Getallentries();
+		vector<size_t> in = temp->GetallIndex();
+		for (int i = 0; i < in.size(); i++) {
+			answer += temp->s2ws(en[in[i]]);
+			if (i != in.size() - 1)
+				answer += L", ";
+		}
+		answer += L'\n';
+		answer += L"Gender: ";
+		RadioBox *ttmp = static_cast<RadioBox*>(myvec[4]);
+		 en = ttmp->Getallentries();
+		size_t sein = ttmp->GetSelectedIndex();
+		answer += (ttmp->s2ws(en[sein])+ L'\n'+L"Education: ");
+		
+		ComboBox* tempo = static_cast<ComboBox*>(myvec[5]);
+		sein = tempo->GetSelectedIndex();
+		vector<Control*>child;
+		tempo->getAllControls(&child);
+		Button* bb = static_cast<Button*>(child[sein]);		
+		answer += bb->getText();
 
+		Messagebox *tt = static_cast<Messagebox*> (myvec[myvec.size()-1]);
+		tt->setText(answer);
+		myvec[myvec.size() - 1]->setVisibility(true);
+		for (int i = 0; i < myvec.size()-1; i++) {
+			myvec[i]->setVisibility(false);
+		}
 
+		
 	}
 };
-// 0->textbox first name (wstring::getText())
-// 1->textbox last name  (wstring::getText())
-// 2-> numricbox age (size_t::getValue())
-// 3-Checklist hobby (vector<size_t> GetallIndex())
-// 4->Radiobox gender (size_t::GetSelectedIndex())
-// 5->Combobox eduaction (size_t::GetSelectedIndex)
+// 1->textbox first name (wstring::getText())
+// 2->textbox last name  (wstring::getText())
+// 3-> numricbox age (size_t::getValue())
+// 4-Checklist hobby (vector<size_t> GetallIndex())
+// 5->Radiobox gender (size_t::GetSelectedIndex())
+// 6->Combobox eduaction (size_t::GetSelectedIndex)
 
 Submit listener;
 class Form {
@@ -142,6 +169,13 @@ public:
 		click.setForeground(Color::Green);
 		click.addListener(listener);
 		main.AddControl(click, 30, 25);
+
+
+		Messagebox message(80, 10, L" ");
+		message.setVisibility(false);
+		main.AddControl(message, 0, 12);
+
+
 
 		/*End of the Form */
 
