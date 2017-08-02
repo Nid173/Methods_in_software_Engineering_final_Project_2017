@@ -13,11 +13,13 @@ public:
 	void SelectedIndex(size_t index);
 	void DeSelectedIndex(size_t index);
 	wstring s2ws(const std::string& s);
-	virtual bool canGetFocus() { return true; }
+	virtual bool canGetFocus() { return false; }
 	virtual string className() { return "CheckList"; }
 	inline virtual void setLeft(int left);
 	inline virtual void setTop(int top);
 	virtual void mousePressed(int x, int y, bool isLeft);
+	virtual void keyDown(int keyCode, char charecter) ;
+	virtual void restCursor();
 	virtual void click(size_t index);
 
 };

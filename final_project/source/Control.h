@@ -18,15 +18,16 @@ protected:
 	int _top;
 	int _width;
 	int _height;
-	int _cursorPosition;
+	int _cursorPositionx;
+	int _cursorPositiony;
 	bool _visible;
+	bool opened;
 	size_t _layer;
 	Color _forgroundcolor;
 	Color _backgroundcolor;
 private:
 	const BorderDrawer *_borderDrawer;
 public:
-
 	/* main methods for the graphic */
 	void setVisibility(bool visibility);
 	void setForeground(Color color);
@@ -48,6 +49,9 @@ public:
 	inline virtual int getLeft()const;
 	inline virtual int getTop()const;
 	inline bool getVisibilty()const;
+
+	bool isOpened() { return opened; }
+	void setopen(bool open) { opened = open; }
 
 	 /**/
 	Control();
@@ -112,6 +116,7 @@ private:
 
   void Control:: setTop(int top) {
 	  _top = top;
+	  _cursorPositiony = this->getTop() + this->getHeight() - 1;
  }
   void Control:: setLeft(int left) {
 	  _left = left;
@@ -129,7 +134,7 @@ private:
   }
 
   void Control::restCursor() {
-	  _cursorPosition = 0;
+	  _cursorPositionx = 0;
   }
   void Control:: setHeight(int _y) {
 	  _height = _y;

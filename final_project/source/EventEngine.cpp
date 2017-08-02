@@ -34,9 +34,10 @@ void EventEngine::run(Control &c)
 			for (size_t p = 0; p < 5; ++p)
 				c.draw(_graphics, 0, 0 , p);
 			redraw = false;
+			_graphics.setCursorVisibility(false);
 		}
 		if (lock == 0) {
-			if (Control::getFocus()) {
+			if (Control::getFocus()->className() =="TextBox") {
 				_graphics.setCursorVisibility(true);
 				Control::setFocus(*Control::getFocus());
 			}
@@ -55,25 +56,25 @@ void EventEngine::run(Control &c)
 				auto code = record.Event.KeyEvent.wVirtualKeyCode;
 				auto chr = record.Event.KeyEvent.uChar.AsciiChar;
 				if (code == VK_TAB) {
-					moveFocus(c, f);
-					redraw = false;
-					//lock = 0;
-					f->restCursor();
+						f->restCursor();
+						moveFocus(c, f);
+						redraw = true;
+						lock = 0;
 				}
-				else if (code == VK_RIGHT) {
+				else if (code == VK_RIGHT || code == VK_LEFT) {
 					f->keyDown(code, chr);
 					redraw = false;
 				}
-				else if (code == VK_LEFT) {
-					f->keyDown(code, chr);
-					redraw = false;
-				}
-				else if (code == VK_BACK) {
-					f->keyDown(code, chr);
-					redraw = true;
-					lock = 0;
-				}
-				else if (code == VK_DOWN || code == VK_UP) {
+				else if (code == VK_DOWN || code == VK_UP || code == VK_RETURN || code == VK_SPACE) {
+					vector <Control*> myvec;
+					c.getAllControls(&myvec);
+					for(int i=0;i<myvec.size();i++){
+						if (myvec[i]->isOpened()) {
+							myvec[i]->keyDown(code, chr);
+							redraw = true;
+							break;
+						}
+					}
 				}
 				else {
 					f->keyDown(code, chr);
@@ -90,8 +91,14 @@ void EventEngine::run(Control &c)
 			auto coord = record.Event.MouseEvent.dwMousePosition;
 			auto x = coord.X - c.getLeft();
 			auto y = coord.Y - c.getTop();
+			vector<Control*> myvec;
 			if (button == FROM_LEFT_1ST_BUTTON_PRESSED)
 			{
+				c.getAllControls(&myvec);
+				for (int i = 0; i < myvec.size(); i++) {
+					myvec[i]->restCursor();
+					myvec[i]->setopen(false);
+				}
 				c.mousePressed(x, y, button == FROM_LEFT_1ST_BUTTON_PRESSED);
 				redraw = true;
 				lock = 0;
@@ -112,14 +119,40 @@ EventEngine::~EventEngine()
 
 void EventEngine::moveFocus(Control &main, Control *focused)
 {
+	int exit = 0;
 	vector<Control*> controls;
-	focused->getAllControls(&controls);
-		if(controls.size()==0)
 			main.getAllControls(&controls);
+			for (int i = 0; i < controls.size(); i++) {
+				if (controls[i]->isOpened()) {
+					deepFocus(*controls[i], Control::getFocus());
+					_graphics.setCursorVisibility(false);
+					exit = 1;
+					break;
+				}
+			}
+			if (exit == 0) {
+				auto it = find(controls.begin(), controls.end(), focused);
+				do
+					if (++it == controls.end())
+						it = controls.begin();
+				while (!(*it)->canGetFocus());
+				Control::setFocus(**it);
+			}
+}
+
+void EventEngine::deepFocus(Control &main,Control *focused) {
+	vector<Control*> controls;
+	main.getAllControls(&controls);
 	auto it = find(controls.begin(), controls.end(), focused);
+ 
 	do
-		if (++it == controls.end())
-			it = controls.begin();
-	while (!(*it)->canGetFocus());
-	Control::setFocus(**it);
+			if (++it == controls.end())
+				it = controls.begin();
+	 while (!((*it)->canGetFocus()));
+
+	 Control::setFocus(**it);
+	 main.restCursor();
+	Control::getFocus()->setBackground(Color::Orange);
+	Control::getFocus()->setForeground(Color::White);
+
 }
