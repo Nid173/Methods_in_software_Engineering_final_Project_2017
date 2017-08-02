@@ -11,6 +11,8 @@ public:
 	inline void setCancelListener(MouseListener& cancel);
 	inline virtual void setTop(int top);
 	inline  virtual void setLeft(int left);
+	inline void setText(wstring in);
+	virtual void draw(Graphics& g, int x, int y, size_t layer);
 
 };
 
@@ -33,4 +35,7 @@ void Messagebox:: setTop(int top) {
 	  _left = left;
 	  _controls[0]->setLeft(left + 2);
 	  _controls[1]->setLeft(left + _width - 2);
+  }
+  void Messagebox::setText(wstring in) {
+	  _message = in;
   }

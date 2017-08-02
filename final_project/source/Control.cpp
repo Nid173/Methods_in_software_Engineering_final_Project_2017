@@ -7,7 +7,7 @@ Control::Control()
 	this->setBackground(Color::Black);
 	_layer = 0;
 	setBorderDrawer(SimpleBorderFactory::instance().getNull());
-	_visible = false;
+	_visible = true;
 	opened = false;
 }
 
@@ -22,7 +22,8 @@ bool Control::canGetFocus() {
 //drawer
 void Control:: draw(Graphics& g, int x, int y, size_t z)  {
 	if (z > _layer) return;
-	_borderDrawer->draw(g, _left + x, _top + y, _width, _height);
+	if(getVisibilty())
+		_borderDrawer->draw(g, _left + x, _top + y, _width, _height);
 }
 
 //setters list
