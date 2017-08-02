@@ -1,6 +1,7 @@
 #include "stdafx.h"
 #include "ComboBox.h"
 
+//convert string to wstring
 wstring s2ws(const std::string& s)
 {
 	int len;
@@ -165,4 +166,33 @@ void ComboBox::mousePressed(int x, int y, bool isLeft) {
 			}
 		}
 	}
+}
+
+void ComboBox::setText(wstring text) {
+	_text = text;
+}
+wstring ComboBox::getText()const {
+	return _text;
+}
+
+
+void ComboBox::setLeft(int left) {
+	_left = left;
+	for (int i = 0; i < _controls.size() - 1; i++) {
+		_controls[i]->setLeft(0);
+	}
+
+}
+
+void ComboBox::setTop(int top) {
+	_top = top;
+	for (int i = 0; i < _controls.size() - 1; i++) {
+		if (i == 0) {
+			_controls[i]->setTop(2);
+		}
+		else {
+			_controls[i]->setTop(_controls[i - 1]->getHeight() + _controls[i - 1]->getTop());
+		}
+	}
+
 }
