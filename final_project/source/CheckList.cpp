@@ -50,7 +50,6 @@ void CheckList::DeSelectedIndex(size_t index) {
 	}
 }
 
-//reset background to original after scroling down throuth the list
 void CheckList::restCursor() {
 	for (int i = 0; i < _controls.size(); i++) {
 		_controls[i]->setBackground(Color::White);
