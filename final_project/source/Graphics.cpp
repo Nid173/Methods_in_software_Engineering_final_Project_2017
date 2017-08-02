@@ -4,16 +4,10 @@
 
 Graphics::Graphics(DWORD stdHandle)
 	:_console(GetStdHandle(stdHandle)), _background(Color::Black), _foreground(Color::White)
+{updateConsoleAttributes();}
 
-{	
+Graphics::~Graphics(){}
 
-	updateConsoleAttributes();
-}
-
-
-Graphics::~Graphics()
-{
-}
 void Graphics::clearScreen()
 {
 	DWORD d;
@@ -31,9 +25,6 @@ void Graphics::moveTo(int x, int y)
 	c.Y = y;
 	SetConsoleCursorPosition(_console, c);
 }
-
-
-
 
 void Graphics::setBackground(Color color)
 {
@@ -86,7 +77,6 @@ void Graphics::setCursorVisibility(bool isVisible)
 void Graphics::updateConsoleAttributes()
 {
 	DWORD attributes = 0;
-
 	switch (_foreground)
 	{
 	case Color::Black:	break;
@@ -98,7 +88,6 @@ void Graphics::updateConsoleAttributes()
 	case Color::Orange: attributes |= FOREGROUND_GREEN | FOREGROUND_RED; break; 
 	case Color::White:	attributes |= FOREGROUND_BLUE | FOREGROUND_GREEN | FOREGROUND_RED; break;
 	}
-
 	switch (_background)
 	{
 	case Color::Black:	break;
@@ -110,7 +99,6 @@ void Graphics::updateConsoleAttributes()
 	case Color::Orange: attributes |= BACKGROUND_GREEN | BACKGROUND_RED; break;
 	case Color::White:	attributes |= BACKGROUND_BLUE | BACKGROUND_GREEN | BACKGROUND_RED; break;
 	}
-
 	SetConsoleTextAttribute(_console, attributes);
 }
 

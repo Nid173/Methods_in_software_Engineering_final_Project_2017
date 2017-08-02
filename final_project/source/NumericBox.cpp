@@ -10,15 +10,11 @@ NumericBox::NumericBox(int width, int min, int max) :Panel(2,width+4),_min(min),
 	minus->setBackground(Color::Blue);
 	minus->setForeground(Color::White);
 	this->_controls.push_back(minus);
-
-
 	Label* value = new Label(width);
 	value->setText(L" " + to_wstring(_value));    //the value
 	value->setBackground(Color::White);
 	value->setForeground(Color::Black);
 	this->_controls.push_back(value);
-
-
 	Button* plus = new Button(2);
 	plus->setText(L" +");
 	plus->setBackground(Color::Blue);
@@ -40,7 +36,6 @@ bool NumericBox::setValue(int value) {
 
 int NumericBox::getValue() {
 	return this->_value;
-
 }
 
 void NumericBox::mousePressed(int x, int y, bool isLeft) {

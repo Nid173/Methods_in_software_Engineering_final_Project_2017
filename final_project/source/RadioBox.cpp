@@ -4,12 +4,11 @@
 
 RadioBox::RadioBox(int width, int height, vector<string> entries) :CheckList(width,height,entries),_index(-1){}
 
-
-
 size_t RadioBox::GetSelectedIndex() {
 	return _index;
 
 }
+
 void RadioBox::restCursor() {
 	for (int i = 0; i < _controls.size(); i++) {
 		_controls[i]->setBackground(Color::White);
@@ -33,7 +32,6 @@ void RadioBox::keyDown(int keyCode, char charecter) {
 				(**it).setForeground(Color::White);
 			}
 		}
-
 		else if (keyCode == VK_UP) {
 			if (it != _controls.begin()) {
 				it--;
@@ -42,12 +40,10 @@ void RadioBox::keyDown(int keyCode, char charecter) {
 				(**it).setBackground(Color::Orange);
 				(**it).setForeground(Color::White);
 			}
-
 		}
 		else if (keyCode == VK_RETURN || keyCode == VK_SPACE) {
 			int lock = 0;
 			int pos = it - _controls.begin();
-
 			Control::getFocus()->setForeground(Color::Black);
 			if (_index == pos)
 				Control::getFocus()->setBackground(Color::White);
@@ -57,19 +53,17 @@ void RadioBox::keyDown(int keyCode, char charecter) {
 				//restCursor();
 				(**it).setBackground(Color::Green);
 				_index = pos;
-
 			}
 		}
 	}
 }
+
+//what to in case selected
 void RadioBox::SetSelectedIndex(size_t index) {
-	//turn off back ground for this->index
 	if (_index != -1) {
 		_controls[_index]->setBackground(Color::White);
-		//this->_index = index;
 	}
 	this->_index = index;
-	//turn on back ground for this->index
 	_controls[index]->setBackground(Color::Green);
 }
 
