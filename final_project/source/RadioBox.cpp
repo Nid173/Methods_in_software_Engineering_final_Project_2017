@@ -13,8 +13,10 @@ size_t RadioBox::GetSelectedIndex() {
 
 void RadioBox::SetSelectedIndex(size_t index) {
 	//turn off back ground for this->index
-	if(index!=-1)
-	_controls[index]->setBackground(Color::White);
+	if (_index != -1) {
+		_controls[_index]->setBackground(Color::White);
+		//this->_index = index;
+	}
 	this->_index = index;
 	//turn on back ground for this->index
 	_controls[index]->setBackground(Color::Green);
