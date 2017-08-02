@@ -31,7 +31,6 @@ ComboBox::ComboBox(int width, vector<string> entries) :Panel((2 * entries.size()
 		list->addListener(*lisli);
 		this->_controls.push_back(list);
 	}
-
 	Button * li = new Button(3);
 	li->setText(L" +");
 	li->setBackground(Color::Blue);
@@ -42,14 +41,12 @@ ComboBox::ComboBox(int width, vector<string> entries) :Panel((2 * entries.size()
 	li->addListener(*b);
 	_controls.push_back(li);
 	_controls[entries.size()]->setVisibility(true);
-
 }
 
 
 
 void ComboBox::draw(Graphics& g, int x, int y, size_t z) {
 	if (z == getLayer()) {
-
 		int realy = getHeight();
 		_height = 2;
 		g.setBackground(getBackground());
@@ -57,7 +54,6 @@ void ComboBox::draw(Graphics& g, int x, int y, size_t z) {
 		Control::draw(g, x, y, z);
 		g.write(x + getLeft() + 1, getTop() + y + 1, _text + wstring(getWidth() - _text.size(), ' '));
 		_height = realy;
-
 		for (int i = 0; i < _controls.size(); i++) {
 			if (_controls[i]->getVisibilty() == true) {
 				g.setBackground(_controls[i]->getBackground());
@@ -65,24 +61,22 @@ void ComboBox::draw(Graphics& g, int x, int y, size_t z) {
 				this->_controls[i]->draw(g, x + getLeft(), y + getTop(), _controls[i]->getLayer());
 			}
 		}
-
 	}
 }
 
 void ComboBox::SetSelectedIndex(size_t index) {
 	this->_index = index - 1;
-
 	wstring stemp;
 	stemp = s2ws(_entries[index - 1]);
 	Button* tmp = static_cast<Button*>(_controls[index]);
 	tmp->setText(stemp);
-
 }
+
 size_t ComboBox::GetSelectedIndex() {
 	return this->_index;
 }
 
- 
+//reset background to original after scroling down throuth the list
 void ComboBox::restCursor() {
 	if (opened) {
 		for (int i = 0; i < _controls.size()-1; i++) {
@@ -91,12 +85,12 @@ void ComboBox::restCursor() {
 		}
 	}
 }
-void ComboBox::keyDown(int keyCode, char charecter) {
 
+//to mark to orang while scorling through the list
+void ComboBox::keyDown(int keyCode, char charecter) {
 	if (this->isOpened()) {
 		auto f = Control::getFocus();
 		auto it = find(_controls.begin(), _controls.end(), f);
-
 		if (keyCode == VK_DOWN) {
 			if (++it != _controls.end()-1) {
 				Control::setFocus(**it);
@@ -105,7 +99,6 @@ void ComboBox::keyDown(int keyCode, char charecter) {
 				(**it).setForeground(Color::White);
 			}
 		}
-
 		else if (keyCode == VK_UP) {
 			if (it != _controls.begin()) {
 				it--;
@@ -124,17 +117,16 @@ void ComboBox::keyDown(int keyCode, char charecter) {
 			Control::getFocus()->setBackground(Color::White);
 			b= static_cast<Button*>(Control::getFocus());
 			_text = b->getText();
-				_index = pos;
-				opened = false;
-				for (int i = 0; i < _controls.size() - 1; i++) {
-					_controls[i]->setVisibility(false);
-				}
-
+			_index = pos;
+			opened = false;
+			for (int i = 0; i < _controls.size() - 1; i++)
+				_controls[i]->setVisibility(false);
 		}
 	}
 
 }
 
+//what to do id presser event
 void ComboBox::mousePressed(int x, int y, bool isLeft) {
 	opened = true;
 	x -= _left;
@@ -143,7 +135,6 @@ void ComboBox::mousePressed(int x, int y, bool isLeft) {
 	wstring s = tmp->getText();
 	string icon(s.length(), ' ');
 	std::copy(s.begin(), s.end(), icon.begin());
-
 	if (icon == " +") {
 		if (isInside(x, y, tmp->getLeft(), tmp->getTop(), tmp->getWidth(), tmp->getHeight())) {
 			for (int i = 0; i < _controls.size(); i++)
