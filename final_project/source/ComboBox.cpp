@@ -14,7 +14,7 @@ wstring s2ws(const std::string& s)
 return r;
 }
 
-ComboBox::ComboBox(int width, vector<string> entries) :Panel((2 * entries.size()+2), width + 3), _entries(entries) {
+ComboBox::ComboBox(int width, vector<string> entries) :Panel((2 * entries.size()+2), width + 3), _entries(entries),_index(-1) {
 	wstring stemp;
 	MouseListener *lisli= new ComboBox_list;
 	MouseListener *b= new cbutton;

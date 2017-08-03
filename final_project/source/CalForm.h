@@ -13,6 +13,8 @@
 #include "ComboBox.h"
 #include "MessageBox.h"
 
+Panel* maincopy = NULL;
+vector<wstring>str;
 class Submit :public MouseListener {
 private:
 public:
@@ -29,7 +31,6 @@ public:
 		answer += L"Hobby: ";
 
 		CheckList* temp = static_cast<CheckList*>(myvec[3]);
-		wstring hobb;
 		vector<string> en = temp->Getallentries();
 		vector<size_t> in = temp->GetallIndex();
 		for (int i = 0; i < in.size(); i++) {
@@ -64,20 +65,32 @@ public:
 	}
 };
 
-/*
-class messageBoxListener  : public MouseListener {
+class messageBoxListener : public MouseListener {
 public:
 	virtual void MousePressed(Control &control, int x, int y, bool isLeft) {
-		if (isLeft) {
+		control.setVisibility(false);
+		Messagebox* tmp = static_cast<Messagebox*>(&control);
+		if (tmp->isOK()) {
+			vector<Control*> vec;
+			maincopy->getAllControls(&vec);
+
+			TextBox *tmp = static_cast<TextBox*>(vec[0]);
+			tmp->setText(str[0]);
+			tmp->restCursor();
+			Control::setFocus(*tmp);
+			tmp = static_cast<TextBox*>(vec[1]);
+			tmp->setText(str[1]);
+			tmp->restCursor();
+
+			CheckList* temp = static_cast<CheckList*>(vec[3]);
+			vector <size_t> *out = &temp->GetallIndex();
+			out->clear();
+			temp->restCursor();
 
 		}
 	}
-
-	*/
-
-
-
-
+};
+messageBoxListener messageb;
 
 // 1->textbox first name (wstring::getText())
 // 2->textbox last name  (wstring::getText())
@@ -87,6 +100,8 @@ public:
 // 6->Combobox eduaction (size_t::GetSelectedIndex)
 
 Submit listener;
+
+
 class Form {
 
 public:
@@ -99,16 +114,19 @@ public:
 		main.setForeground(Color::White);
 		main.setBorder(BorderType::Double);
 
+		maincopy = &main;
 		//box exampales
 		TextBox str1(10);
 		str1.setText(L"first");
 		str1.setBorder(BorderType::Single);
 		main.AddControl(str1, 5, 7);
+		str.push_back(str1.getText());
 
 		TextBox str2(10);
 		str2.setText(L"last");
 		str2.setBorder(BorderType::Single);
 		main.AddControl(str2, 20, 7);
+		str.push_back(str2.getText());
 
 		NumericBox age(4, 0, 18);
 		age.setBorder(BorderType::Single);
@@ -190,11 +208,10 @@ public:
 		main.AddControl(click, 30, 25);
 
 
-		//Messagebox message(25, 7, L"name:adham\n" L"age:9\n" L"hobbies:sport,videogames\n" L"gender:male");
 		Messagebox message(35, 8, L" ");
 		message.setVisibility(false);
+		message.addlistener(&messageb);
 		main.AddControl(message, 5, 10);
-
 
 
 		/*End of the Form */
@@ -204,3 +221,6 @@ public:
 		engine.run(main);
 	}
 };
+
+
+

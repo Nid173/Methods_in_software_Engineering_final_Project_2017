@@ -25,7 +25,7 @@ void RadioBox::keyDown(int keyCode, char charecter) {
 		auto f = Control::getFocus();
 		auto it = find(_controls.begin(), _controls.end(), f);
 		if (keyCode == VK_DOWN) {
-			if (it != _controls.end() && ++it != _controls.end()) {
+			if ( ++it != _controls.end()) {
 				Control::setFocus(**it);
 				restCursor();
 				(**it).setBackground(Color::Orange);
@@ -43,7 +43,8 @@ void RadioBox::keyDown(int keyCode, char charecter) {
 		}
 		else if (keyCode == VK_RETURN || keyCode == VK_SPACE) {
 			int lock = 0;
-			int pos = it - _controls.begin();
+			size_t pos = it - _controls.begin();
+
 			Control::getFocus()->setForeground(Color::Black);
 			if (_index == pos)
 				Control::getFocus()->setBackground(Color::White);

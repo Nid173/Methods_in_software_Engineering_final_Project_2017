@@ -1,5 +1,6 @@
 #pragma once
 #include "Panel.h"
+#include "Button.h"
 
 class Messagebox : public Panel {
 	wstring _message;
@@ -17,6 +18,8 @@ public:
 	virtual void draw(Graphics& g, int x, int y, size_t layer);
 	virtual void mousePressed(int x, int y,bool isLeft);
 	virtual string className() { return "Messagebox"; }
+	void addlistener(MouseListener* ms);
+
 
 
 };
