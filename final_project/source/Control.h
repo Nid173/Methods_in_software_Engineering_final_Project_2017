@@ -8,9 +8,6 @@
 using namespace std;
 enum class BorderType { Single, Double, None };
 
-
-
-
 class Control
 {
 protected:
@@ -57,7 +54,6 @@ public:
 	Control();
 	static Control* getFocus();
 	static void setFocus(Control& control);
-	
 	virtual void draw(Graphics& g, int x, int y, size_t z);
 	virtual void mousePressed(int x, int y, bool isLeft) {};
 	virtual void keyDown(int keyCode, char charecter) {};
@@ -88,13 +84,9 @@ private:
 	Focused() { _focus = NULL; _graph = NULL; }
 };
 
-
-
-
-/* 
- * Inline Methods 
- * (More Faster and much effective). 
- */
+/*
+* Inline Methods
+*/
 
  size_t Control:: getLayer() const {
 	 return _layer;
@@ -102,18 +94,15 @@ private:
  void Control:: setLayer(size_t layer) {
 	 this->_layer = layer;
 }
-
  int Control::getWidth() const {
 	 return _width;
  }
-
  int Control:: getLeft()const {
 	 return _left;
  }
  int Control:: getTop()const {
 	 return _top;
  }
-
   void Control:: setTop(int top) {
 	  _top = top;
 	  _cursorPositiony = this->getTop() + this->getHeight() - 1;
@@ -121,18 +110,15 @@ private:
   void Control:: setLeft(int left) {
 	  _left = left;
  }
- 
   Color Control:: getBackground()const {
 	  return _backgroundcolor;
   }
   Color Control:: getForeground()const {
 	  return _forgroundcolor;
   }
-
   int Control::getHeight()const {
 	  return _height;
   }
-
   void Control::restCursor() {
 	  _cursorPositionx = 0;
   }

@@ -4,7 +4,6 @@
 
 class NumericBox : public Panel {
 protected:
-
 	int _min;
 	int _max;
 	int _value;
@@ -17,10 +16,12 @@ public:
 	virtual string className() { return "NumericBox"; }
 	inline virtual void setLeft(int left);
 	inline virtual void setTop(int top);
-
 	virtual void mousePressed(int x, int y, bool isLeft);
-
 };
+
+/*
+* Inline Methods
+*/
 
 void NumericBox::setTop(int top) {
 	_top = top;
@@ -29,7 +30,6 @@ void NumericBox::setTop(int top) {
 	}
 
 }
-
 void NumericBox::setLeft(int left) {
 	_left = left;
 	for (int i = 0; i < _controls.size(); i++) {
@@ -43,6 +43,7 @@ void NumericBox::setLeft(int left) {
 
 }
 
+//button plus 
 class Plus_button :public MouseListener {
 public:
 	Plus_button() {}
@@ -52,6 +53,7 @@ public:
 	}
 };
 
+//button minus
 class Minus_button :public MouseListener {
 public:
 	virtual void MousePressed(Control &control, int x, int y, bool isLeft) {

@@ -1,7 +1,6 @@
 #pragma once
 #include "CheckList.h"
 
-
 class RadioBox : public CheckList {
 	size_t _index;
 public:

@@ -10,8 +10,6 @@ public:
 	Panel(int height=20,int width=20);
 	~Panel() {}
 	void AddControl(Control &control, int x, int y);
-	//inline vector<Control*>& getControls
-
 	/* Control Methods*/
 	void draw(Graphics& g, int x, int y, size_t layer);
 	virtual void getAllControls(vector<Control*>* controls);

@@ -32,3 +32,28 @@ public:
 		tmp->click(x);
 	}
 };
+
+/*
+* Inline Methods
+*/
+// left setting
+void CheckList::setLeft(int left) {
+	_left = left;
+	for (int i = 0; i < _controls.size(); i++) {
+		_controls[i]->setLeft(0);
+	}
+
+}
+// top setting
+void CheckList::setTop(int top) {
+	_top = top;
+	for (int i = 0; i < _controls.size(); i++) {
+		if (i == 0) {
+			_controls[i]->setTop(0);
+		}
+		else {
+			_controls[i]->setTop(_controls[i - 1]->getHeight() + _controls[i - 1]->getTop());
+		}
+	}
+
+}
