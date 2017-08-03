@@ -39,24 +39,6 @@ public:
 	Form() {}
 	~Form() {}
 	void start() {
-
-		vector<string> hobbies;
-		hobbies.push_back("sport");
-		hobbies.push_back("movies");
-		hobbies.push_back("swiming");
-		hobbies.push_back("vidiogames");
-
-
-		vector<string> genders;
-		genders.push_back("male");
-		genders.push_back("female");
-		genders.push_back("others");
-
-		vector<string> educations;
-		educations.push_back("collage");
-		educations.push_back("highschool");
-		educations.push_back("droped");
-
 		//the main panel
 		Panel main(29, 70);
 		main.setBackground(Color::Black);
@@ -78,13 +60,29 @@ public:
 		age.setBorder(BorderType::Single);
 		main.AddControl(age, 5, 14);
 
+		vector<string> hobbies;
+		hobbies.push_back("sport");
+		hobbies.push_back("movies");
+		hobbies.push_back("swiming");
+		hobbies.push_back("vidiogames");
+
 		CheckList hobby(10, 2, hobbies);
 		hobby.setBorder(BorderType::Single);
 		main.AddControl(hobby,50, 14);
 
+		vector<string> genders;
+		genders.push_back("male");
+		genders.push_back("female");
+		genders.push_back("others");
+
 		RadioBox gender(7, 2, genders);
 		gender.setBorder(BorderType::Single);
 		main.AddControl(gender, 50, 5);
+
+		vector<string> educations;
+		educations.push_back("collage");
+		educations.push_back("highschool");
+		educations.push_back("droped");
 
 		ComboBox education(10, educations);
 		education.setBorder(BorderType::Single);
