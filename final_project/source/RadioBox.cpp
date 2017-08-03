@@ -4,7 +4,7 @@
 
 RadioBox::RadioBox(int width, int height, vector<string> entries) :CheckList(width,height,entries),_index(-1){}
 
-size_t RadioBox::GetSelectedIndex() {
+int RadioBox::GetSelectedIndex() {
 	return _index;
 
 }
@@ -59,7 +59,7 @@ void RadioBox::keyDown(int keyCode, char charecter) {
 }
 
 //what to in case selected
-void RadioBox::SetSelectedIndex(size_t index) {
+void RadioBox::SetSelectedIndex(int index) {
 	if (_index != -1) {
 		_controls[_index]->setBackground(Color::White);
 	}
@@ -67,6 +67,6 @@ void RadioBox::SetSelectedIndex(size_t index) {
 	_controls[index]->setBackground(Color::Green);
 }
 
-void RadioBox::click(size_t index) {
+void RadioBox::click(int index) {
 	SetSelectedIndex(index);
 }
