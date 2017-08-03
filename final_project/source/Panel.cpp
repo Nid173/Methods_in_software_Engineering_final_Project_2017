@@ -51,13 +51,8 @@ void Panel::draw(Graphics& g, int x, int y, size_t layer) {
 	else if (layer == getLayer() + 1 && this == getFocus()) {
 		Control::draw(g, x, y, layer);
 		g.setCursorVisibility(true);
-		//g.moveTo(getLeft() + x + _cursorPosition, getTop() + y);
 		g.moveTo(getLeft() + x, getTop() + y);
-
 	}
-	//g.setBackground(getBackground());
-	//g.setForeground(getForeground());
-
 }
 
 bool Panel::canGetFocus() {

@@ -10,7 +10,6 @@ TextBox::TextBox(int width) {
 	_cursorPositionx = 0;
 }
 
-
 void TextBox::mousePressed(int x, int y, bool isLeft) {
 	Control::getFocus()->restCursor();
 	Control::setFocus(*this);
@@ -60,12 +59,9 @@ bool TextBox::canGetFocus() {
 
 void TextBox::draw(Graphics& g, int x, int y, size_t layer) {
 	if (layer == getLayer()) {
-
 		g.setBackground(this->getBackground());
 		g.setForeground(this->getForeground());
 		g.write(x + getLeft() + 1, getTop() + y + 1, _text + wstring(getWidth() - _text.size(), ' '));
 		Control::draw(g, x, y, layer);
 	}
-
-
 }

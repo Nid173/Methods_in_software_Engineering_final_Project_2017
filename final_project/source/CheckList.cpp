@@ -34,7 +34,6 @@ CheckList::CheckList(int width, int height, vector<string> entries) :Panel((heig
 }
 
 void CheckList::SelectedIndex(size_t index) {
-
 	_index.push_back(index);
 	//turn on background on selected
 	_controls[index]->setBackground(Color::Green);
@@ -42,24 +41,20 @@ void CheckList::SelectedIndex(size_t index) {
 }
 
 void CheckList::DeSelectedIndex(size_t index) {
-	
 	for (int i = 0; i < _index.size(); i++) {
 		if (_index[i] == index) {
 			_index.erase(_index.begin() + i);
 		//turn off backgound
 			_controls[index]->setBackground(Color::White);
 		}
-
 	}
-
 }
-//return background to original after scroling down throuth the list
+
+//reset background to original after scroling down throuth the list
 void CheckList::restCursor() {
 	for (int i = 0; i < _controls.size(); i++) {
-
 		_controls[i]->setBackground(Color::White);
 		_controls[i]->setForeground(Color::Black);
-
 		for (int j = 0; j < _index.size(); j++) {
 			if (_index[j] == i) {
 				_controls[i]->setBackground(Color::Green);
@@ -92,7 +87,6 @@ void CheckList:: keyDown(int keyCode, char charecter) {
 				(**it).setBackground(Color::Orange);
 				(**it).setForeground(Color::White);
 			}
-
 		}
 		else if (keyCode == VK_RETURN || keyCode == VK_SPACE) {
 			int lock = 0;
@@ -111,8 +105,6 @@ void CheckList:: keyDown(int keyCode, char charecter) {
 					_index.push_back(pos);
 				}
 		}
-
-
 	}
 }
 
@@ -137,7 +129,6 @@ void CheckList::mousePressed(int x, int y, bool isLeft) {
 //what to do in click case
 void CheckList::click(size_t index) {
 	int lock = 0;
-
 	for (int i = 0; i < _index.size(); i++) {
 		if (_index[i] == index) {
 			DeSelectedIndex(index);

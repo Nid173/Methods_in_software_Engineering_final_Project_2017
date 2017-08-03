@@ -7,7 +7,6 @@ using namespace std;
 EventEngine::EventEngine(DWORD input, DWORD output)
 	: _console(GetStdHandle(input)), _graphics(output)
 {
-
 	GetConsoleMode(_console, &_consoleMode);
 	SetConsoleMode(_console, ENABLE_WINDOW_INPUT | ENABLE_MOUSE_INPUT);
 	SetConsoleTitle(L"Final Project 2017");
@@ -18,7 +17,6 @@ void EventEngine::run(Control &c)
 {
 	int lock = 0;
 	Focused::instance()->setGraph(_graphics);
-
 	/* checking if the main panel is inside the Console 
 	* if no- change the console size 
 	*/
@@ -26,11 +24,8 @@ void EventEngine::run(Control &c)
 	{
 		if (redraw)
 		{
-			//_graphics.setBackground(c.getBackground());
-			//_graphics.setForeground(c.getForeground());
 			_graphics.clearScreen();
 			_graphics.setCursorVisibility(false);
-
 			for (size_t p = 0; p < 5; ++p)
 				c.draw(_graphics, 0, 0 , p);
 			redraw = false;
@@ -81,7 +76,6 @@ void EventEngine::run(Control &c)
 					redraw = true;
 					lock = 0;
 				}
-
 			}
 			break;
 		}
@@ -103,7 +97,6 @@ void EventEngine::run(Control &c)
 				redraw = true;
 				lock = 0;
 			}
-
 			break;
 		}
 		default:
@@ -144,12 +137,10 @@ void EventEngine::deepFocus(Control &main,Control *focused) {
 	vector<Control*> controls;
 	main.getAllControls(&controls);
 	auto it = find(controls.begin(), controls.end(), focused);
- 
 	do
 			if (++it == controls.end())
 				it = controls.begin();
 	 while (!((*it)->canGetFocus()));
-
 	 Control::setFocus(**it);
 	 main.restCursor();
 	Control::getFocus()->setBackground(Color::Orange);
