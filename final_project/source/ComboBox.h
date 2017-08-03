@@ -27,35 +27,6 @@ public:
 
 };
 
-void ComboBox::setText(wstring text) {
-	_text = text;
- }
- wstring ComboBox::getText()const {
-	 return _text;
- }
-
-
-void ComboBox::setLeft(int left) {
-	_left = left;
-	for (int i = 0; i < _controls.size()-1; i++) {
-		_controls[i]->setLeft(0);
-	}
-
-}
-
-void ComboBox::setTop(int top) {
-	_top = top;
-	for (int i = 0; i < _controls.size()-1; i++) {
-		if (i == 0) {
-			_controls[i]->setTop(2);
-		}
-		else {
-			_controls[i]->setTop(_controls[i - 1]->getHeight() + _controls[i - 1]->getTop());
-		}
-	}
-
-}
-
 
 class ComboBox_list :public MouseListener {
 public:
