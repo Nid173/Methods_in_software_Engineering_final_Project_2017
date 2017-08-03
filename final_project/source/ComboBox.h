@@ -14,6 +14,7 @@ public:
 	~ComboBox() {}
 	size_t GetSelectedIndex();
 	void SetSelectedIndex(size_t index);
+	vector<string>& Getallentries();
 	virtual bool canGetFocus() { return false; }
 	virtual string className() { return "ComboBox"; }
 	inline virtual void setLeft(int left);

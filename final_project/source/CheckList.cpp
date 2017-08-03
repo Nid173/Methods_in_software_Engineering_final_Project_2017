@@ -35,6 +35,10 @@ CheckList::CheckList(int width, int height, vector<string> entries) :Panel((heig
 vector<size_t>& CheckList::GetallIndex() {
 	return _indexs;
 }
+
+vector<string>& CheckList::Getallentries() {
+	return _entries;
+}
 void CheckList::SelectedIndex(size_t index) {
 	_indexs.push_back(index);
 	//turn on background on selected
