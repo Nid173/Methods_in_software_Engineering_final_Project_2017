@@ -21,16 +21,18 @@ public:
 		control.getAllControls(&controls);
 		TextBox* mystr1 = static_cast<TextBox*>(controls[2]);
 		TextBox* mystr2 = static_cast<TextBox*>(controls[3]);
-
-
 				/*get the answer*/
 		Label* tempo = static_cast<Label*> (controls[1]);
 		tempo->setText(mystr1->getText()+mystr2->getText());
 	}
 };
-
+// 0->textbox first name (wstring::getText())
+// 1->textbox last name  (wstring::getText())
+// 2-> numricbox age (size_t::getValue())
+// 3-Checklist hobby (vector<size_t> GetallIndex())
+// 4->Radiobox gender (size_t::GetSelectedIndex())
+// 5->Combobox eduaction (size_t::GetSelectedIndex)
 show_button listener;
-
 class Form {
 
 public:
@@ -62,6 +64,16 @@ public:
 		main.setBorder(BorderType::Double);
 
 		//box exampales
+		TextBox str1(10);
+		str1.setText(L"first");
+		str1.setBorder(BorderType::Single);
+		main.AddControl(str1, 5, 7);
+
+		TextBox str2(10);
+		str2.setText(L"last");
+		str2.setBorder(BorderType::Single);
+		main.AddControl(str2, 20, 7);
+
 		NumericBox age(4, 0, 18);
 		age.setBorder(BorderType::Single);
 		main.AddControl(age, 5, 14);
@@ -78,23 +90,13 @@ public:
 		education.setBorder(BorderType::Single);
 		main.AddControl(education, 25, 14);
 
+		//titles
 		Label title(12);
 		title.setText(L"   survey");
 		title.setBackground(Color::White);
 		title.setForeground(Color::Black);
 		main.AddControl(title, 27, 1);
 
-		TextBox str1(10);
-		str1.setText(L"first");
-		str1.setBorder(BorderType::Single);
-		main.AddControl(str1, 5, 7);
-
-		TextBox str2(10);
-		str2.setText(L"last");
-		str2.setBorder(BorderType::Single);
-		main.AddControl(str2, 20, 7);
-
-		//titles
 		Label name(15);
 		name.setText(L"full name");
 		name.setBackground(Color::Black);
@@ -135,10 +137,8 @@ public:
 		click.addListener(listener);
 		main.AddControl(click, 30, 25);
 
-
 		/*End of the Form */
 
-		
 		Control::setFocus(str1);
 		EventEngine engine;
 		engine.run(main);

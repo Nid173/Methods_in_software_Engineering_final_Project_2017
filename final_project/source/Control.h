@@ -40,16 +40,13 @@ public:
 	inline int getHeight()const;
 	inline void setHeight(int _y);
 	inline virtual void restCursor();
-
 	inline virtual void setLeft(int left);
 	inline virtual void setTop(int top);
 	inline virtual int getLeft()const;
 	inline virtual int getTop()const;
 	inline bool getVisibilty()const;
-
 	bool isOpened() { return opened; }
 	void setopen(bool open) { opened = open; }
-
 	 /**/
 	Control();
 	static Control* getFocus();

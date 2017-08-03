@@ -32,18 +32,20 @@ CheckList::CheckList(int width, int height, vector<string> entries) :Panel((heig
 
 
 }
-
+vector<size_t>& CheckList::GetallIndex() {
+	return _indexs;
+}
 void CheckList::SelectedIndex(size_t index) {
-	_index.push_back(index);
+	_indexs.push_back(index);
 	//turn on background on selected
 	_controls[index]->setBackground(Color::Green);
 
 }
 
 void CheckList::DeSelectedIndex(size_t index) {
-	for (int i = 0; i < _index.size(); i++) {
-		if (_index[i] == index) {
-			_index.erase(_index.begin() + i);
+	for (int i = 0; i < _indexs.size(); i++) {
+		if (_indexs[i] == index) {
+			_indexs.erase(_indexs.begin() + i);
 		//turn off backgound
 			_controls[index]->setBackground(Color::White);
 		}
@@ -55,8 +57,8 @@ void CheckList::restCursor() {
 	for (int i = 0; i < _controls.size(); i++) {
 		_controls[i]->setBackground(Color::White);
 		_controls[i]->setForeground(Color::Black);
-		for (int j = 0; j < _index.size(); j++) {
-			if (_index[j] == i) {
+		for (int j = 0; j < _indexs.size(); j++) {
+			if (_indexs[j] == i) {
 				_controls[i]->setBackground(Color::Green);
 				_controls[i]->setForeground(Color::Black);
 				break;
@@ -92,17 +94,17 @@ void CheckList:: keyDown(int keyCode, char charecter) {
 			int lock = 0;
 			int pos =it - _controls.begin();
 			Control::getFocus()->setForeground(Color::Black);
-				for (int j = 0; j < _index.size(); j++) {
-					if (_index[j] == pos) {
+				for (int j = 0; j < _indexs.size(); j++) {
+					if (_indexs[j] == pos) {
 						f->setBackground(Color::White);
-						_index.erase(_index.begin() + j);
+						_indexs.erase(_indexs.begin() + j);
 						lock = 1;
 						break;
 					}
 				}
 				if (lock == 0) {
 					f->setBackground(Color::Green);
-					_index.push_back(pos);
+					_indexs.push_back(pos);
 				}
 		}
 	}
@@ -129,8 +131,8 @@ void CheckList::mousePressed(int x, int y, bool isLeft) {
 //what to do in click case
 void CheckList::click(size_t index) {
 	int lock = 0;
-	for (int i = 0; i < _index.size(); i++) {
-		if (_index[i] == index) {
+	for (int i = 0; i < _indexs.size(); i++) {
+		if (_indexs[i] == index) {
 			DeSelectedIndex(index);
 			lock = 1;
 		}
