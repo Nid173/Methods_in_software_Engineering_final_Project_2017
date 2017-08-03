@@ -13,17 +13,24 @@
 #include "ComboBox.h"
 #include "MessageBox.h"
 
-class show_button :public MouseListener {
+class Submit :public MouseListener {
 private:
 public:
 	virtual void MousePressed(Control &control, int x, int y, bool isLeft) {
-		vector<Control*> controls;
-		control.getAllControls(&controls);
-		TextBox* mystr1 = static_cast<TextBox*>(controls[2]);
-		TextBox* mystr2 = static_cast<TextBox*>(controls[3]);
-				/*get the answer*/
-		Label* tempo = static_cast<Label*> (controls[1]);
-		tempo->setText(mystr1->getText()+mystr2->getText());
+		vector<Control*> myvec;
+		control.getAllControls(&myvec);
+		wstring answer=L" name: " ;
+		for (int i = 0; i < 2; i++) {
+			TextBox *tmp = static_cast<Button*>(myvec[i]);
+			answer += L" " + tmp->getText;
+		}
+		NumericBox *tmp = static_cast<NumericBox*>(myvec[2]);
+		answer += L"\n" + to_wstring(tmp->getValue());
+
+		CheckList* temp = static_cast<CheckList*>(myvec[3]);
+		vector<string> en;
+
+
 	}
 };
 // 0->textbox first name (wstring::getText())
@@ -32,7 +39,8 @@ public:
 // 3-Checklist hobby (vector<size_t> GetallIndex())
 // 4->Radiobox gender (size_t::GetSelectedIndex())
 // 5->Combobox eduaction (size_t::GetSelectedIndex)
-show_button listener;
+
+Submit listener;
 class Form {
 
 public:
