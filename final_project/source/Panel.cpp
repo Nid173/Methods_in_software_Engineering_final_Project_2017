@@ -41,14 +41,15 @@ void Panel::mousePressed(int x, int y, bool isLeft) {
 void Panel::draw(Graphics& g, int x, int y, size_t layer) {
 	if (layer == getLayer()) {
 		if (getVisibilty()) {
-			for (int i = _controls.size(); i > 0; i--) {
-				g.setBackground(_controls[i - 1]->getBackground());
-				g.setForeground(_controls[i - 1]->getForeground());
-				this->_controls[i - 1]->draw(g, x + getLeft(), y + getTop(), _controls[i - 1]->getLayer());
-			}
-			g.setBackground(getBackground());
 			g.setForeground(getForeground());
+			g.setBackground(getBackground());
 			Control::draw(g, x, y, layer);
+			for (int i = 0; i < _height-1; i++) {
+				g.write(x + getLeft()+1, y + getTop() + i+1, wstring(getWidth() , ' '));
+			}
+			for (int i = 0; i < _controls.size(); i++) {
+				this->_controls[i]->draw(g, x + getLeft(), y + getTop(), _controls[i]->getLayer());
+			}
 		}
 	}
 }

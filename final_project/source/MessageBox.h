@@ -1,29 +1,30 @@
 #pragma once
 #include "Panel.h"
 
-
 class Messagebox : public Panel {
 	wstring _message;
+	bool value;
+	MouseListener* _listener;
 
 public:
 	Messagebox(int width, int height, wstring error);
-	inline void setOkListener(MouseListener& ok);
-	inline void setCancelListener(MouseListener& cancel);
 	inline virtual void setTop(int top);
 	inline  virtual void setLeft(int left);
+	inline MouseListener* getListener()const;
 	inline void setText(wstring in);
+	inline bool isOK()const;
+	inline void setValue(bool val);
 	virtual void draw(Graphics& g, int x, int y, size_t layer);
+	virtual void mousePressed(int x, int y,bool isLeft);
+	virtual string className() { return "Messagebox"; }
+
+
 };
 
-void Messagebox::setOkListener(MouseListener& ok) {
-	Button* b = static_cast<Button*>(_controls[0]);
-	b->addListener(ok);
+void Messagebox:: setValue(bool val) {
+	value = val;
 }
-void Messagebox::setCancelListener(MouseListener& cancel) {
-	Button* b = static_cast<Button*>(_controls[1]);
-	b->addListener(cancel);
 
-}
 
 void Messagebox::setTop(int top) {
 	_top = top;
@@ -37,5 +38,11 @@ void Messagebox::setLeft(int left) {
 }
 void Messagebox::setText(wstring in) {
 	_message = in;
+}
+bool Messagebox:: isOK()const {
+	return value;
+}
+MouseListener* Messagebox:: getListener()const {
+	return _listener;
 }
 
