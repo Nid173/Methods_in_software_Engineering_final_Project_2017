@@ -25,7 +25,6 @@ CheckList::CheckList(int width, int height, vector<string> entries) :Panel((heig
 	list->setForeground(Color::Black);
 		stemp = s2ws(entries[i]);
 		list->setText(stemp);
-		list->addListener(*new Choice_button);
 		this->_controls.push_back(list);
 	}
 	_cursorPositiony = _controls[0]->getTop() + 1;
@@ -125,14 +124,14 @@ void CheckList::mousePressed(int x, int y, bool isLeft) {
 			_cursorPositiony = _top + _controls[i]->getTop()+1;
 			Focuslist* tmp = static_cast<Focuslist*>(_controls[i]);
 			Control::setFocus(*_controls[i]);
-			tmp->getListener().MousePressed(*this, i, y, isLeft);
+			click(i);
 			break;
 		}
 	}
 }
 
 //what to do in click case
-void CheckList::click(size_t index) {
+void CheckList::click(int index) {
 	int lock = 0;
 	for (int i = 0; i < _indexs.size(); i++) {
 		if (_indexs[i] == index) {

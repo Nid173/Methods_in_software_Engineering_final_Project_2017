@@ -22,18 +22,9 @@ public:
 	virtual void mousePressed(int x, int y, bool isLeft);
 	virtual void keyDown(int keyCode, char charecter) ;
 	virtual void restCursor();
-	virtual void click(size_t index);
+	virtual void click(int index);
 };
 
-
-class Choice_button :public MouseListener {
-public:
-	Choice_button() {}
-	virtual void MousePressed(Control &control, int x, int y, bool isLeft) {
-		CheckList * tmp = static_cast<CheckList*>(&control);
-		tmp->click(x);
-	}
-};
 
 /*
 * Inline Methods

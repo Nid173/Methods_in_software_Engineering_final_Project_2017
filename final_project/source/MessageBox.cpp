@@ -35,9 +35,17 @@ Messagebox::Messagebox(int width, int height, wstring error):Panel(height+3,widt
 }
 
 void Messagebox:: mousePressed(int x, int y, bool isLeft) {
-	value=false;
-	if (isInside(x, y, _controls[0]->getLeft(), _controls[0]->getTop(), _controls[0]->getWidth(), _controls[0]->getHeight())) 
+	x -= getLeft();
+	y -= getTop();
+	if (isInside(x, y, _controls[0]->getLeft(), _controls[0]->getTop(), _controls[0]->getWidth(), _controls[0]->getHeight())) {
 		this->value = true;
+		_listener->MousePressed(*this, x, y, isLeft);
+	}
+	else if (isInside(x, y, _controls[1]->getLeft(), _controls[1]->getTop(), _controls[1]->getWidth(), _controls[1]->getHeight())) {
+		this->value = false;
+		_listener->MousePressed(*this, x, y, isLeft);
+	}
+
 }
 
 void Messagebox::draw(Graphics& g, int x, int y, size_t layer) {
@@ -71,4 +79,8 @@ void Messagebox::draw(Graphics& g, int x, int y, size_t layer) {
 			Control::draw(g, x, y, layer);
 		}
 	}
+}
+
+ void Messagebox:: addlistener(MouseListener* ms) {
+	 this->_listener = ms;
 }
