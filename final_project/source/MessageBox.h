@@ -12,8 +12,7 @@ public:
 	inline virtual void setTop(int top);
 	inline  virtual void setLeft(int left);
 	inline void setText(wstring in);
-	virtual void draw(Graphics& g, int x, int y, size_t layer);
-
+	inline virtual void draw(Graphics& g, int x, int y, size_t layer);
 };
 
 void Messagebox::setOkListener(MouseListener& ok) {
@@ -38,4 +37,22 @@ void Messagebox:: setTop(int top) {
   }
   void Messagebox::setText(wstring in) {
 	  _message = in;
+  }
+
+  void Messagebox::draw(Graphics& g, int x, int y, size_t layer) {
+	  if (layer == getLayer()) {
+		  if (getVisibilty()) {
+			  g.setBackground(this->getBackground());
+			  g.setForeground(this->getForeground());
+			  g.write(x + getLeft() + 1, getTop() + y + 1, _message + wstring(getWidth() - _message.size(), ' '));
+			  for (int i = _controls.size(); i > 0; i--) {
+				  g.setBackground(_controls[i - 1]->getBackground());
+				  g.setForeground(_controls[i - 1]->getForeground());
+				  this->_controls[i - 1]->draw(g, x + getLeft(), y + getTop(), _controls[i - 1]->getLayer());
+			  }
+			  g.setBackground(getBackground());
+			  g.setForeground(getForeground());
+			  Control::draw(g, x, y, layer);
+		  }
+	  }
   }
