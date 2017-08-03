@@ -17,7 +17,7 @@ Messagebox::Messagebox(int width, int height, wstring error):Panel(height+3,widt
 
 	Button* ok = new Button(7);
 	ok->setText(L"OK");
-	this->setBackground(Color::White);
+	ok->setBackground(Color::Blue);
 	ok->setForeground(Color::Green);
 	ok->setBorder(BorderType::Single);
 	_controls.push_back(ok);
@@ -25,14 +25,20 @@ Messagebox::Messagebox(int width, int height, wstring error):Panel(height+3,widt
 
 	Button* cancel = new Button(7);
 	cancel->setText(L"cancel");
-	this->setBackground(Color::White);
+	cancel->setBackground(Color::Blue);
 	cancel->setForeground(Color::Red);
 	cancel->setBorder(BorderType::Single);
 	_controls.push_back(cancel);
 
 	_message = error;
+	value = false;
 }
 
+void Messagebox:: mousePressed(int x, int y, bool isLeft) {
+	value=false;
+	if (isInside(x, y, _controls[0]->getLeft(), _controls[0]->getTop(), _controls[0]->getWidth(), _controls[0]->getHeight())) 
+		this->value = true;
+}
 
 void Messagebox::draw(Graphics& g, int x, int y, size_t layer) {
 	if (layer == getLayer()) {
@@ -55,7 +61,6 @@ void Messagebox::draw(Graphics& g, int x, int y, size_t layer) {
 				g.write(x + getLeft() + 1, getTop() + y + j + 1, L" " + temp + wstring(getWidth() - temp.size(), ' '));
 				j += 1;
 			}
-			//g.write(x + getLeft() + 1, getTop() + y + 1, _message + wstring(getWidth() - _message.size(), ' '));
 			for (int i = _controls.size(); i > 0; i--) {
 				g.setBackground(_controls[i - 1]->getBackground());
 				g.setForeground(_controls[i - 1]->getForeground());

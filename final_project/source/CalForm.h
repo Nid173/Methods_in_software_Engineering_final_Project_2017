@@ -58,15 +58,27 @@ public:
 		}
 
 		Messagebox *tt = static_cast<Messagebox*> (myvec[myvec.size()-1]);
+		answer += L"\nDo you want to Save?";
 		tt->setText(answer);
 		myvec[myvec.size() - 1]->setVisibility(true);
-		for (int i = 0; i < myvec.size()-1; i++) {
-			myvec[i]->setVisibility(false);
-		}
-
-		
 	}
 };
+
+/*
+class messageBoxListener  : public MouseListener {
+public:
+	virtual void MousePressed(Control &control, int x, int y, bool isLeft) {
+		if (isLeft) {
+
+		}
+	}
+
+	*/
+
+
+
+
+
 // 1->textbox first name (wstring::getText())
 // 2->textbox last name  (wstring::getText())
 // 3-> numricbox age (size_t::getValue())

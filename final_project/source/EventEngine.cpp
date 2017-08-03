@@ -29,7 +29,7 @@ void EventEngine::run(Control &c)
 			for (size_t p = 0; p < 5; ++p)
 				c.draw(_graphics, 0, 0 , p);
 			redraw = false;
-			_graphics.setCursorVisibility(false);
+			_graphics.setBackground(Color::Black);
 		}
 		if (lock == 0) {
 			if (Control::getFocus()->className() =="TextBox") {
