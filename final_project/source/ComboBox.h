@@ -6,14 +6,14 @@
 class ComboBox : public Panel {
 protected:
 	vector<string> _entries;
-	size_t _index;
+	int _index;
 	wstring _text;
 
 public:
 	ComboBox(int width, vector<string> entries);
 	~ComboBox() {}
-	size_t GetSelectedIndex();
-	void SetSelectedIndex(size_t index);
+	int GetSelectedIndex();
+	void SetSelectedIndex(int index);
 	vector<string>& Getallentries();
 	virtual bool canGetFocus() { return false; }
 	virtual string className() { return "ComboBox"; }

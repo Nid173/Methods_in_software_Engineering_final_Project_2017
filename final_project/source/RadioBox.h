@@ -2,14 +2,14 @@
 #include "CheckList.h"
 
 class RadioBox : public CheckList {
-	size_t _index;
+	int _index;
 public:
 	RadioBox(int width, int height, vector<string> entries);
 	~RadioBox() {}
 	virtual string className() { return "RadioBox"; }
-	virtual void click(size_t index);
-	size_t GetSelectedIndex();
-	void SetSelectedIndex(size_t index);
+	virtual void click(int index);
+	int GetSelectedIndex();
+	void SetSelectedIndex(int index);
 	virtual void restCursor();
 	virtual void keyDown(int keyCode, char charecter);
 };

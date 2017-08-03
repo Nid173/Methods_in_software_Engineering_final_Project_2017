@@ -31,7 +31,7 @@ void EventEngine::run(Control &c)
 			redraw = false;
 			_graphics.setBackground(Color::Black);
 		}
-		if (lock == 0) {
+		if (lock == 0 && Control::getFocus()) {
 			if (Control::getFocus()->className() =="TextBox") {
 				_graphics.setCursorVisibility(true);
 				Control::setFocus(*Control::getFocus());
