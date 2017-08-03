@@ -12,7 +12,7 @@ public:
 	inline virtual void setTop(int top);
 	inline  virtual void setLeft(int left);
 	inline void setText(wstring in);
-	inline virtual void draw(Graphics& g, int x, int y, size_t layer);
+	virtual void draw(Graphics& g, int x, int y, size_t layer);
 };
 
 void Messagebox::setOkListener(MouseListener& ok) {
@@ -39,36 +39,3 @@ void Messagebox::setText(wstring in) {
 	_message = in;
 }
 
-void Messagebox::draw(Graphics& g, int x, int y, size_t layer) {
-	if (layer == getLayer()) {
-		if (getVisibilty()) {
-			g.setBackground(this->getBackground());
-			g.setForeground(this->getForeground());
-
-			for (int i = 0; i < _height; i++) {
-				g.write(x+getLeft(), y+getTop() + i,wstring(getWidth()+1, ' '));
-			}
-			int j=0;
-			for (int i = 0; i < _message.size();i++){
-				int z=0;
-				wstring temp;
-				while (_message[i] != '\n' && i < _message.size() ) {
-					temp += _message[i];
-						i++;
-				}
-				z = i;
-				g.write(x + getLeft() + 1, getTop() + y +j+1,L" " + temp + wstring(getWidth() - temp.size(), ' '));
-				j += 1;
-			}
-			  //g.write(x + getLeft() + 1, getTop() + y + 1, _message + wstring(getWidth() - _message.size(), ' '));
-			  for (int i = _controls.size(); i > 0; i--) {
-				  g.setBackground(_controls[i - 1]->getBackground());
-				  g.setForeground(_controls[i - 1]->getForeground());
-				  this->_controls[i - 1]->draw(g, x + getLeft(), y + getTop(), _controls[i - 1]->getLayer());
-			  }
-			  g.setBackground(getBackground());
-			  g.setForeground(getForeground());
-			  Control::draw(g, x, y, layer);
-		  }
-	  }
-  }
