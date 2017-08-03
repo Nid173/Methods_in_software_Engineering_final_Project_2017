@@ -50,11 +50,6 @@ void Panel::draw(Graphics& g, int x, int y, size_t layer) {
 			g.setForeground(getForeground());
 			Control::draw(g, x, y, layer);
 		}
-		else if (layer == getLayer() + 1 && this == getFocus()) {
-			Control::draw(g, x, y, layer);
-			g.setCursorVisibility(true);
-			g.moveTo(getLeft() + x, getTop() + y);
-		}
 	}
 }
 

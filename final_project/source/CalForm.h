@@ -19,14 +19,15 @@ public:
 	virtual void MousePressed(Control &control, int x, int y, bool isLeft) {
 		vector<Control*> myvec;
 		control.getAllControls(&myvec);
-		wstring answer=L" name: " ;
+		wstring answer=L"name: " ;
 		for (int i = 0; i < 2; i++) {
 			TextBox *tmp = static_cast<Button*>(myvec[i]);
-			answer += L" " + tmp->getText();
+			answer += tmp->getText()+L" ";
 		}
 		NumericBox *tmp = static_cast<NumericBox*>(myvec[2]);
-		answer += (L"  age: " + to_wstring(tmp->getValue()) + L'\n') ;
-		answer += L" Hobbies: ";
+		answer += (L"|age: " + to_wstring(tmp->getValue()) + L"\n") ;
+		answer += L"Hobby: ";
+
 		CheckList* temp = static_cast<CheckList*>(myvec[3]);
 		wstring hobb;
 		vector<string> en = temp->Getallentries();
@@ -36,19 +37,25 @@ public:
 			if (i != in.size() - 1)
 				answer += L", ";
 		}
-		answer += L'\n';
+		answer += L"\n";
 		answer += L"Gender: ";
 		RadioBox *ttmp = static_cast<RadioBox*>(myvec[4]);
 		 en = ttmp->Getallentries();
 		size_t sein = ttmp->GetSelectedIndex();
-		answer += (ttmp->s2ws(en[sein])+ L'\n'+L"Education: ");
+		if (sein != -1) 
+			answer += (ttmp->s2ws(en[sein]));
+		
+			answer += L"\nEducation: ";
 		
 		ComboBox* tempo = static_cast<ComboBox*>(myvec[5]);
 		sein = tempo->GetSelectedIndex();
 		vector<Control*>child;
 		tempo->getAllControls(&child);
-		Button* bb = static_cast<Button*>(child[sein]);		
-		answer += bb->getText();
+
+		if (sein != -1) {
+			Button* bb = static_cast<Button*>(child[sein]);
+			answer += bb->getText();
+		}
 
 		Messagebox *tt = static_cast<Messagebox*> (myvec[myvec.size()-1]);
 		tt->setText(answer);
@@ -171,9 +178,10 @@ public:
 		main.AddControl(click, 30, 25);
 
 
-		Messagebox message(80, 10, L" ");
+		//Messagebox message(25, 7, L"name:adham\n" L"age:9\n" L"hobbies:sport,videogames\n" L"gender:male");
+		Messagebox message(35, 8, L" ");
 		message.setVisibility(false);
-		main.AddControl(message, 0, 12);
+		main.AddControl(message, 5, 10);
 
 
 
